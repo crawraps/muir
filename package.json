@@ -1,0 +1,75 @@
+{
+  "name": "cuil",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun run lint && rslib build",
+    "build:storybook": "storybook build",
+    "dev": "rsbuild dev",
+    "doc": "rspress dev",
+    "doc:build": "rspress build",
+    "doc:preview": "rspress preview",
+    "format": "biome format --write",
+    "storybook": "storybook dev",
+    "test": "rstest",
+    "test:watch": "rstest --watch",
+    "biome-lint": "biome check",
+    "type-lint": "tsc",
+    "lint": "bun run type-lint && bun run biome-lint"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@material/web": "^2.4.0",
+    "animejs": "^4.2.2",
+    "clsx": "^2.1.1",
+    "curved-polygon": "^1.0.1",
+    "object-hash": "^3.0.0",
+    "react-hook-form": "^7.64.0",
+    "yup": "^1.7.1"
+  },
+  "devDependencies": {
+    "@aarsteinmedia/dotlottie-player": "^6.2.5",
+    "@biomejs/biome": "2.3.14",
+    "@lottiefiles/dotlottie-react": "^0.17.7",
+    "@rsbuild/core": "~1.7.3",
+    "@rsbuild/plugin-react": "^1.4.5",
+    "@rslib/core": "^0.19.6",
+    "@rspress/core": "^2.0.3",
+    "@rspress/plugin-api-docgen": "^2.0.3",
+    "@rspress/plugin-preview": "^2.0.3",
+    "@rstest/adapter-rslib": "^0.2.0",
+    "@rstest/core": "^0.8.5",
+    "@storybook/addon-docs": "^10.2.8",
+    "@storybook/addon-onboarding": "^10.2.8",
+    "@storybook/react": "^10.2.8",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^24.10.13",
+    "@types/object-hash": "^3.0.6",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "happy-dom": "^20.6.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "rsbuild-plugin-workspace-dev": "^0.1.4",
+    "storybook": "^10.2.8",
+    "storybook-addon-rslib": "^3.2.2",
+    "storybook-react-rsbuild": "^3.2.2",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
+  },
+  "private": true
+}

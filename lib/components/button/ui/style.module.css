@@ -1,0 +1,88 @@
+.button {
+  overflow: hidden;
+  gap: var(--label-gap, 0.5em);
+
+  &.elevated {
+    --md-elevated-button-container-height: var(--height);
+    --md-elevated-button-leading-space: var(--x-spacing);
+    --md-elevated-button-trailing-space: var(--x-spacing);
+    --md-elevated-button-label-text-size: var(--font-size);
+    --md-elevated-button-label-text-weight: var(--weight);
+    --md-elevated-button-container-shape: var(--shape);
+    --md-elevated-button-icon-size: var(--icon-size);
+  }
+
+  &.filled {
+    --md-filled-button-container-height: var(--height);
+    --md-filled-button-leading-space: var(--x-spacing);
+    --md-filled-button-trailing-space: var(--x-spacing);
+    --md-filled-button-label-text-size: var(--font-size);
+    --md-filled-button-label-text-weight: var(--weight);
+    --md-filled-button-container-shape: var(--shape);
+    --md-filled-button-icon-size: var(--icon-size);
+  }
+
+  &.filled-tonal {
+    --md-filled-tonal-button-container-height: var(--height);
+    --md-filled-tonal-button-leading-space: var(--x-spacing);
+    --md-filled-tonal-button-trailing-space: var(--x-spacing);
+    --md-filled-tonal-button-label-text-size: var(--font-size);
+    --md-filled-tonal-button-label-text-weight: var(--weight);
+    --md-filled-tonal-button-container-shape: var(--shape);
+    --md-filled-tonal-button-icon-size: var(--icon-size);
+  }
+
+  &.outlined {
+    --md-outlined-button-container-height: var(--height);
+    --md-outlined-button-leading-space: var(--x-spacing);
+    --md-outlined-button-trailing-space: var(--x-spacing);
+    --md-outlined-button-label-text-size: var(--font-size);
+    --md-outlined-button-label-text-weight: var(--weight);
+    --md-outlined-button-container-shape: var(--shape);
+    --md-outlined-button-icon-size: var(--icon-size);
+  }
+
+  &.text {
+    --md-text-button-container-height: var(--height);
+    --md-text-button-leading-space: var(--x-spacing);
+    --md-text-button-trailing-space: var(--x-spacing);
+    --md-text-button-label-text-size: var(--font-size);
+    --md-text-button-label-text-weight: var(--weight);
+    --md-text-button-container-shape: var(--shape);
+    --md-text-button-icon-size: var(--icon-size);
+  }
+
+  &.small {
+    --font-size: var(--md-sys-typescale-label-small-size);
+    --weight: var(--md-sys-typescale-label-small-weight);
+    --height: 2.5em;
+    --x-spacing: 1.25em;
+    --shape: var(--md-sys-shape-corner-extra-small);
+    --icon-size: 1.125em;
+    --label-gap: 0.425em;
+  }
+
+  &.medium {
+    --font-size: var(--md-sys-typescale-label-medium-size);
+    --weight: var(--md-sys-typescale-label-medium-weight);
+    --height: 2.5em;
+    --x-spacing: 1.75em;
+    --shape: var(--md-sys-shape-corner-small);
+    --icon-size: 1.0625em;
+    --label-gap: 0.325em;
+  }
+
+  &.large {
+    --font-size: var(--md-sys-typescale-label-large-size);
+    --weight: var(--md-sys-typescale-label-large-weight);
+    --height: 2.5em;
+    --x-spacing: 1.75em;
+    --shape: var(--md-sys-shape-corner-medium);
+    --icon-size: 1em;
+    --label-gap: 0.25em;
+  }
+
+  &.read-only {
+    pointer-events: none;
+  }
+}

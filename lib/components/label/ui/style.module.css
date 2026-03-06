@@ -1,0 +1,14 @@
+.label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--md-ref-typeface-brand);
+  font-size: var(--md-sys-typescale-label-medium-size);
+  font-weight: calc(var(--md-sys-typescale-label-medium-weight) + 100);
+
+  &[disabled] {
+    opacity: var(--md-label-disabled-opacity, 0.38);
+  }
+}

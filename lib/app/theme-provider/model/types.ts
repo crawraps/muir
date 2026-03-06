@@ -1,0 +1,104 @@
+export interface Shape {
+  none: number
+  'extra-small': number
+  small: number
+  medium: number
+  large: number
+  'extra-large': number
+  full: number
+}
+
+type TypeScale = 'display' | 'headline' | 'title' | 'body' | 'label'
+type TypeScaleSize = 'small' | 'medium' | 'large'
+
+export interface Typeface {
+  brandFamily: string
+  plainFamily: string
+  typeScale: Record<
+    TypeScale,
+    Record<
+      TypeScaleSize,
+      {
+        /**
+         * Font size in rem
+         */
+        size: number
+        /**
+         * Line height in em
+         */
+        lineHeight: number
+        weight: number
+      }
+    >
+  >
+}
+
+type Transition = {
+  duration: number
+  curve: string
+  bounce: number
+}
+
+export type Motion = Record<'expressive' | 'standart', Record<'fast' | 'default' | 'slow', Record<'effects' | 'spatial', Transition>>>
+
+export interface Theme {
+  palette: ColorPalette
+  /**
+   * Border radius values in rem
+   */
+  shape: Shape
+  typeface: Typeface
+  motion: Motion
+}
+
+export interface ColorPalette {
+  primary: string
+  'on-primary': string
+  'on-primary-fixed': string
+  'on-primary-fixed-variant': string
+  background: string
+  'on-background': string
+  'primary-container': string
+  'on-primary-container': string
+  secondary: string
+  'on-secondary': string
+  'on-secondary-fixed': string
+  'on-secondary-fixed-variant': string
+  'secondary-container': string
+  'on-secondary-container': string
+  tertiary: string
+  'on-tertiary': string
+  'on-tertiary-fixed': string
+  'on-tertiary-fixed-variant': string
+  'tertiary-container': string
+  'on-tertiary-container': string
+  error: string
+  'on-error': string
+  'error-container': string
+  'on-error-container': string
+  surface: string
+  'on-surface': string
+  'surface-variant': string
+  'on-surface-variant': string
+  outline: string
+  'outline-variant': string
+  shadow: string
+  scrim: string
+  'inverse-surface': string
+  'inverse-on-surface': string
+  'inverse-primary': string
+  'surface-dim': string
+  'surface-bright': string
+  'surface-container-lowest': string
+  'surface-container-low': string
+  'surface-container': string
+  'surface-container-high': string
+  'surface-container-highest': string
+  'primary-fixed': string
+  'primary-fixed-dim': string
+  'secondary-fixed': string
+  'secondary-fixed-dim': string
+  'surface-tint': string
+  'tertiary-fixed': string
+  'tertiary-fixed-dim': string
+}

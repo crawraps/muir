@@ -1,0 +1,7 @@
+.switch {
+  --md-switch-track-width: 3.75rem;
+  --md-switch-track-height: 2rem;
+  --md-switch-handle-shape: calc(var(--md-sys-shape-corner-full) - 0.2rem);
+  --md-switch-track-color: transparent;
+  --md-switch-track-outline-width: 1.5px;
+}

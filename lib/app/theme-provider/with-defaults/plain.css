@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  font-family: var(--md-ref-typeface-plain);
+  transition:
+    background-color var(--md-sys-motion-expressive-fast-effects-transition),
+    color var(--md-sys-motion-expressive-fast-effects-transition);
+}
+
+small {
+  font-size: var(--md-sys-typescale-body-small-size);
+  color: var(--md-sys-color-on-surface);
+  opacity: 0.75;
+}

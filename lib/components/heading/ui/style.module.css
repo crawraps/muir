@@ -1,0 +1,80 @@
+h1.heading,
+h2.heading,
+h3.heading,
+h4.heading,
+h5.heading,
+h6.heading {
+  font-family: var(--md-ref-typeface-brand);
+}
+
+h1.heading {
+  font-size: 3.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+
+  &.variant {
+    font-size: 2.5rem;
+    font-weight: 800;
+  }
+}
+
+h2.heading {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 0.375em;
+  margin-top: 0.375em;
+
+  &.variant {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+}
+
+h3.heading {
+  font-size: 2rem;
+  font-weight: 450;
+  margin-bottom: 0.25em;
+  margin-top: 0.25em;
+
+  &.variant {
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+}
+
+h4.heading {
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin-bottom: 0.1875rem;
+  margin-top: 0.1875rem;
+
+  &.variant {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+}
+
+h5.heading {
+  font-size: 1.5rem;
+  font-weight: 350;
+  margin-bottom: 0.125rem;
+  margin-top: 0.125rem;
+
+  &.variant {
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+}
+
+h6.heading {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-bottom: 0.0625rem;
+  margin-top: 0.0625rem;
+
+  &.variant {
+    font-size: 1rem;
+    font-weight: 350;
+  }
+}
