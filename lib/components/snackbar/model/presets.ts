@@ -1,4 +1,3 @@
-import React from 'react'
 import type { Snackbar } from './queue'
 
 export type Presets = { default: Required<Snackbar>; [key: string]: Partial<Snackbar> }
@@ -11,8 +10,8 @@ export const presets: Presets = {
       vertical: 'bottom',
       horizontal: 'center',
     },
-    prefix: React.createElement(React.Fragment),
-    suffix: React.createElement(React.Fragment),
+    prefix: createElement(Fragment),
+    suffix: createElement(Fragment),
   },
 }
 

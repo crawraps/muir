@@ -1,3 +1,4 @@
+import type React from 'react'
 import type { ReactNode } from 'react'
 
 export interface RevealerProps extends React.HTMLAttributes<HTMLDivElement> {

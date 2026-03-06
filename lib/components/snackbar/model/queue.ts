@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import type React from 'react'
 import type { SnackbarContextType } from './context'
 import type { Presets } from './presets'
 

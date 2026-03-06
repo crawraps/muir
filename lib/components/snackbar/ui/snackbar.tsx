@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import type { Snackbar } from '../model/queue'
 import { useAnimations } from './animations'
 import style from './style.module.css'

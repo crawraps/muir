@@ -1,5 +1,5 @@
 import { createScope, type DOMTarget, type Scope } from 'animejs'
-import React, { memo, useEffect, useRef } from 'react'
+import React from 'react'
 import { type Theme, useTheme } from '../app/theme-provider'
 
 interface Props {
@@ -34,7 +34,7 @@ export const AnimeScope = memo(({ ref, init, children }: Props) => {
     return () => currentScope.current!.revert()
   }, [init, children.props.ref?.current, ref, themeContext.theme.motion])
 
-  return React.cloneElement(children, { ref: children.props.ref ?? childRef })
+  return cloneElement(children, { ref: children.props.ref ?? childRef })
 })
 
 export type AnimeScopeType =

@@ -1,12 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useImperativeHandle } from 'react'
+import type React from 'react'
 import { FormProvider, type SubmitErrorHandler, type SubmitHandler, useForm } from 'react-hook-form'
 import type { InferType } from 'yup'
-import { createSmartClsx } from '../../../shared'
 import type { FormMethods, FormProps } from '../model/types'
-import style from './style.module.css'
-
-const clsx = createSmartClsx(style)
 
 function Form<FormValues extends Record<string, unknown>>({ schema, ref, ...props }: FormProps<FormValues>) {
   type Schema = InferType<typeof schema>

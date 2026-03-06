@@ -1,4 +1,4 @@
-import { createContext, type ReactNode, use, useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react'
+import type { ReactNode } from 'react'
 import { defaultThemes } from '../with-defaults/defaults'
 import { applyThemeToCss } from './apply-to-css'
 import { getSavedThemeLocal, getSavedThemeShared, setSavedThemeLocal, setSavedThemeShared } from './storage'

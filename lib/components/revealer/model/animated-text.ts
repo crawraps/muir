@@ -1,5 +1,5 @@
 import { random, randomPick, splitText, waapi } from 'animejs'
-import { useEffect, useState } from 'react'
+import type React from 'react'
 import { useTheme } from '../../../app/theme-provider'
 
 export function useAnimatedText(root: React.RefObject<HTMLElement | null>, { isRevealed, hiddenVector = '-150%' }: { isRevealed?: boolean; hiddenVector?: string | number }) {

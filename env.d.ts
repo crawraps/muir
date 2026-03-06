@@ -1,4 +1,6 @@
 /// <reference types="@rsbuild/core/types" />
+/// <reference types="react" />
+/// <reference types="react-dom" />
 
 declare module '*.module.css' {
   const classes: { readonly [key: string]: string }
@@ -15,3 +17,5 @@ declare namespace JSX {
     'dotlottie-player': any
   }
 }
+
+declare const clsx: (...args: any[]) => string;

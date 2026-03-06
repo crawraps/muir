@@ -1,5 +1,8 @@
+import { pluginBabel } from '@rsbuild/plugin-babel'
 import { pluginReact } from '@rsbuild/plugin-react'
 import { defineConfig } from '@rslib/core'
+import AutoImport from 'unplugin-auto-import/rspack'
+import autoClsxPlugin from './scripts/babel-plugin-auto-clsx.js'
 
 export default defineConfig({
   lib: [
@@ -40,5 +43,28 @@ export default defineConfig({
       },
     },
   ],
-  plugins: [pluginReact()],
+  plugins: [
+    pluginReact(),
+    pluginBabel({
+      babelLoaderOptions(config) {
+        config.plugins ??= []
+        config.plugins.push(autoClsxPlugin)
+      },
+    }),
+  ],
+  tools: {
+    rspack: {
+      plugins: [
+        AutoImport({
+          imports: [
+            'react',
+            {
+              react: ['Children', 'cloneElement', 'createElement'],
+            },
+          ],
+          dts: './auto-imports.d.ts',
+        }),
+      ],
+    },
+  },
 })

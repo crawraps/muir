@@ -1,5 +1,4 @@
 import { spring, waapi } from 'animejs'
-import { useCallback, useEffect, useRef } from 'react'
 import { useTheme } from '../../../app/theme-provider'
 
 const dismissPoint = 1

@@ -1,3 +1,4 @@
+import type React from 'react'
 export interface Props extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement> {
   /**
    * The heading level. Number from 1 to 6, corresponding to HTML heading tags h1 to h6.

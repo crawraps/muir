@@ -1,10 +1,4 @@
-import { Children, useEffect, useState } from 'react'
-import { createSmartClsx } from '../../../shared'
-
 import type { CarouselProps } from '../model/types'
-import style from './style.module.css'
-
-const clsx = createSmartClsx(style)
 
 export default function Carousel({ className, currentSlide, onSlideChange, children }: CarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0)

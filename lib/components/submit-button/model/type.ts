@@ -1,3 +1,4 @@
+import type React from 'react'
 import type { FieldErrors } from 'react-hook-form'
 import type { ButtonProps } from '../../button'
 

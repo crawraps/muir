@@ -1,13 +1,9 @@
 import { useFormState } from 'react-hook-form'
 import { useTheme } from '../../../app/theme-provider'
-import { createSmartClsx } from '../../../shared'
 import { Button } from '../../button'
 import { LoadingIndicator } from '../../loading-indicator'
 import { Revealer } from '../../revealer'
 import type { SubmitButtonProps } from '../model/type'
-import style from './style.module.css'
-
-const clsx = createSmartClsx(style)
 
 function SubmitButton<FormValues extends Record<string, unknown>>({
   variant = 'filled',

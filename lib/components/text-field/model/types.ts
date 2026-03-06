@@ -1,3 +1,4 @@
+import type React from 'react'
 import type { FormEventHandler } from 'react'
 import type { FieldPath } from 'react-hook-form'
 

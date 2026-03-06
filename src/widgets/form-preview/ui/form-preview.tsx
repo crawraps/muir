@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import * as yup from 'yup'
 import { useTheme } from '../../../../lib/app/theme-provider'
 import { Container } from '../../../../lib/components/container'

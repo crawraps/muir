@@ -1,10 +1,4 @@
-import React, { useEffect, useRef } from 'react'
-import { createSmartClsx } from '../../../shared'
 import type { LabelProps } from '../model/types'
-
-import styles from './style.module.css'
-
-const clsx = createSmartClsx(styles)
 
 function Label({ htmlFor, ...props }: LabelProps) {
   const element = useRef<HTMLLabelElement | HTMLSpanElement>(null)
@@ -19,7 +13,7 @@ function Label({ htmlFor, ...props }: LabelProps) {
     }
   })
 
-  return React.createElement(htmlFor ? 'label' : 'span', {
+  return createElement(htmlFor ? 'label' : 'span', {
     ...props,
     className: clsx(['label'], props.className),
     htmlFor: typeof htmlFor === 'string' ? htmlFor : undefined,

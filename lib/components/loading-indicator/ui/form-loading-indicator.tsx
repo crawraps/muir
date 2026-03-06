@@ -1,13 +1,9 @@
 import { type Scope, spring, waapi } from 'animejs'
-import { useEffect, useRef } from 'react'
 import { useFormState } from 'react-hook-form'
 import { useTheme } from '../../../app/theme-provider'
-import { AnimeScope, type AnimeScopeType, createSmartClsx } from '../../../shared'
+import { AnimeScope, type AnimeScopeType } from '../../../shared'
 import type { FormLoadingIndicatorProps } from '../model/types'
 import LoadingIndicator from './loading-indicator'
-import style from './style.module.css'
-
-const clsx = createSmartClsx(style)
 
 function FormLoadingIndicator({ className }: FormLoadingIndicatorProps) {
   const formState = useFormState()

@@ -11864,7 +11864,6 @@ small {
         (()=>{
             "use strict";
             var jsx_runtime = __webpack_require__("./node_modules/react/jsx-runtime.js");
-            var react = __webpack_require__("./node_modules/react/index.js");
             var client = __webpack_require__("./node_modules/react-dom/client.js");
             var plaininline = __webpack_require__("./lib/app/theme-provider/with-defaults/plain.css?inline");
             function applyPaletteToCss(palette) {
@@ -12246,7 +12245,8 @@ small {
                     console.error('Error saving theme to cookies:', error);
                 }
             }
-            const ThemeContext = /*#__PURE__*/ (0, react.createContext)(void 0);
+            var react = __webpack_require__("./node_modules/react/index.js");
+            const ThemeContext = (0, react.createContext)(void 0);
             const ThemeProvider = ({ children, ...props })=>{
                 const themes = (0, react.useMemo)(()=>({
                         dark: mergeDeep(defaultThemes.dark, props.themes?.dark),
@@ -13417,6 +13417,32 @@ small {
             const useAnimations = (top = false, onDismiss)=>{
                 const { theme } = useTheme();
                 const root = (0, react.useRef)(null);
+                const animate = (0, react.useCallback)((position, dragDismiss = false)=>{
+                    if (!root.current) return;
+                    waapi.animate(root.current, {
+                        ease: spring_spring(theme.motion.expressive.default.spatial),
+                        maxWidth: {
+                            ease: spring_spring({
+                                ...theme.motion.expressive.slow.spatial,
+                                duration: 2 * theme.motion.expressive.slow.spatial.duration
+                            }),
+                            to: -1 === position ? '2.5rem' : '45rem',
+                            delay: -1 === position ? 0 : theme.motion.expressive.slow.spatial.duration / 2
+                        },
+                        '--dim': Math.max(0.3 * position, 0),
+                        scale: Math.min(1 - 0.05 * position, 1),
+                        y: {
+                            to: `calc((100% + 1rem) * ${Math.sqrt(position + 1).toFixed(2)} * ${top ? '' : '-'}1)`,
+                            delay: -1 === position ? 1.5 * theme.motion.expressive.default.spatial.duration : 0
+                        },
+                        ...dragDismiss && {
+                            translate: `0 ${100 * dismissPoint}%`
+                        }
+                    });
+                }, [
+                    theme,
+                    top
+                ]);
                 (0, react.useEffect)(()=>{
                     if (!root.current) return;
                     const absoluteDismissPoint = Math.sqrt(root.current.getBoundingClientRect().height * dismissPoint * verticalOffsetScale);
@@ -13460,30 +13486,12 @@ small {
                         root.current?.removeEventListener('mousedown', handleDragStart);
                         window.removeEventListener('mouseup', handleDragEnd);
                     };
-                }, []);
-                const animate = (position, dragDismiss = false)=>{
-                    if (!root.current) return;
-                    waapi.animate(root.current, {
-                        ease: spring_spring(theme.motion.expressive.default.spatial),
-                        maxWidth: {
-                            ease: spring_spring({
-                                ...theme.motion.expressive.slow.spatial,
-                                duration: 2 * theme.motion.expressive.slow.spatial.duration
-                            }),
-                            to: -1 === position ? '2.5rem' : '45rem',
-                            delay: -1 === position ? 0 : theme.motion.expressive.slow.spatial.duration / 2
-                        },
-                        '--dim': Math.max(0.3 * position, 0),
-                        scale: Math.min(1 - 0.05 * position, 1),
-                        y: {
-                            to: `calc((100% + 1rem) * ${Math.sqrt(position + 1).toFixed(2)} * ${top ? '' : '-'}1)`,
-                            delay: -1 === position ? 1.5 * theme.motion.expressive.default.spatial.duration : 0
-                        },
-                        ...dragDismiss && {
-                            translate: `0 ${100 * dismissPoint}%`
-                        }
-                    });
-                };
+                }, [
+                    animate,
+                    onDismiss,
+                    theme.motion.expressive.default.spatial.curve,
+                    theme.motion.expressive.default.spatial.duration
+                ]);
                 return {
                     root,
                     animate
@@ -13494,7 +13502,8 @@ small {
                 (0, react.useEffect)(()=>{
                     animate(props.offset);
                 }, [
-                    props.offset
+                    props.offset,
+                    animate
                 ]);
                 return /*#__PURE__*/ (0, jsx_runtime.jsx)("div", {
                     className: style_module.snackbar,
@@ -13531,8 +13540,8 @@ small {
                         vertical: 'bottom',
                         horizontal: 'center'
                     },
-                    prefix: react.createElement(react.Fragment),
-                    suffix: react.createElement(react.Fragment)
+                    prefix: (0, react.createElement)(react.Fragment),
+                    suffix: (0, react.createElement)(react.Fragment)
                 }
             };
             function useQueue(presets, animationDuration) {
@@ -13593,7 +13602,7 @@ small {
                     }
                 };
             }
-            const SnackbarContext = /*#__PURE__*/ (0, react.createContext)(void 0);
+            const SnackbarContext = (0, react.createContext)(void 0);
             const useSnackbar = ()=>{
                 const context = (0, react.use)(SnackbarContext);
                 if (void 0 === context) throw new Error('useSnackbar must be used within a SnackbarProvider');
@@ -13712,6 +13721,45 @@ small {
                         })
                     ]
                 });
+            }
+            const ui_style_module = {
+                button: "button-NPuoF8",
+                elevated: "elevated-en6EMy",
+                filled: "filled-cczKpW",
+                "filled-tonal": "filled-tonal-Q0h5ff",
+                filledTonal: "filled-tonal-Q0h5ff",
+                outlined: "outlined-Lua3lF",
+                text: "text-DxycAx",
+                small: "small-BgLNr3",
+                medium: "medium-JINmV_",
+                large: "large-BQkKfC",
+                "read-only": "read-only-aS8g9T",
+                readOnly: "read-only-aS8g9T"
+            };
+            function clsx_r(e) {
+                var t, f, n = "";
+                if ("string" == typeof e || "number" == typeof e) n += e;
+                else if ("object" == typeof e) if (Array.isArray(e)) {
+                    var o = e.length;
+                    for(t = 0; t < o; t++)e[t] && (f = clsx_r(e[t])) && (n && (n += " "), n += f);
+                } else for(f in e)e[f] && (n && (n += " "), n += f);
+                return n;
+            }
+            function clsx() {
+                for(var e, t, f = 0, n = "", o = arguments.length; f < o; f++)(e = arguments[f]) && (t = clsx_r(e)) && (n && (n += " "), n += t);
+                return n;
+            }
+            const dist_clsx = clsx;
+            function createSmartClsx(styles) {
+                function resolveComplexClassValue(value1) {
+                    if (Array.isArray(value1)) return value1.map(resolveComplexClassValue);
+                    if ('object' == typeof value1 && null !== value1) return Object.entries(value1).reduce((prev, [key, val])=>({
+                            ...prev,
+                            [styles[key]]: val
+                        }), {});
+                    return value1 && styles[value1?.toString()];
+                }
+                return (moduleClassNames, ...args)=>dist_clsx(resolveComplexClassValue(moduleClassNames), args);
             }
             function __decorate(decorators, target, key, desc) {
                 var c = arguments.length, r = c < 3 ? target : null === desc ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -15503,230 +15551,6 @@ small {
             text_button_MdTextButton = __decorate([
                 custom_element_t('md-text-button')
             ], text_button_MdTextButton);
-            const keepTime = (constructor)=>{
-                let tracked;
-                return (...args)=>{
-                    let currentIteration, currentIterationProgress, reversed, alternate;
-                    if (tracked) {
-                        currentIteration = tracked.currentIteration;
-                        currentIterationProgress = tracked.iterationProgress;
-                        reversed = tracked.reversed;
-                        alternate = tracked._alternate;
-                        tracked.revert();
-                    }
-                    const cleanup = constructor(...args);
-                    if (cleanup && !isFnc(cleanup) && cleanup.revert) tracked = cleanup;
-                    if (!helpers_isUnd(currentIterationProgress)) {
-                        tracked.currentIteration = currentIteration;
-                        tracked.iterationProgress = (alternate ? currentIteration % 2 ? !reversed : reversed : reversed) ? 1 - currentIterationProgress : currentIterationProgress;
-                    }
-                    return cleanup || consts_noop;
-                };
-            };
-            /**
- * Anime.js - scope - ESM
- * @version v4.3.6
- * @license MIT
- * @copyright 2026 - Julian Garnier
- */ class Scope {
-                constructor(parameters = {}){
-                    if (globals_scope.current) globals_scope.current.register(this);
-                    const rootParam = parameters.root;
-                    let root = doc;
-                    if (rootParam) root = rootParam.current || rootParam.nativeElement || parseTargets(rootParam)[0] || doc;
-                    const scopeDefaults = parameters.defaults;
-                    const globalDefault = globals_globals.defaults;
-                    const mediaQueries = parameters.mediaQueries;
-                    this.defaults = scopeDefaults ? mergeObjects(scopeDefaults, globalDefault) : globalDefault;
-                    this.root = root;
-                    this.constructors = [];
-                    this.revertConstructors = [];
-                    this.revertibles = [];
-                    this.constructorsOnce = [];
-                    this.revertConstructorsOnce = [];
-                    this.revertiblesOnce = [];
-                    this.once = false;
-                    this.onceIndex = 0;
-                    this.methods = {};
-                    this.matches = {};
-                    this.mediaQueryLists = {};
-                    this.data = {};
-                    if (mediaQueries) for(let mq in mediaQueries){
-                        const _mq = win.matchMedia(mediaQueries[mq]);
-                        this.mediaQueryLists[mq] = _mq;
-                        _mq.addEventListener('change', this);
-                    }
-                }
-                register(revertible) {
-                    const store = this.once ? this.revertiblesOnce : this.revertibles;
-                    store.push(revertible);
-                }
-                execute(cb) {
-                    let activeScope = globals_scope.current;
-                    let activeRoot = globals_scope.root;
-                    let activeDefaults = globals_globals.defaults;
-                    globals_scope.current = this;
-                    globals_scope.root = this.root;
-                    globals_globals.defaults = this.defaults;
-                    const mqs = this.mediaQueryLists;
-                    for(let mq in mqs)this.matches[mq] = mqs[mq].matches;
-                    const returned = cb(this);
-                    globals_scope.current = activeScope;
-                    globals_scope.root = activeRoot;
-                    globals_globals.defaults = activeDefaults;
-                    return returned;
-                }
-                refresh() {
-                    this.onceIndex = 0;
-                    this.execute(()=>{
-                        let i = this.revertibles.length;
-                        let y = this.revertConstructors.length;
-                        while(i--)this.revertibles[i].revert();
-                        while(y--)this.revertConstructors[y](this);
-                        this.revertibles.length = 0;
-                        this.revertConstructors.length = 0;
-                        this.constructors.forEach((constructor)=>{
-                            const revertConstructor = constructor(this);
-                            if (isFnc(revertConstructor)) this.revertConstructors.push(revertConstructor);
-                        });
-                    });
-                    return this;
-                }
-                add(a1, a2) {
-                    this.once = false;
-                    if (isFnc(a1)) {
-                        const constructor = a1;
-                        this.constructors.push(constructor);
-                        this.execute(()=>{
-                            const revertConstructor = constructor(this);
-                            if (isFnc(revertConstructor)) this.revertConstructors.push(revertConstructor);
-                        });
-                    } else this.methods[a1] = (...args)=>this.execute(()=>a2(...args));
-                    return this;
-                }
-                addOnce(scopeConstructorCallback) {
-                    this.once = true;
-                    if (isFnc(scopeConstructorCallback)) {
-                        const currentIndex = this.onceIndex++;
-                        const tracked = this.constructorsOnce[currentIndex];
-                        if (tracked) return this;
-                        const constructor = scopeConstructorCallback;
-                        this.constructorsOnce[currentIndex] = constructor;
-                        this.execute(()=>{
-                            const revertConstructor = constructor(this);
-                            if (isFnc(revertConstructor)) this.revertConstructorsOnce.push(revertConstructor);
-                        });
-                    }
-                    return this;
-                }
-                keepTime(cb) {
-                    this.once = true;
-                    const currentIndex = this.onceIndex++;
-                    const tracked = this.constructorsOnce[currentIndex];
-                    if (isFnc(tracked)) return tracked(this);
-                    const constructor = keepTime(cb);
-                    this.constructorsOnce[currentIndex] = constructor;
-                    let trackedTickable;
-                    this.execute(()=>{
-                        trackedTickable = constructor(this);
-                    });
-                    return trackedTickable;
-                }
-                handleEvent(e) {
-                    switch(e.type){
-                        case 'change':
-                            this.refresh();
-                            break;
-                    }
-                }
-                revert() {
-                    const revertibles = this.revertibles;
-                    const revertConstructors = this.revertConstructors;
-                    const revertiblesOnce = this.revertiblesOnce;
-                    const revertConstructorsOnce = this.revertConstructorsOnce;
-                    const mqs = this.mediaQueryLists;
-                    let i = revertibles.length;
-                    let j = revertConstructors.length;
-                    let k = revertiblesOnce.length;
-                    let l = revertConstructorsOnce.length;
-                    while(i--)revertibles[i].revert();
-                    while(j--)revertConstructors[j](this);
-                    while(k--)revertiblesOnce[k].revert();
-                    while(l--)revertConstructorsOnce[l](this);
-                    for(let mq in mqs)mqs[mq].removeEventListener('change', this);
-                    revertibles.length = 0;
-                    revertConstructors.length = 0;
-                    this.constructors.length = 0;
-                    revertiblesOnce.length = 0;
-                    revertConstructorsOnce.length = 0;
-                    this.constructorsOnce.length = 0;
-                    this.onceIndex = 0;
-                    this.matches = {};
-                    this.methods = {};
-                    this.mediaQueryLists = {};
-                    this.data = {};
-                }
-            }
-            const createScope = (params)=>new Scope(params);
-            const AnimeScope = (0, react.memo)(({ ref, init, children })=>{
-                const scope = (0, react.useRef)(null);
-                const childRef = react.useRef(null);
-                const themeContext = useTheme();
-                (0, react.useEffect)(()=>{
-                    const currentScope = ref ?? scope;
-                    currentScope.current = createScope({
-                        root: children.props.ref?.current ?? childRef.current
-                    });
-                    if (init) currentScope.current.add((scope)=>{
-                        init(scope, themeContext.theme.motion);
-                    });
-                    return ()=>currentScope.current.revert();
-                }, [
-                    init
-                ]);
-                return react.cloneElement(children, {
-                    ref: children.props.ref ?? childRef
-                });
-            });
-            function clsx_r(e) {
-                var t, f, n = "";
-                if ("string" == typeof e || "number" == typeof e) n += e;
-                else if ("object" == typeof e) if (Array.isArray(e)) {
-                    var o = e.length;
-                    for(t = 0; t < o; t++)e[t] && (f = clsx_r(e[t])) && (n && (n += " "), n += f);
-                } else for(f in e)e[f] && (n && (n += " "), n += f);
-                return n;
-            }
-            function clsx() {
-                for(var e, t, f = 0, n = "", o = arguments.length; f < o; f++)(e = arguments[f]) && (t = clsx_r(e)) && (n && (n += " "), n += t);
-                return n;
-            }
-            const dist_clsx = clsx;
-            function createSmartClsx(styles) {
-                function resolveComplexClassValue(value1) {
-                    if (Array.isArray(value1)) return value1.map(resolveComplexClassValue);
-                    if ('object' == typeof value1 && null !== value1) return Object.entries(value1).reduce((prev, [key, val])=>({
-                            ...prev,
-                            [styles[key]]: val
-                        }), {});
-                    return value1 && styles[value1?.toString()];
-                }
-                return (moduleClassNames, ...args)=>dist_clsx(resolveComplexClassValue(moduleClassNames), args);
-            }
-            const ui_style_module = {
-                button: "button-NPuoF8",
-                elevated: "elevated-en6EMy",
-                filled: "filled-cczKpW",
-                "filled-tonal": "filled-tonal-Q0h5ff",
-                filledTonal: "filled-tonal-Q0h5ff",
-                outlined: "outlined-Lua3lF",
-                text: "text-DxycAx",
-                small: "small-BgLNr3",
-                medium: "medium-JINmV_",
-                large: "large-BQkKfC",
-                "read-only": "read-only-aS8g9T",
-                readOnly: "read-only-aS8g9T"
-            };
             const button_clsx = createSmartClsx(ui_style_module);
             function button_Button({ children, variant = 'filled', size = 'medium', icon, readOnly, ...props }) {
                 const adjustShadowStyles = (el)=>{
@@ -15737,18 +15561,23 @@ small {
                 };
                 const childs = (0, react.useMemo)(()=>{
                     const childs = react.Children.toArray(children);
-                    if (icon) childs.unshift(/*#__PURE__*/ (0, jsx_runtime.jsx)("svg", {
+                    if (icon) childs.unshift(/*#__PURE__*/ (0, jsx_runtime.jsxs)("svg", {
                         slot: "icon",
-                        children: /*#__PURE__*/ (0, jsx_runtime.jsx)("use", {
-                            href: icon
-                        })
+                        children: [
+                            /*#__PURE__*/ (0, jsx_runtime.jsx)("title", {
+                                children: "icon"
+                            }),
+                            /*#__PURE__*/ (0, jsx_runtime.jsx)("use", {
+                                href: icon
+                            })
+                        ]
                     }, "icon"));
                     return childs;
                 }, [
                     children,
                     icon
                 ]);
-                return /*#__PURE__*/ react.createElement(`md-${variant}-button`, {
+                return (0, react.createElement)(`md-${variant}-button`, {
                     type: 'button',
                     ...props,
                     className: button_clsx([
@@ -15787,7 +15616,7 @@ small {
             };
             const heading_clsx = createSmartClsx(heading_ui_style_module);
             function Heading({ children, className, level = 1, variant = false, ...props }) {
-                return /*#__PURE__*/ react.createElement(`h${level}`, {
+                return (0, react.createElement)(`h${level}`, {
                     className: heading_clsx([
                         'heading',
                         variant && 'variant'
@@ -15796,6 +15625,18 @@ small {
                 }, children);
             }
             const heading = Heading;
+            const icon_button_ui_style_module = {
+                "icon-button": "icon-button-de3_O5",
+                iconButton: "icon-button-de3_O5",
+                standard: "standard-aS3hlp",
+                filled: "filled-uQF7yy",
+                "filled-tonal": "filled-tonal-DncJRc",
+                filledTonal: "filled-tonal-DncJRc",
+                outlined: "outlined-svqhnJ",
+                small: "small-syFxmh",
+                medium: "medium-TwDlyd",
+                large: "large-rVcZHQ"
+            };
             /**
  * @license
  * Copyright 2024 Google LLC
@@ -16132,33 +15973,31 @@ small {
             outlined_icon_button_MdOutlinedIconButton = __decorate([
                 custom_element_t('md-outlined-icon-button')
             ], outlined_icon_button_MdOutlinedIconButton);
-            const icon_button_ui_style_module = {
-                "icon-button": "icon-button-de3_O5",
-                iconButton: "icon-button-de3_O5",
-                standard: "standard-aS3hlp",
-                filled: "filled-uQF7yy",
-                "filled-tonal": "filled-tonal-DncJRc",
-                filledTonal: "filled-tonal-DncJRc",
-                outlined: "outlined-svqhnJ",
-                small: "small-syFxmh",
-                medium: "medium-TwDlyd",
-                large: "large-rVcZHQ"
-            };
             const icon_button_clsx = createSmartClsx(icon_button_ui_style_module);
             function icon_button_IconButton({ variant = 'standard', size = 'medium', icon, selectedIcon, ...props }) {
                 const childs = (0, react.useMemo)(()=>{
                     const childs = [
-                        /*#__PURE__*/ (0, jsx_runtime.jsx)("svg", {
-                            children: /*#__PURE__*/ (0, jsx_runtime.jsx)("use", {
-                                href: icon
-                            })
+                        /*#__PURE__*/ (0, jsx_runtime.jsxs)("svg", {
+                            children: [
+                                /*#__PURE__*/ (0, jsx_runtime.jsx)("title", {
+                                    children: "Icon"
+                                }),
+                                /*#__PURE__*/ (0, jsx_runtime.jsx)("use", {
+                                    href: icon
+                                })
+                            ]
                         }, "icon")
                     ];
-                    if (selectedIcon) childs.push(/*#__PURE__*/ (0, jsx_runtime.jsx)("svg", {
+                    if (selectedIcon) childs.push(/*#__PURE__*/ (0, jsx_runtime.jsxs)("svg", {
                         slot: "selected-icon",
-                        children: /*#__PURE__*/ (0, jsx_runtime.jsx)("use", {
-                            href: selectedIcon
-                        })
+                        children: [
+                            /*#__PURE__*/ (0, jsx_runtime.jsx)("title", {
+                                children: "Selected Icon"
+                            }),
+                            /*#__PURE__*/ (0, jsx_runtime.jsx)("use", {
+                                href: selectedIcon
+                            })
+                        ]
                     }, "selected-icon"));
                     return childs;
                 }, [
@@ -16166,7 +16005,7 @@ small {
                     selectedIcon
                 ]);
                 const tagName = 'standard' === variant ? 'md-icon-button' : `md-${variant}-icon-button`;
-                return /*#__PURE__*/ react.createElement(tagName, {
+                return (0, react.createElement)(tagName, {
                     ...props,
                     className: icon_button_clsx([
                         'icon-button',
@@ -18541,6 +18380,9 @@ small {
                     return standard;
                 }
             }
+            const form_ui_style_module = {
+                form: "form-zddz6M"
+            };
             var isCheckBoxInput = (element)=>'checkbox' === element.type;
             var isDateObject = (value1)=>value1 instanceof Date;
             var isNullOrUndefined = (value1)=>null == value1;
@@ -20446,9 +20288,6 @@ small {
                     }
                 };
             }
-            const form_ui_style_module = {
-                form: "form-zddz6M"
-            };
             const form_clsx = createSmartClsx(form_ui_style_module);
             function form_Form({ schema, ref, ...props }) {
                 const methods = useForm({
@@ -20465,7 +20304,7 @@ small {
                     try {
                         methods.handleSubmit(successSubmitHandler, errorSubmitHandler)(ev);
                     } catch (error) {
-                        if (error.message.includes('formContext is null')) throw new Error('SubmitButton must be used within a Form or FormProvider component');
+                        if (error instanceof Error && error.message.includes('formContext is null')) throw new Error('SubmitButton must be used within a Form or FormProvider component');
                         throw error;
                     }
                 };
@@ -20490,7 +20329,7 @@ small {
                     if (Array.from(element.current.children).some((child)=>child.hasAttribute('disabled'))) element.current.setAttribute('disabled', '');
                     else element.current.removeAttribute('disabled');
                 });
-                return /*#__PURE__*/ react.createElement(htmlFor ? 'label' : 'span', {
+                return (0, react.createElement)(htmlFor ? 'label' : 'span', {
                     ...props,
                     className: label_clsx([
                         'label'
@@ -20500,6 +20339,200 @@ small {
                 });
             }
             const ui_label = Label;
+            const loading_indicator_ui_style_module = {
+                "loading-indicator": "loading-indicator-xU56xN",
+                loadingIndicator: "loading-indicator-xU56xN",
+                "form-loading-indicator": "form-loading-indicator-pcy3IP",
+                formLoadingIndicator: "form-loading-indicator-pcy3IP"
+            };
+            const keepTime = (constructor)=>{
+                let tracked;
+                return (...args)=>{
+                    let currentIteration, currentIterationProgress, reversed, alternate;
+                    if (tracked) {
+                        currentIteration = tracked.currentIteration;
+                        currentIterationProgress = tracked.iterationProgress;
+                        reversed = tracked.reversed;
+                        alternate = tracked._alternate;
+                        tracked.revert();
+                    }
+                    const cleanup = constructor(...args);
+                    if (cleanup && !isFnc(cleanup) && cleanup.revert) tracked = cleanup;
+                    if (!helpers_isUnd(currentIterationProgress)) {
+                        tracked.currentIteration = currentIteration;
+                        tracked.iterationProgress = (alternate ? currentIteration % 2 ? !reversed : reversed : reversed) ? 1 - currentIterationProgress : currentIterationProgress;
+                    }
+                    return cleanup || consts_noop;
+                };
+            };
+            /**
+ * Anime.js - scope - ESM
+ * @version v4.3.6
+ * @license MIT
+ * @copyright 2026 - Julian Garnier
+ */ class Scope {
+                constructor(parameters = {}){
+                    if (globals_scope.current) globals_scope.current.register(this);
+                    const rootParam = parameters.root;
+                    let root = doc;
+                    if (rootParam) root = rootParam.current || rootParam.nativeElement || parseTargets(rootParam)[0] || doc;
+                    const scopeDefaults = parameters.defaults;
+                    const globalDefault = globals_globals.defaults;
+                    const mediaQueries = parameters.mediaQueries;
+                    this.defaults = scopeDefaults ? mergeObjects(scopeDefaults, globalDefault) : globalDefault;
+                    this.root = root;
+                    this.constructors = [];
+                    this.revertConstructors = [];
+                    this.revertibles = [];
+                    this.constructorsOnce = [];
+                    this.revertConstructorsOnce = [];
+                    this.revertiblesOnce = [];
+                    this.once = false;
+                    this.onceIndex = 0;
+                    this.methods = {};
+                    this.matches = {};
+                    this.mediaQueryLists = {};
+                    this.data = {};
+                    if (mediaQueries) for(let mq in mediaQueries){
+                        const _mq = win.matchMedia(mediaQueries[mq]);
+                        this.mediaQueryLists[mq] = _mq;
+                        _mq.addEventListener('change', this);
+                    }
+                }
+                register(revertible) {
+                    const store = this.once ? this.revertiblesOnce : this.revertibles;
+                    store.push(revertible);
+                }
+                execute(cb) {
+                    let activeScope = globals_scope.current;
+                    let activeRoot = globals_scope.root;
+                    let activeDefaults = globals_globals.defaults;
+                    globals_scope.current = this;
+                    globals_scope.root = this.root;
+                    globals_globals.defaults = this.defaults;
+                    const mqs = this.mediaQueryLists;
+                    for(let mq in mqs)this.matches[mq] = mqs[mq].matches;
+                    const returned = cb(this);
+                    globals_scope.current = activeScope;
+                    globals_scope.root = activeRoot;
+                    globals_globals.defaults = activeDefaults;
+                    return returned;
+                }
+                refresh() {
+                    this.onceIndex = 0;
+                    this.execute(()=>{
+                        let i = this.revertibles.length;
+                        let y = this.revertConstructors.length;
+                        while(i--)this.revertibles[i].revert();
+                        while(y--)this.revertConstructors[y](this);
+                        this.revertibles.length = 0;
+                        this.revertConstructors.length = 0;
+                        this.constructors.forEach((constructor)=>{
+                            const revertConstructor = constructor(this);
+                            if (isFnc(revertConstructor)) this.revertConstructors.push(revertConstructor);
+                        });
+                    });
+                    return this;
+                }
+                add(a1, a2) {
+                    this.once = false;
+                    if (isFnc(a1)) {
+                        const constructor = a1;
+                        this.constructors.push(constructor);
+                        this.execute(()=>{
+                            const revertConstructor = constructor(this);
+                            if (isFnc(revertConstructor)) this.revertConstructors.push(revertConstructor);
+                        });
+                    } else this.methods[a1] = (...args)=>this.execute(()=>a2(...args));
+                    return this;
+                }
+                addOnce(scopeConstructorCallback) {
+                    this.once = true;
+                    if (isFnc(scopeConstructorCallback)) {
+                        const currentIndex = this.onceIndex++;
+                        const tracked = this.constructorsOnce[currentIndex];
+                        if (tracked) return this;
+                        const constructor = scopeConstructorCallback;
+                        this.constructorsOnce[currentIndex] = constructor;
+                        this.execute(()=>{
+                            const revertConstructor = constructor(this);
+                            if (isFnc(revertConstructor)) this.revertConstructorsOnce.push(revertConstructor);
+                        });
+                    }
+                    return this;
+                }
+                keepTime(cb) {
+                    this.once = true;
+                    const currentIndex = this.onceIndex++;
+                    const tracked = this.constructorsOnce[currentIndex];
+                    if (isFnc(tracked)) return tracked(this);
+                    const constructor = keepTime(cb);
+                    this.constructorsOnce[currentIndex] = constructor;
+                    let trackedTickable;
+                    this.execute(()=>{
+                        trackedTickable = constructor(this);
+                    });
+                    return trackedTickable;
+                }
+                handleEvent(e) {
+                    switch(e.type){
+                        case 'change':
+                            this.refresh();
+                            break;
+                    }
+                }
+                revert() {
+                    const revertibles = this.revertibles;
+                    const revertConstructors = this.revertConstructors;
+                    const revertiblesOnce = this.revertiblesOnce;
+                    const revertConstructorsOnce = this.revertConstructorsOnce;
+                    const mqs = this.mediaQueryLists;
+                    let i = revertibles.length;
+                    let j = revertConstructors.length;
+                    let k = revertiblesOnce.length;
+                    let l = revertConstructorsOnce.length;
+                    while(i--)revertibles[i].revert();
+                    while(j--)revertConstructors[j](this);
+                    while(k--)revertiblesOnce[k].revert();
+                    while(l--)revertConstructorsOnce[l](this);
+                    for(let mq in mqs)mqs[mq].removeEventListener('change', this);
+                    revertibles.length = 0;
+                    revertConstructors.length = 0;
+                    this.constructors.length = 0;
+                    revertiblesOnce.length = 0;
+                    revertConstructorsOnce.length = 0;
+                    this.constructorsOnce.length = 0;
+                    this.onceIndex = 0;
+                    this.matches = {};
+                    this.methods = {};
+                    this.mediaQueryLists = {};
+                    this.data = {};
+                }
+            }
+            const createScope = (params)=>new Scope(params);
+            const AnimeScope = (0, react.memo)(({ ref, init, children })=>{
+                const scope = (0, react.useRef)(null);
+                const childRef = react.useRef(null);
+                const themeContext = useTheme();
+                (0, react.useEffect)(()=>{
+                    const currentScope = ref ?? scope;
+                    currentScope.current = createScope({
+                        root: children.props.ref?.current ?? childRef.current
+                    });
+                    if (init) currentScope.current.add((scope)=>{
+                        init(scope, themeContext.theme.motion);
+                    });
+                    return ()=>currentScope.current.revert();
+                }, [
+                    init,
+                    children.props.ref?.current,
+                    ref,
+                    themeContext.theme.motion
+                ]);
+                return (0, react.cloneElement)(children, {
+                    ref: children.props.ref ?? childRef
+                });
+            });
             /**
  * Anime.js - utils - ESM
  * @version v4.3.6
@@ -21927,17 +21960,11 @@ small {
                     y1 + y2
                 ];
             }
-            const loading_indicator_ui_style_module = {
-                "loading-indicator": "loading-indicator-xU56xN",
-                loadingIndicator: "loading-indicator-xU56xN",
-                "form-loading-indicator": "form-loading-indicator-pcy3IP",
-                formLoadingIndicator: "form-loading-indicator-pcy3IP"
-            };
             const loading_indicator_clsx = createSmartClsx(loading_indicator_ui_style_module);
             function LoadingIndicator({ playing = true, color, ...props }) {
                 const { theme } = useTheme();
                 const path = (0, react.useRef)(null);
-                const generateKeyframes = ()=>{
+                const generateKeyframes = (0, react.useCallback)(()=>{
                     const iterations = random(4, 12);
                     const iterationDuration = random(600, 1000);
                     return {
@@ -21963,7 +21990,7 @@ small {
                                 }
                             ]).flat()
                     };
-                };
+                }, []);
                 const args = (0, react.useRef)({
                     circumRadius: 94,
                     sideCount: 6,
@@ -21982,17 +22009,25 @@ small {
                             path.current?.setAttribute('d', roundedPolygonByCircumRadius(args.current).d);
                         }
                     });
-                }, []);
-                return /*#__PURE__*/ (0, jsx_runtime.jsx)("svg", {
+                }, [
+                    generateKeyframes,
+                    playing
+                ]);
+                return /*#__PURE__*/ (0, jsx_runtime.jsxs)("svg", {
                     className: loading_indicator_clsx([
                         'loading-indicator'
                     ], props.className),
                     viewBox: "0 0 200 200",
-                    children: /*#__PURE__*/ (0, jsx_runtime.jsx)("path", {
-                        d: roundedPolygonByCircumRadius(args.current).d,
-                        fill: color ?? theme.palette.primary,
-                        ref: path
-                    })
+                    children: [
+                        /*#__PURE__*/ (0, jsx_runtime.jsx)("title", {
+                            children: "Loading indicator"
+                        }),
+                        /*#__PURE__*/ (0, jsx_runtime.jsx)("path", {
+                            d: roundedPolygonByCircumRadius(args.current).d,
+                            fill: color ?? theme.palette.primary,
+                            ref: path
+                        })
+                    ]
                 });
             }
             const loading_indicator = LoadingIndicator;
@@ -22039,12 +22074,23 @@ small {
                             className
                         }),
                         children: /*#__PURE__*/ (0, jsx_runtime.jsx)(loading_indicator, {
-                            color: theme.palette['secondary']
+                            color: theme.palette.secondary
                         })
                     })
                 });
             }
             const form_loading_indicator = FormLoadingIndicator;
+            const submit_button_ui_style_module = {
+                button: "button-TYKn3o",
+                error: "error-YGUJ2x",
+                "loading-icon-revealer": "loading-icon-revealer-CGLZUj",
+                loadingIconRevealer: "loading-icon-revealer-CGLZUj"
+            };
+            const revealer_ui_style_module = {
+                revealer: "revealer-M8ij39",
+                letter: "letter-a1B1QN",
+                revealed: "revealed-hwsCEh"
+            };
             function useAnimatedRoot(root, { isRevealed, hiddenVector = '-150%' }) {
                 const themeContext = useTheme();
                 (0, react.useEffect)(()=>{
@@ -22057,7 +22103,9 @@ small {
                     });
                 }, [
                     isRevealed,
-                    hiddenVector
+                    hiddenVector,
+                    root.current,
+                    themeContext.theme.motion.expressive.default.spatial
                 ]);
             }
             /**
@@ -22399,7 +22447,9 @@ small {
                         chars: true
                     });
                     setChars(chars);
-                }, []);
+                }, [
+                    root.current
+                ]);
                 (0, react.useEffect)(()=>{
                     const animatedCharacters = chars.map(()=>false);
                     const duration = themeContext.theme.motion.expressive.default.spatial.duration;
@@ -22422,26 +22472,19 @@ small {
                 }, [
                     chars,
                     isRevealed,
-                    hiddenVector
+                    hiddenVector,
+                    themeContext.theme.motion.expressive.default.spatial.curve,
+                    themeContext.theme.motion.expressive.default.spatial.duration
                 ]);
             }
-            const revealer_ui_style_module = {
-                revealer: "revealer-M8ij39",
-                letter: "letter-a1B1QN",
-                revealed: "revealed-hwsCEh"
-            };
             const revealer_clsx = createSmartClsx(revealer_ui_style_module);
-            function Revealer({ tagName = 'span', isRevealed, animateText = true, className, hiddenVector = '-150%', ...props }) {
+            function TextRevealer({ tagName = 'span', isRevealed, className, hiddenVector = '-150%', ...props }) {
                 const root = (0, react.useRef)(null);
-                if ('string' == typeof props.children && animateText) useAnimatedText(root, {
+                useAnimatedText(root, {
                     hiddenVector,
                     isRevealed
                 });
-                else useAnimatedRoot(root, {
-                    hiddenVector,
-                    isRevealed
-                });
-                return /*#__PURE__*/ react.createElement(tagName, {
+                return (0, react.createElement)(tagName, {
                     ref: root,
                     style: {
                         overflow: props.autoHideOverflow ? 'hidden' : 'visible'
@@ -22450,19 +22493,44 @@ small {
                     className: revealer_clsx([
                         'revealer',
                         {
-                            'animate-text': animateText,
+                            'animate-text': true,
                             revealed: true
                         }
                     ], className)
                 });
             }
+            function RootRevealer({ tagName = 'span', isRevealed, className, hiddenVector = '-150%', ...props }) {
+                const root = (0, react.useRef)(null);
+                useAnimatedRoot(root, {
+                    hiddenVector,
+                    isRevealed
+                });
+                return (0, react.createElement)(tagName, {
+                    ref: root,
+                    style: {
+                        overflow: props.autoHideOverflow ? 'hidden' : 'visible'
+                    },
+                    ...props,
+                    className: revealer_clsx([
+                        'revealer',
+                        {
+                            'animate-text': false,
+                            revealed: true
+                        }
+                    ], className)
+                });
+            }
+            function Revealer({ animateText = true, ...props }) {
+                if ('string' == typeof props.children && animateText) return /*#__PURE__*/ (0, jsx_runtime.jsx)(TextRevealer, {
+                    animateText: animateText,
+                    ...props
+                });
+                return /*#__PURE__*/ (0, jsx_runtime.jsx)(RootRevealer, {
+                    animateText: animateText,
+                    ...props
+                });
+            }
             const revealer = Revealer;
-            const submit_button_ui_style_module = {
-                button: "button-TYKn3o",
-                error: "error-YGUJ2x",
-                "loading-icon-revealer": "loading-icon-revealer-CGLZUj",
-                loadingIconRevealer: "loading-icon-revealer-CGLZUj"
-            };
             const submit_button_clsx = createSmartClsx(submit_button_ui_style_module);
             function SubmitButton({ variant = 'filled', size = 'medium', onSubmit, loadingIcon, children, className, readOnly, showLoadingState, ...props }) {
                 const formState = useFormState();
@@ -22501,6 +22569,9 @@ small {
                 });
             }
             const submit_button = SubmitButton;
+            const switch_ui_style_module = {
+                switch: "switch-xEyzNZ"
+            };
             /**
  * @license
  * Copyright 2023 Google LLC
@@ -22927,22 +22998,19 @@ small {
             switch_MdSwitch = __decorate([
                 custom_element_t('md-switch')
             ], switch_MdSwitch);
-            const switch_ui_style_module = {
-                switch: "switch-xEyzNZ"
-            };
             const switch_clsx = createSmartClsx(switch_ui_style_module);
-            function switch_Switch({ className, showOnlySelectedIcon, onChange, ...props }) {
-                const controller = props.name && useController({
+            function ControlledSwitch({ className, showOnlySelectedIcon, onChange, ...props }) {
+                const controller = useController({
                     disabled: props.disabled,
                     name: props.name
                 });
-                return /*#__PURE__*/ react.createElement('md-switch', Object.assign({
+                return (0, react.createElement)('md-switch', Object.assign({
                     className: switch_clsx([
                         'switch'
                     ], className),
                     'show-only-selected-icon': showOnlySelectedIcon ?? !props.icons,
                     ...props
-                }, controller && {
+                }, {
                     disabled: controller.field.disabled,
                     name: controller.field.name,
                     onBlur: controller.field.onBlur,
@@ -22951,11 +23019,43 @@ small {
                 }, {
                     onInput (ev) {
                         onChange?.(ev);
-                        if (controller) controller.field.onChange(ev.currentTarget.selected);
+                        controller.field.onChange(ev.currentTarget.selected);
                     }
                 }));
             }
+            function UncontrolledSwitch({ className, showOnlySelectedIcon, onChange, ...props }) {
+                return (0, react.createElement)('md-switch', Object.assign({
+                    className: switch_clsx([
+                        'switch'
+                    ], className),
+                    'show-only-selected-icon': showOnlySelectedIcon ?? !props.icons,
+                    ...props
+                }, {
+                    onInput (ev) {
+                        onChange?.(ev);
+                    }
+                }));
+            }
+            function switch_Switch(props) {
+                if (props.name) return /*#__PURE__*/ (0, jsx_runtime.jsx)(ControlledSwitch, {
+                    ...props,
+                    name: props.name
+                });
+                return /*#__PURE__*/ (0, jsx_runtime.jsx)(UncontrolledSwitch, {
+                    ...props
+                });
+            }
             const ui_switch = switch_Switch;
+            const text_field_ui_style_module = {
+                button: "button-D7LB5o",
+                filled: "filled-fPO_gl",
+                outlined: "outlined-GviBDs",
+                small: "small-jC6lg8",
+                medium: "medium-x8zGDP",
+                large: "large-JufjZh",
+                "read-only": "read-only-wkoTEL",
+                readOnly: "read-only-wkoTEL"
+            };
             /**
  * @license
  * Copyright 2021 Google LLC
@@ -24148,16 +24248,6 @@ small {
             outlined_text_field_MdOutlinedTextField = __decorate([
                 custom_element_t('md-outlined-text-field')
             ], outlined_text_field_MdOutlinedTextField);
-            const text_field_ui_style_module = {
-                button: "button-D7LB5o",
-                filled: "filled-fPO_gl",
-                outlined: "outlined-GviBDs",
-                small: "small-jC6lg8",
-                medium: "medium-x8zGDP",
-                large: "large-JufjZh",
-                "read-only": "read-only-wkoTEL",
-                readOnly: "read-only-wkoTEL"
-            };
             const text_field_clsx = createSmartClsx(text_field_ui_style_module);
             function text_field_TextField({ variant = 'filled', size = 'medium', trailingIcon, leadingIcon, children, onChange, ...props }) {
                 const controller = props.name && useController({
@@ -24166,23 +24256,33 @@ small {
                 });
                 const childs = (0, react.useMemo)(()=>{
                     const childs = react.Children.toArray(children);
-                    if (trailingIcon) if ('string' == typeof trailingIcon) childs.unshift(/*#__PURE__*/ (0, jsx_runtime.jsx)("svg", {
+                    if (trailingIcon) if ('string' == typeof trailingIcon) childs.unshift(/*#__PURE__*/ (0, jsx_runtime.jsxs)("svg", {
                         slot: "trailing-icon",
-                        children: /*#__PURE__*/ (0, jsx_runtime.jsx)("use", {
-                            href: trailingIcon
-                        })
+                        children: [
+                            /*#__PURE__*/ (0, jsx_runtime.jsx)("title", {
+                                children: "Trailing icon"
+                            }),
+                            /*#__PURE__*/ (0, jsx_runtime.jsx)("use", {
+                                href: trailingIcon
+                            })
+                        ]
                     }, "trailing-icon"));
-                    else childs.unshift(/*#__PURE__*/ react.cloneElement(trailingIcon, {
+                    else childs.unshift((0, react.cloneElement)(trailingIcon, {
                         key: 'trailing-icon',
                         slot: 'trailing-icon'
                     }));
-                    if (leadingIcon) if ('string' == typeof leadingIcon) childs.unshift(/*#__PURE__*/ (0, jsx_runtime.jsx)("svg", {
+                    if (leadingIcon) if ('string' == typeof leadingIcon) childs.unshift(/*#__PURE__*/ (0, jsx_runtime.jsxs)("svg", {
                         slot: "leading-icon",
-                        children: /*#__PURE__*/ (0, jsx_runtime.jsx)("use", {
-                            href: leadingIcon
-                        })
+                        children: [
+                            /*#__PURE__*/ (0, jsx_runtime.jsx)("title", {
+                                children: "Leading icon"
+                            }),
+                            /*#__PURE__*/ (0, jsx_runtime.jsx)("use", {
+                                href: leadingIcon
+                            })
+                        ]
                     }, "leading-icon"));
-                    else childs.unshift(/*#__PURE__*/ react.cloneElement(leadingIcon, {
+                    else childs.unshift((0, react.cloneElement)(leadingIcon, {
                         key: 'leading-icon',
                         slot: 'leading-icon'
                     }));
@@ -24192,7 +24292,7 @@ small {
                     trailingIcon,
                     leadingIcon
                 ]);
-                return /*#__PURE__*/ react.createElement(`md-${variant}-text-field`, Object.assign({
+                return (0, react.createElement)(`md-${variant}-text-field`, Object.assign({
                     ...props,
                     className: text_field_clsx([
                         'button',
@@ -24442,12 +24542,17 @@ small {
                 });
             }
             function Icon({ name, ...props }) {
-                return /*#__PURE__*/ (0, jsx_runtime.jsx)("svg", {
+                return /*#__PURE__*/ (0, jsx_runtime.jsxs)("svg", {
                     ...props,
                     xmlns: "http://www.w3.org/2000/svg",
-                    children: /*#__PURE__*/ (0, jsx_runtime.jsx)("use", {
-                        href: `#${name}`
-                    })
+                    children: [
+                        /*#__PURE__*/ (0, jsx_runtime.jsx)("title", {
+                            children: name
+                        }),
+                        /*#__PURE__*/ (0, jsx_runtime.jsx)("use", {
+                            href: `#${name}`
+                        })
+                    ]
                 });
             }
             const ui_icon = Icon;
@@ -24528,7 +24633,7 @@ small {
                                     onClick: ()=>snackbar.queue({
                                             message: 'A little longer snackbar',
                                             duration: 5000,
-                                            prefix: /*#__PURE__*/ react.createElement('dotlottie-player', {
+                                            prefix: (0, react.createElement)('dotlottie-player', {
                                                 autoplay: true,
                                                 className: 'success-icon',
                                                 src: '/success-icon.lottie',

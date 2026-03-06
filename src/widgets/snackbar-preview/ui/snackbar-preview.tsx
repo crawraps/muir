@@ -1,5 +1,3 @@
-import React from 'react'
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -30,7 +28,7 @@ export function SnackbarPreview() {
             snackbar.queue({
               message: 'A little longer snackbar',
               duration: 5000,
-              prefix: React.createElement('dotlottie-player', { autoplay: true, className: 'success-icon', src: '/success-icon.lottie', subframe: true }),
+              prefix: createElement('dotlottie-player', { autoplay: true, className: 'success-icon', src: '/success-icon.lottie', subframe: true }),
               anchors: { vertical: 'bottom', horizontal: 'left' },
             })
           }

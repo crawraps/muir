@@ -1,13 +1,8 @@
 import '@material/web/textfield/filled-text-field.js'
 import '@material/web/textfield/outlined-text-field.js'
 
-import React, { useMemo } from 'react'
 import { useController } from 'react-hook-form'
-import { createSmartClsx } from '../../../shared'
 import type { TextFieldProps } from '../model/types'
-import style from './style.module.css'
-
-const clsx = createSmartClsx(style)
 
 function TextField<FormValues extends Record<string, unknown>>({
   variant = 'filled',
@@ -17,7 +12,7 @@ function TextField<FormValues extends Record<string, unknown>>({
   children,
   onChange,
   ...props
-}: TextFieldProps<FormValues>) {
+}: TextFieldProps<FormValues>): import('react').ReactElement {
   const controller =
     props.name &&
     // biome-ignore lint/correctness/useHookAtTopLevel: The name prop doesn't change during the component lifecycle
@@ -27,7 +22,7 @@ function TextField<FormValues extends Record<string, unknown>>({
     })
 
   const childs = useMemo(() => {
-    const childs = React.Children.toArray(children)
+    const childs = Children.toArray(children)
 
     if (trailingIcon) {
       if (typeof trailingIcon === 'string') {
@@ -38,7 +33,7 @@ function TextField<FormValues extends Record<string, unknown>>({
           </svg>,
         )
       } else {
-        childs.unshift(React.cloneElement(trailingIcon, { key: 'trailing-icon', slot: 'trailing-icon' }))
+        childs.unshift(cloneElement(trailingIcon, { key: 'trailing-icon', slot: 'trailing-icon' }))
       }
     }
 
@@ -51,14 +46,14 @@ function TextField<FormValues extends Record<string, unknown>>({
           </svg>,
         )
       } else {
-        childs.unshift(React.cloneElement(leadingIcon, { key: 'leading-icon', slot: 'leading-icon' }))
+        childs.unshift(cloneElement(leadingIcon, { key: 'leading-icon', slot: 'leading-icon' }))
       }
     }
 
     return childs
   }, [children, trailingIcon, leadingIcon])
 
-  return React.createElement(
+  return createElement(
     `md-${variant}-text-field`,
     Object.assign(
       {

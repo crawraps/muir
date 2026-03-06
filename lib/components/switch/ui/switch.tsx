@@ -1,13 +1,7 @@
 import '@material/web/switch/switch.js'
-import React from 'react'
 import { useController } from 'react-hook-form'
 
-import { createSmartClsx } from '../../../shared'
-
 import type { SwitchProps } from '../model/types'
-import style from './style.module.css'
-
-const clsx = createSmartClsx(style)
 
 function ControlledSwitch<FormValues extends Record<string, unknown>>({ className, showOnlySelectedIcon, onChange, ...props }: SwitchProps<FormValues> & { name: string }) {
   const controller = useController<FormValues>({
@@ -16,7 +10,7 @@ function ControlledSwitch<FormValues extends Record<string, unknown>>({ classNam
     name: props.name as any,
   })
 
-  return React.createElement(
+  return createElement(
     'md-switch',
     Object.assign(
       {
@@ -43,7 +37,7 @@ function ControlledSwitch<FormValues extends Record<string, unknown>>({ classNam
 }
 
 function UncontrolledSwitch<FormValues extends Record<string, unknown>>({ className, showOnlySelectedIcon, onChange, ...props }: SwitchProps<FormValues>) {
-  return React.createElement(
+  return createElement(
     'md-switch',
     Object.assign(
       {

@@ -1,3 +1,4 @@
+import type React from 'react'
 export interface Props extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   /**
    * The border radius and paddings size of the container

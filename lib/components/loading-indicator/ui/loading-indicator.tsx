@@ -1,12 +1,7 @@
 import { animate, type JSAnimation, random, randomPick } from 'animejs'
 import { roundedPolygonByCircumRadius } from 'curved-polygon'
-import { useCallback, useEffect, useRef } from 'react'
 import { useTheme } from '../../../app/theme-provider'
-import { createSmartClsx } from '../../../shared'
 import type { LoadingIndicatorProps } from '../model/types'
-import style from './style.module.css'
-
-const clsx = createSmartClsx(style)
 
 function LoadingIndicator({ playing = true, color, ...props }: LoadingIndicatorProps) {
   const { theme } = useTheme()

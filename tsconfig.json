@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["react", "react-dom"],
     "lib": ["DOM", "ES2022"],
     "module": "ESNext",
     "jsx": "react-jsx",
@@ -14,5 +15,5 @@
       "cuil": ["."]
     }
   },
-  "include": ["src", "lib", "docs", "rspress.config.ts", "env.d.ts"]
+  "include": ["src", "lib", "docs", "rspress.config.ts", "env.d.ts", "auto-imports.d.ts"]
 }

@@ -1,5 +1,4 @@
 import { type Scope, spring, waapi } from 'animejs'
-import { useCallback, useEffect, useRef } from 'react'
 import { useTheme } from '../../../../lib/app/theme-provider'
 import { defaultThemes } from '../../../../lib/app/theme-provider/with-defaults/defaults'
 import { Container } from '../../../../lib/components/container'
