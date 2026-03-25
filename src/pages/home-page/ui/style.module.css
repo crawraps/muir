@@ -1,0 +1,26 @@
+.home-page {
+  flex: 1;
+  padding: var(--spacing-large);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home-page h1 {
+  color: var(--md-sys-color-on-surface);
+  margin-top: 0;
+  margin-bottom: var(--spacing-medium);
+  font-family: var(--md-ref-typeface-brand);
+  font-size: var(--md-sys-typescale-display-small-size);
+  font-weight: var(--md-sys-typescale-display-small-weight);
+  line-height: var(--md-sys-typescale-display-small-line-height);
+}
+
+.home-page p {
+  color: var(--md-sys-color-on-surface-variant);
+  margin-bottom: var(--spacing-medium);
+  font-family: var(--md-ref-typeface-plain);
+  font-size: var(--md-sys-typescale-body-large-size);
+  font-weight: var(--md-sys-typescale-body-large-weight);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+}

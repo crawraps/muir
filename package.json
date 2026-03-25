@@ -6,6 +6,14 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./basic": {
+      "types": "./dist/basic.d.ts",
+      "import": "./dist/basic.js"
+    },
+    "./form": {
+      "types": "./dist/form.d.ts",
+      "import": "./dist/form.js"
     }
   },
   "types": "./dist/index.d.ts",
@@ -16,9 +24,6 @@
     "build": "bun run lint && rslib build",
     "build:storybook": "storybook build",
     "dev": "rsbuild dev",
-    "doc": "rspress dev",
-    "doc:build": "rspress build",
-    "doc:preview": "rspress preview",
     "format": "biome format --write",
     "storybook": "storybook dev",
     "test": "rstest",
@@ -30,11 +35,15 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@material/web": "^2.4.0",
+    "@mdx-js/react": "^3.1.1",
+    "@rsbuild/plugin-mdx": "^1.1.1",
     "animejs": "^4.2.2",
     "clsx": "^2.1.1",
     "curved-polygon": "^1.0.1",
     "object-hash": "^3.0.0",
     "react-hook-form": "^7.64.0",
+    "remark-gfm": "^4.0.1",
+    "wouter": "^3.9.0",
     "yup": "^1.7.1"
   },
   "devDependencies": {
@@ -45,9 +54,6 @@
     "@rsbuild/plugin-babel": "^1.1.1",
     "@rsbuild/plugin-react": "^1.4.5",
     "@rslib/core": "^0.19.6",
-    "@rspress/core": "^2.0.3",
-    "@rspress/plugin-api-docgen": "^2.0.3",
-    "@rspress/plugin-preview": "^2.0.3",
     "@rstest/adapter-rslib": "^0.2.0",
     "@rstest/core": "^0.8.5",
     "@storybook/addon-docs": "^10.2.8",

@@ -1,6 +1,8 @@
 import { pluginBabel } from '@rsbuild/plugin-babel'
+import { pluginMdx } from '@rsbuild/plugin-mdx'
 import { pluginReact } from '@rsbuild/plugin-react'
 import { defineConfig } from '@rslib/core'
+import remarkGfm from 'remark-gfm'
 import AutoImport from 'unplugin-auto-import/rspack'
 import autoClsxPlugin from './scripts/babel-plugin-auto-clsx.js'
 
@@ -45,10 +47,11 @@ export default defineConfig({
   ],
   plugins: [
     pluginReact(),
+    pluginMdx({ mdxLoaderOptions: { remarkPlugins: [remarkGfm] } }),
     pluginBabel({
-      babelLoaderOptions(config) {
-        config.plugins ??= []
-        config.plugins.push(autoClsxPlugin)
+      include: /\.(?:jsx|tsx)$/,
+      babelLoaderOptions: {
+        plugins: [autoClsxPlugin],
       },
     }),
   ],

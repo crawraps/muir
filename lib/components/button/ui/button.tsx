@@ -1,46 +1,22 @@
-import '@material/web/button/elevated-button.js'
-import '@material/web/button/filled-button.js'
-import '@material/web/button/filled-tonal-button.js'
-import '@material/web/button/outlined-button.js'
-import '@material/web/button/text-button.js'
-
+import { createElement } from 'react'
 import type { ButtonProps } from '../model/types'
 
-function Button({ children, variant = 'filled', size = 'medium', icon, readOnly, ...props }: ButtonProps) {
-  const adjustShadowStyles = (el: HTMLElement) => {
-    if (!el) return
-
-    const sheet = new CSSStyleSheet()
-    sheet.replaceSync(`.label { overflow: visible; }`)
-    el.shadowRoot?.adoptedStyleSheets.push(sheet)
-  }
-
-  const childs = useMemo(() => {
-    const childs = Children.toArray(children)
-
-    if (icon) {
-      childs.unshift(
-        <svg key='icon' slot='icon'>
-          <title>icon</title>
-          <use href={icon} />
-        </svg>,
-      )
-    }
-
-    return childs
-  }, [children, icon])
+/**
+ * A Material Design 3 Button component.
+ * Allows multiple children in a row and supports multiple visual variants.
+ */
+function Button({ variant = 'filled', href, readOnly, icon, children, className, ...props }: ButtonProps) {
+  const isAnchor = href !== undefined
 
   return createElement(
-    `md-${variant}-button`,
+    isAnchor ? 'a' : 'button',
     {
-      type: 'button',
-      ...props,
-      className: clsx(['button', size, variant, { 'read-only': readOnly }], props.className),
-      ref: (el: HTMLElement) => {
-        adjustShadowStyles(el)
-      },
+      href,
+      className: cx(['button', `variant-${variant}`, readOnly && 'readonly', icon && 'icon'], className),
+      ...(isAnchor ? props : { ...props, disabled: props.disabled }),
     },
-    childs,
+    createElement('div', { className: cx('state-layer') }),
+    createElement('span', { className: cx('content') }, children),
   )
 }
 

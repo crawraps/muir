@@ -18,4 +18,7 @@ declare namespace JSX {
   }
 }
 
-declare const clsx: (...args: any[]) => string;
+import type { ClassValue } from 'clsx'
+declare global {
+  const cx: (moduleClassNames: ClassValue, ...args: ClassValue[]) => string
+}

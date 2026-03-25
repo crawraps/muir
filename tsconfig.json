@@ -15,5 +15,5 @@
       "cuil": ["."]
     }
   },
-  "include": ["src", "lib", "docs", "rspress.config.ts", "env.d.ts", "auto-imports.d.ts"]
+  "include": ["src", "lib", "env.d.ts", "auto-imports.d.ts"]
 }

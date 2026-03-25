@@ -1,1 +1,0 @@
-export { IconsShared } from './icons'

@@ -1,0 +1,16 @@
+# smart-clsx
+
+The `createSmartClsx` utility function is a wrapper around `clsx` that provides native CSS Modules support. 
+
+## Usage
+
+```tsx
+import { createSmartClsx } from 'cuil'
+import styles from './style.module.css'
+
+const clsx = createSmartClsx(styles)
+
+// The first argument maps to modular classes in `styles`
+// All subsequent arguments are mapped as global classes
+const className = clsx(['my-modular-class', { 'modular-active': isActive }], 'my-global-class')
+```

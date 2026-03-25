@@ -1,49 +1,66 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import type React from 'react'
-import { FormProvider, type SubmitErrorHandler, type SubmitHandler, useForm } from 'react-hook-form'
-import type { InferType } from 'yup'
-import type { FormMethods, FormProps } from '../model/types'
+import { useImperativeHandle } from 'react'
+import type { FieldValues } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import FormContext from '../model/context'
+import type { FormContextValue, FormHandle, FormProps } from '../model/types'
+import FormField from './form-field'
 
-function Form<FormValues extends Record<string, unknown>>({ schema, ref, ...props }: FormProps<FormValues>) {
-  type Schema = InferType<typeof schema>
-
-  const methods = useForm({
-    ...props,
-    // biome-ignore lint/suspicious/noExplicitAny: yupResolver types are incompatible with generic form values
-    resolver: yupResolver(schema) as any,
+/**
+ * A Material Design 3 Form component.
+ * Wraps an HTML `<form>` with react-hook-form internally, exposing a clean API
+ * so end users never interact with react-hook-form directly.
+ */
+function Form<T extends FieldValues = FieldValues>({
+  ref,
+  schema,
+  defaultValues,
+  validateOn = 'onSubmit',
+  revalidateOn = 'onChange',
+  onSubmit,
+  onError,
+  children,
+  className,
+  ...props
+}: FormProps<T>) {
+  const form = useForm<T>({
+    defaultValues,
+    mode: validateOn,
+    reValidateMode: revalidateOn,
+    ...(schema ? { resolver: yupResolver(schema) as never } : {}),
   })
 
-  // biome-ignore lint/suspicious/noExplicitAny: FormMethods generic incompatibility
-  useImperativeHandle<FormMethods<FormValues>, FormMethods<FormValues>>(ref, () => methods as any, [methods])
+  useImperativeHandle(
+    ref,
+    (): FormHandle<T> => ({
+      submit: form.handleSubmit(
+        (data, event) => onSubmit?.(data, event),
+        (errors, event) => onError?.(errors, event),
+      ),
+      reset: values => form.reset(values),
+      getValues: () => form.getValues(),
+      setValue: (name, value, options) => form.setValue(name, value as never, options),
+      validate: name => form.trigger(name),
+      clearErrors: name => form.clearErrors(name),
+      setFocus: name => form.setFocus(name),
+    }),
+    [form, onSubmit, onError],
+  )
 
-  const successSubmitHandler: SubmitHandler<Schema> = data => {
-    // biome-ignore lint/suspicious/noExplicitAny: generic incompatibility
-    return props.onSubmit?.(data as any)
-  }
-
-  const errorSubmitHandler: SubmitErrorHandler<FormValues> = errors => {
-    return props.onSubmit?.(null, errors)
-  }
-
-  const handleClick: React.FormEventHandler<HTMLFormElement> = ev => {
-    ev.preventDefault()
-    try {
-      // biome-ignore lint/suspicious/noExplicitAny: generic incompatibility
-      methods.handleSubmit(successSubmitHandler as any, errorSubmitHandler)(ev)
-    } catch (error: unknown) {
-      if (error instanceof Error && error.message.includes('formContext is null')) {
-        throw new Error('SubmitButton must be used within a Form or FormProvider component')
-      } else {
-        throw error
-      }
-    }
-  }
+  const handleSubmit = form.handleSubmit(
+    (data, event) => onSubmit?.(data, event),
+    (errors, event) => onError?.(errors, event),
+  )
 
   return (
-    <FormProvider {...methods}>
-      <form {...props} className={clsx('form', props.className)} onSubmit={handleClick} />
-    </FormProvider>
+    <FormContext value={{ form: form as FormContextValue['form'] }}>
+      <form className={cx('form', className)} noValidate onSubmit={handleSubmit} {...props}>
+        {children}
+      </form>
+    </FormContext>
   )
 }
+
+Form.Field = FormField
 
 export default Form

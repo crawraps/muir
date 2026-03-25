@@ -7,10 +7,10 @@ export default function autoClsxPlugin({ types: t }) {
       Program(programPath, state) {
         let needsClsx = false
 
-        // First pass: see if `clsx` is used but not declared
+        // First pass: see if `cx` is used but not declared
         programPath.traverse({
           Identifier(idPath) {
-            if (idPath.node.name === 'clsx' && !idPath.scope.hasBinding('clsx') && idPath.isReferencedIdentifier()) {
+            if (idPath.node.name === 'cx' && !idPath.scope.hasBinding('cx') && idPath.isReferencedIdentifier()) {
               needsClsx = true
               idPath.stop() // found one, we can stop the inner traversal
             }
@@ -38,14 +38,14 @@ export default function autoClsxPlugin({ types: t }) {
 
           // Add: import style from './style.module.css';
           // Add: import { createSmartClsx as _createSmartClsx } from '<relativeSharedPath>';
-          // Add: const clsx = _createSmartClsx(style);
+          // Add: const cx = _createSmartClsx(style);
 
           const styleImport = t.importDeclaration([t.importDefaultSpecifier(t.identifier('_auto_style'))], t.stringLiteral('./style.module.css'))
 
           const smartClsxImport = t.importDeclaration([t.importSpecifier(t.identifier('_createSmartClsx'), t.identifier('createSmartClsx'))], t.stringLiteral(relativeSharedPath))
 
           const clsxDecl = t.variableDeclaration('const', [
-            t.variableDeclarator(t.identifier('clsx'), t.callExpression(t.identifier('_createSmartClsx'), [t.identifier('_auto_style')])),
+            t.variableDeclarator(t.identifier('cx'), t.callExpression(t.identifier('_createSmartClsx'), [t.identifier('_auto_style')])),
           ])
 
           programPath.unshiftContainer('body', clsxDecl)

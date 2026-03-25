@@ -1,0 +1,95 @@
+import { Button, Icon } from '../../lib/components';
+
+# Button
+
+The `Button` component is used to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation.
+
+## Usage
+
+```jsx
+import { Button } from 'cuil';
+
+<Button variant="filled">Click Me</Button>
+```
+
+## Variants
+
+### Filled
+
+High-emphasis button distinguished by the use of fill. Use for primary actions.
+
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', margin: '16px 0' }}>
+  <Button variant="filled">Filled</Button>
+  <Button variant="filled"><Icon name="add" /><span>With Icon</span></Button>
+  <Button variant="filled"><span>Trailing</span> <Icon name="arrow-up-right" /></Button>
+  <Button variant="filled"><Icon name="heart" /></Button>
+  <Button variant="filled" disabled>Disabled</Button>
+</div>
+
+### Elevated
+
+High-emphasis button distinguished by the use of elevation.
+
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', margin: '16px 0' }}>
+  <Button variant="elevated">Elevated</Button>
+  <Button variant="elevated"><Icon name="favorite" /><span>With Icon</span></Button>
+  <Button variant="elevated"><span>Trailing</span> <Icon name="arrow-up-right" /></Button>
+  <Button variant="elevated"><Icon name="heart" /></Button>
+  <Button variant="elevated" disabled>Disabled</Button>
+</div>
+
+### Filled Tonal
+
+Medium-emphasis button distinguished by the use of a tonal fill.
+
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', margin: '16px 0' }}>
+  <Button variant="filled-tonal">Filled Tonal</Button>
+  <Button variant="filled-tonal"><Icon name="bookmark" /> <span>With Icon</span></Button>
+  <Button variant="filled-tonal"><span>Trailing</span> <Icon name="arrow-up-right"/></Button>
+  <Button variant="filled-tonal"><Icon name="heart" /></Button>
+  <Button variant="filled-tonal" disabled>Disabled</Button>
+</div>
+
+### Outlined
+
+Medium-emphasis button distinguished by the use of an outline.
+
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', margin: '16px 0' }}>
+  <Button variant="outlined">Outlined</Button>
+  <Button variant="outlined"><Icon name="settings" /> <span>With Icon</span></Button>
+  <Button variant="outlined"><span>Trailing</span> <Icon name="arrow-up-right" /></Button>
+  <Button variant="outlined"><Icon name="heart" /></Button>
+  <Button variant="outlined" disabled>Disabled</Button>
+</div>
+
+### Text
+
+Low-emphasis button used for less important actions.
+
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', margin: '16px 0' }}>
+  <Button variant="text">Text</Button>
+  <Button variant="text"><Icon name="info" /> <span>With Icon</span></Button>
+  <Button variant="text"><span>Trailing</span> <Icon name="arrow-up-right" /></Button>
+  <Button variant="text"><Icon name="heart" /></Button>
+  <Button variant="text" disabled>Disabled</Button>
+</div>
+
+## Link Button
+
+When `href` is provided, the button renders as an `<a>` tag.
+
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', margin: '16px 0' }}>
+  <Button variant="filled" href="#">Link Button</Button>
+  <Button variant="outlined" href="#"><Icon name="open_in_new" /><span>Open Link</span></Button>
+</div>
+
+## API
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `variant` | `'elevated' \| 'filled' \| 'outlined' \| 'text' \| 'filled-tonal'` | `'filled'` | The visual variant of the button. |
+| `href` | `string` | `undefined` | If defined, renders as an `<a>` tag instead of a `<button>`. |
+| `target` | `'_blank' \| '_self' \| '_parent' \| '_top'` | `undefined` | The target attribute when used as a link. |
+| `readOnly` | `boolean` | `false` | Prevents interaction but may still be focusable. |
+| `disabled` | `boolean` | `false` | Disables the button. |
+| `children` | `ReactNode` | `undefined` | Button content. Accepts text, icons, or both. |
