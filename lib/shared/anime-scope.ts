@@ -1,6 +1,6 @@
 import { createScope, type DOMTarget, type Scope } from 'animejs'
 import React from 'react'
-import { type Theme, useTheme } from '../app/theme-provider'
+import { type Theme, useTheme } from '@/lib/app/theme-provider'
 
 interface Props {
   // biome-ignore lint/suspicious/noExplicitAny: Accepts any React element

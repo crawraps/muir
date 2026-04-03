@@ -1,4 +1,4 @@
-import type { IconProps } from '../model/types'
+import type { IconProps } from '@/lib/components/icon/model/types'
 
 /**
  * A Material Design 3 Icon component.

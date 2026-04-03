@@ -1,5 +1,5 @@
 import type React from 'react'
-import type { DefaultValues, FieldErrors, FieldPath, FieldValues, Mode, UseFormReturn } from 'react-hook-form'
+import type { DefaultValues, FieldErrors, FieldPath, FieldValues, Mode } from 'react-hook-form'
 import type { ObjectSchema } from 'yup'
 
 /**
@@ -65,52 +65,4 @@ export interface FormProps<T extends FieldValues = FieldValues> extends Omit<Rea
    * Called when validation fails.
    */
   onError?: (errors: FieldErrors<T>, event?: React.BaseSyntheticEvent) => void
-}
-
-/**
- * Value exposed by the internal form context to child field components.
- */
-export interface FormContextValue<T extends FieldValues = FieldValues> {
-  /** The underlying react-hook-form instance. Used internally by field components. */
-  form: UseFormReturn<T>
-}
-
-/**
- * Field state exposed by the useFormField hook.
- */
-export interface FormFieldState {
-  /** Current field value. */
-  value: unknown
-  /** onChange handler. */
-  onChange: (...event: unknown[]) => void
-  /** onBlur handler. */
-  onBlur: () => void
-  /** Field ref for focus management. */
-  ref: React.RefCallback<HTMLElement>
-  /** Whether the field has a validation error. */
-  error: boolean
-  /** The error message string, if any. */
-  errorText?: string
-  /** Whether the field value has been modified. */
-  isDirty: boolean
-  /** Whether the field has been interacted with. */
-  isTouched: boolean
-  /** The field name. */
-  name: string
-}
-
-/**
- * @docs
- * Properties for the Form.Field render-prop component.
- */
-export interface FormFieldProps<T extends FieldValues = FieldValues> {
-  /**
-   * The field name, corresponding to a key in the form schema.
-   */
-  name: FieldPath<T>
-
-  /**
-   * Render function receiving the field state.
-   */
-  children: (field: FormFieldState) => React.ReactNode
 }

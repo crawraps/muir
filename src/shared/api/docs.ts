@@ -4,7 +4,7 @@ import type React from 'react'
 // biome-ignore lint/suspicious/noExplicitAny: Needs to hold dynamically required context
 let docsContext: any
 try {
-  docsContext = require.context('../../../docs', true, /\.mdx$/)
+  docsContext = require.context('@/docs', true, /\.mdx$/)
 } catch (e) {
   console.warn('Failed to load docs context', e)
 }

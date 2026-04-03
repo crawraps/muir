@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import { pluginBabel } from '@rsbuild/plugin-babel'
 import { pluginMdx } from '@rsbuild/plugin-mdx'
 import { pluginReact } from '@rsbuild/plugin-react'
@@ -7,6 +8,11 @@ import AutoImport from 'unplugin-auto-import/rspack'
 import autoClsxPlugin from './scripts/babel-plugin-auto-clsx.js'
 
 export default defineConfig({
+  source: {
+    alias: {
+      '@': resolve(__dirname, '.'),
+    },
+  },
   lib: [
     {
       id: 'library',

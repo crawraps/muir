@@ -1,4 +1,4 @@
-import type { ColorPalette } from '../model/types'
+import type { ColorPalette } from '@/lib/app/theme-provider/model/types'
 import themeDefaults from './theme-defaults.json'
 
 export const defaultPaletteLight: ColorPalette = themeDefaults.paletteLight

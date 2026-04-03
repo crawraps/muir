@@ -1,5 +1,5 @@
-import { SecondNavPane } from '../../../widgets/components-pane'
-import { DocsPane } from '../../../widgets/docs-pane'
+import { SecondNavPane } from '@/src/widgets/components-pane'
+import { DocsPane } from '@/src/widgets/docs-pane'
 
 export const ComponentPage = ({ params }: { params?: { '*'?: string } }) => {
   const selectedComponent = params?.['*']

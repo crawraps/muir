@@ -1,4 +1,4 @@
-import { getDocComponent } from '../../../shared/api/docs'
+import { getDocComponent } from '@/src/shared/api/docs'
 
 export const DocsPane = ({ selected }: { selected?: string }) => {
   if (!selected) {

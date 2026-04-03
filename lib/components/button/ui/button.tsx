@@ -1,5 +1,5 @@
 import { createElement } from 'react'
-import type { ButtonProps } from '../model/types'
+import type { ButtonProps } from '@/lib/components/button/model/types'
 
 /**
  * A Material Design 3 Button component.

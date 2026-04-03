@@ -1,6 +1,9 @@
 # smart-clsx
 
-The `createSmartClsx` utility function is a wrapper around `clsx` that provides native CSS Modules support. 
+The `createSmartClsx` utility function allow you to create a wrapper around `clsx` that provides CSS Modules support.
+The `createSmartClsx` function takes a CSS Module object as an argument and returns a "smart" `clsx` function that's scoped to CSS Module object.
+
+The smart-clsx function works like the default clsx, except that the very first argument of the function will be mapped to the CSS Module object.
 
 ## Usage
 

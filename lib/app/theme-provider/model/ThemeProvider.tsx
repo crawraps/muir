@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { defaultThemes } from '../with-defaults/defaults'
+import { defaultThemes } from '@/lib/app/theme-provider/with-defaults/defaults'
 import { applyThemeToCss } from './apply-to-css'
 import { getSavedThemeLocal, getSavedThemeShared, setSavedThemeLocal, setSavedThemeShared } from './storage'
 import type { Theme } from './types'

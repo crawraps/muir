@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'wouter'
-import { getGroupedDocs } from '../../../shared/api/docs'
+import { getGroupedDocs } from '@/src/shared/api/docs'
 
 interface SecondNavPaneProps {
   activeCategory?: string

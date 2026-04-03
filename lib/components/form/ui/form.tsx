@@ -1,10 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useImperativeHandle } from 'react'
 import type { FieldValues } from 'react-hook-form'
-import { useForm } from 'react-hook-form'
-import FormContext from '../model/context'
-import type { FormContextValue, FormHandle, FormProps } from '../model/types'
-import FormField from './form-field'
+import { FormProvider, useForm } from 'react-hook-form'
+import type { FormHandle, FormProps } from '@/lib/components/form/model/types'
 
 /**
  * A Material Design 3 Form component.
@@ -53,14 +51,12 @@ function Form<T extends FieldValues = FieldValues>({
   )
 
   return (
-    <FormContext value={{ form: form as FormContextValue['form'] }}>
+    <FormProvider {...form}>
       <form className={cx('form', className)} noValidate onSubmit={handleSubmit} {...props}>
         {children}
       </form>
-    </FormContext>
+    </FormProvider>
   )
 }
-
-Form.Field = FormField
 
 export default Form

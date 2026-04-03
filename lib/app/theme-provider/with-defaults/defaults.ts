@@ -1,5 +1,5 @@
 import objectHash from 'object-hash'
-import type { Theme } from '../model/types'
+import type { Theme } from '@/lib/app/theme-provider/model/types'
 import { defaultPaletteDark, defaultPaletteLight } from './palette'
 import themeDefaults from './theme-defaults.json'
 

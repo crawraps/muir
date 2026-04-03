@@ -25,7 +25,7 @@ const defaultIcon = (
   </svg>
 )
 
-export const Sidebar = () => {
+export const Navbar = () => {
   const [isHome] = useRoute('/')
   const categories = getDocCategories()
 

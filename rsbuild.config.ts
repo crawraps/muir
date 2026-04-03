@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import { defineConfig } from '@rsbuild/core'
 import { pluginBabel } from '@rsbuild/plugin-babel'
 import { pluginMdx } from '@rsbuild/plugin-mdx'
@@ -8,6 +9,9 @@ import autoClsxPlugin from './scripts/babel-plugin-auto-clsx.js'
 
 export default defineConfig({
   source: {
+    alias: {
+      '@': resolve(__dirname, '.'),
+    },
     entry: {
       index: './src/index.tsx',
     },

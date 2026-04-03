@@ -12,6 +12,7 @@
     "useDefineForClassFields": true,
     "noEmit": true,
     "paths": {
+      "@/*": ["./*"],
       "cuil": ["."]
     }
   },

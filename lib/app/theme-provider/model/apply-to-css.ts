@@ -1,4 +1,4 @@
-import css from '../with-defaults/plain.css?inline'
+import css from '@/lib/app/theme-provider/with-defaults/plain.css?inline'
 import type { ColorPalette, Shape, Theme, Typeface } from './types'
 
 export function applyPaletteToCss(palette: ColorPalette): void {
