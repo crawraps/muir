@@ -1,0 +1,87 @@
+---
+source: lib/components/split
+group: basic
+---
+
+import { Split, Button, TextInput, Icon } from 'muir-capacitor';
+
+# Split
+
+Groups buttons or inputs into a connected strip with cohesive corner rounding.
+
+## Usage
+
+```jsx
+import { Split, Button } from 'muir';
+
+<Split>
+  <Button>Left</Button>
+  <Button>Right</Button>
+</Split>
+```
+
+## Examples
+
+### Horizontal (default)
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '360px', margin: '1rem 0' }}>
+  <Split>
+    <Button variant="filled-tonal">Left</Button>
+    <Button variant="filled-tonal">Center</Button>
+    <Button variant="filled-tonal">Right</Button>
+  </Split>
+
+  <Split uneven>
+    <Button><Icon name="attachment-tilt"/><span>Attach</span></Button>
+    <Button><Icon name="caret-down"/></Button>
+  </Split>
+</div>
+
+### Vertical
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '360px', margin: '1rem 0' }}>
+  <Split vertical>
+    <Button>Top</Button>
+    <Button>Middle</Button>
+    <Button>Bottom</Button>
+  </Split>
+</div>
+
+### Mixed Children
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '480px', margin: '1rem 0' }}>
+  <Split uneven>
+    <TextInput placeholder="Search..." style={{ width: 120 }} />
+    <Button>Go</Button>
+  </Split>
+</div>
+
+### Vertical with Text Inputs
+
+<div style={{ maxWidth: '360px', margin: '1rem 0' }}>
+  <Split vertical>
+    <TextInput placeholder="First name" />
+    <TextInput placeholder="Last name" />
+    <TextInput placeholder="Email" />
+  </Split>
+</div>
+
+## API
+
+Extends native `<div>` props except `children`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `vertical` | `boolean` | `false` | Lays out children vertically instead of horizontally |
+| `uneven` | `boolean` | `false` | If true, children keep their intrinsic size instead of being stretched to equal width/height |
+| `children` | `ReactNode` | `undefined` | The grouped elements (Button, Icon, TextInput, etc.) |
+
+## Customization
+
+Override these variables on the Split root to customize appearance.
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `--shape` | `var(--md-sys-shape-corner-full)` | Outer corner radius (first/last child outside edges) |
+| `--shape-inner` | `var(--md-sys-shape-corner-extra-small)` | Inner corner radius (edges facing siblings) |
+| `--gap` | `2px` | Space between adjacent children |

@@ -1,0 +1,17 @@
+.root {
+  --track-height: 1.75em;
+  --track-width: calc(var(--track-height) * 1.875);
+  --track-border-radius: var(--md-sys-shape-corner-full);
+  --thumb-size: calc(var(--track-height) * 0.675);
+  --thumb-offset: calc((var(--track-height) - var(--thumb-size) - var(--track-border-width) * 2) / 2);
+  --track-color: var(--md-sys-color-surface-container-high);
+  --track-border-width: 2px;
+  --checked-track-color: var(--md-sys-color-primary);
+  --track-border-color: var(--md-sys-color-outline);
+  --thumb-color: var(--md-sys-color-outline);
+  --checked-thumb-color: var(--md-sys-color-on-primary);
+  --error-color: var(--md-sys-color-error);
+  --disabled-opacity: 0.38;
+  --transition-duration: var(--md-sys-motion-expressive-default-effects-duration);
+  --transition-easing: var(--md-sys-motion-expressive-default-effects-curve);
+}

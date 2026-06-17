@@ -41,7 +41,7 @@ Do not import React from 'react' where it's not necessary
 ### Rstest
 
 Tests directory must follow the structure of a testing entity.
-For example, if you're writing tests for `lib/components/button/ui/button.tsx`, your tests directory would be `tests/lib/components/button/ui/button`.
+For example, if you're writing tests for `lib/components/button/ui/button.tsx`, your test file would be `tests/lib/button/button.tsx`.
 
 - Run `bun run test` to run tests
 - Run `bun run test:watch` to run tests in watch mode

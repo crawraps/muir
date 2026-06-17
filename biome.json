@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!dist", "!dist-app", "!.claude"]
+    "includes": ["**", "!dist", "!dist-app", "!.turbo", "!.claude", "!node_modules"]
   },
   "formatter": {
     "enabled": true,

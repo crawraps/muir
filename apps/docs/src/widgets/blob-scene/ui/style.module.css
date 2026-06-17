@@ -1,0 +1,14 @@
+.root {
+  display: block;
+  overflow: visible;
+}
+
+/* Hidden target path used by svg.morphTo() as the morph source.
+   Kept in the DOM so animejs can read its `d` attribute, but
+   excluded from rendering and accessibility. */
+.blob-target {
+  fill: none;
+  stroke: none;
+  opacity: 0;
+  pointer-events: none;
+}

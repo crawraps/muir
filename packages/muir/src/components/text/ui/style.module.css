@@ -1,0 +1,146 @@
+.text {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  color: var(--color);
+
+  /* ── Display ── */
+  &[scale='display'] {
+    &[text-size='large'] {
+      --font-size: var(--md-sys-typescale-display-large-size);
+      --line-height: var(--md-sys-typescale-display-large-line-height);
+      --font-weight: var(--md-sys-typescale-display-large-weight);
+    }
+
+    &[text-size='medium'] {
+      --font-size: var(--md-sys-typescale-display-medium-size);
+      --line-height: var(--md-sys-typescale-display-medium-line-height);
+      --font-weight: var(--md-sys-typescale-display-medium-weight);
+    }
+
+    &[text-size='small'] {
+      --font-size: var(--md-sys-typescale-display-small-size);
+      --line-height: var(--md-sys-typescale-display-small-line-height);
+      --font-weight: var(--md-sys-typescale-display-small-weight);
+    }
+  }
+
+  /* ── Headline ── */
+  &[scale='headline'] {
+    &[text-size='large'] {
+      --font-size: var(--md-sys-typescale-headline-large-size);
+      --line-height: var(--md-sys-typescale-headline-large-line-height);
+      --font-weight: var(--md-sys-typescale-headline-large-weight);
+    }
+
+    &[text-size='medium'] {
+      --font-size: var(--md-sys-typescale-headline-medium-size);
+      --line-height: var(--md-sys-typescale-headline-medium-line-height);
+      --font-weight: var(--md-sys-typescale-headline-medium-weight);
+    }
+
+    &[text-size='small'] {
+      --font-size: var(--md-sys-typescale-headline-small-size);
+      --line-height: var(--md-sys-typescale-headline-small-line-height);
+      --font-weight: var(--md-sys-typescale-headline-small-weight);
+    }
+  }
+
+  /* ── Title ── */
+  &[scale='title'] {
+    &[text-size='large'] {
+      --font-size: var(--md-sys-typescale-title-large-size);
+      --line-height: var(--md-sys-typescale-title-large-line-height);
+      --font-weight: var(--md-sys-typescale-title-large-weight);
+    }
+
+    &[text-size='medium'] {
+      --font-size: var(--md-sys-typescale-title-medium-size);
+      --line-height: var(--md-sys-typescale-title-medium-line-height);
+      --font-weight: var(--md-sys-typescale-title-medium-weight);
+    }
+
+    &[text-size='small'] {
+      --font-size: var(--md-sys-typescale-title-small-size);
+      --line-height: var(--md-sys-typescale-title-small-line-height);
+      --font-weight: var(--md-sys-typescale-title-small-weight);
+    }
+  }
+
+  /* ── Body ── */
+  &[scale='body'] {
+    &[text-size='large'] {
+      --font-size: var(--md-sys-typescale-body-large-size);
+      --line-height: var(--md-sys-typescale-body-large-line-height);
+      --font-weight: var(--md-sys-typescale-body-large-weight);
+    }
+
+    &[text-size='medium'] {
+      --font-size: var(--md-sys-typescale-body-medium-size);
+      --line-height: var(--md-sys-typescale-body-medium-line-height);
+      --font-weight: var(--md-sys-typescale-body-medium-weight);
+    }
+
+    &[text-size='small'] {
+      --font-size: var(--md-sys-typescale-body-small-size);
+      --line-height: var(--md-sys-typescale-body-small-line-height);
+      --font-weight: var(--md-sys-typescale-body-small-weight);
+    }
+  }
+
+  /* ── Label ── */
+  &[scale='label'] {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--label-gap);
+
+    &:has(input) {
+      cursor: pointer;
+    }
+
+    &:has(input:disabled) {
+      opacity: 0.38;
+      cursor: default;
+    }
+
+    &[text-size='large'] {
+      --font-size: var(--md-sys-typescale-label-large-size);
+      --line-height: var(--md-sys-typescale-label-large-line-height);
+      --font-weight: var(--md-sys-typescale-label-large-weight);
+    }
+
+    &[text-size='medium'] {
+      --font-size: var(--md-sys-typescale-label-medium-size);
+      --line-height: var(--md-sys-typescale-label-medium-line-height);
+      --font-weight: var(--md-sys-typescale-label-medium-weight);
+    }
+
+    &[text-size='small'] {
+      --font-size: var(--md-sys-typescale-label-small-size);
+      --line-height: var(--md-sys-typescale-label-small-line-height);
+      --font-weight: var(--md-sys-typescale-label-small-weight);
+    }
+  }
+
+  /* ── Anchor ── */
+  &[is-anchor] {
+    --color: var(--anchor-color);
+
+    text-decoration: none;
+    cursor: pointer;
+    transition: color var(--anchor-transition-duration) var(--anchor-transition-easing);
+
+    @media (hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &:visited {
+      --color: var(--anchor-visited-color);
+    }
+  }
+}

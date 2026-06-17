@@ -1,23 +1,47 @@
-# Rslib project
+# Muir
+
+UI component library with Capacitor integration.
 
 ## Setup
-
-Install the dependencies:
 
 ```bash
 bun install
 ```
 
-## Get started
+## Workspace Structure
 
-Build the library:
-
-```bash
-bun run build
+```
+muir/
+├── packages/
+│   ├── muir/              # Core UI library
+│   └── muir-capacitor/    # Capacitor wrapper
+├── apps/
+│   └── docs/              # Landing/docs page
+└── scripts/               # Shared build tooling
 ```
 
-Build the library in watch mode:
+## Commands
 
 ```bash
-bun run dev
+# Build all packages
+turbo run build
+
+# Dev server (docs app)
+turbo run dev
+
+# Run tests
+turbo run test
+
+# Lint
+turbo run lint
+```
+
+## Individual Packages
+
+```bash
+# Build library only
+cd packages/muir && bun run build
+
+# Dev docs app
+cd apps/docs && bun run dev
 ```

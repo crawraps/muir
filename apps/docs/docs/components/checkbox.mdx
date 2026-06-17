@@ -1,0 +1,78 @@
+---
+source: lib/components/checkbox
+group: basic
+variations:
+  - form
+---
+
+import { Checkbox, Text } from 'muir-capacitor';
+
+# Checkbox
+
+Single or multi-select input for binary choices.
+
+## Usage
+
+```jsx
+import { Checkbox } from 'muir/basic';
+import { Text } from 'muir/basic';
+
+<Text type="label"><Checkbox /> Accept terms</Text>
+```
+
+## Examples
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  <Text type="label"><Checkbox /> Unchecked</Text>
+  <Text type="label"><Checkbox defaultChecked /> Checked</Text>
+  <Text type="label"><Checkbox error="Required" /> With error (hidden)</Text>
+  <Text type="label"><Checkbox disabled /> Disabled</Text>
+</div>
+
+## Form Integration
+
+```jsx
+import { Form, FormCheckbox } from 'muir/form';
+import { Text } from 'muir/basic';
+
+<Form defaultValues={{ agree: false }} onSubmit={handleSubmit}>
+  <Text type="label"><FormCheckbox name="agree" /> I agree to the terms</Text>
+</Form>
+```
+
+## API
+
+### Checkbox
+
+Extends native `<input>` props except `type` and `children`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `error` | `ReactNode` | `undefined` | Error message |
+| `showError` | `boolean` | `false` | Renders the error message below the checkbox |
+| `disabled` | `boolean` | `false` | Disables the checkbox |
+
+### FormCheckbox
+
+Extends `Checkbox` props except `name`, `value`, `defaultValue`, `checked`, `defaultChecked`, `onChange`, and `onBlur`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `name` | `string` | **required** | Field name for react-hook-form registration |
+
+## Customization
+
+Override these variables on the Checkbox root to customize appearance.
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `--size` | `1.125rem` | Size of the checkbox box |
+| `--shape` | `var(--md-sys-shape-corner-extra-small)` | Border radius of the box |
+| `--border-width` | `0px` | Border width |
+| `--border-color` | `var(--md-sys-color-on-surface-variant)` | Border color when unchecked |
+| `--background-color` | `var(--md-sys-color-surface-container-low)` | Background color when unchecked |
+| `--checked-background-color` | `var(--md-sys-color-primary)` | Background color when checked |
+| `--checked-color` | `var(--md-sys-color-on-primary)` | Checkmark color |
+| `--error-color` | `var(--md-sys-color-error)` | Color used in error state |
+| `--disabled-opacity` | `0.38` | Opacity when disabled |
+| `--color-transition-duration` | `calc(var(--md-sys-motion-expressive-default-effects-duration) / 3)` | Transition duration for color changes |

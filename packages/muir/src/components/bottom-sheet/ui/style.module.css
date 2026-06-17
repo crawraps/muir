@@ -1,0 +1,59 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--md-sys-z-index-overlay);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.root[is-open='true'] {
+  pointer-events: auto;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: var(--bs-backdrop-color);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--bs-transition-duration) ease,
+    visibility var(--bs-transition-duration) ease;
+  pointer-events: auto;
+}
+
+.sheet {
+  position: relative;
+  background-color: var(--bs-bg-color);
+  border-top-left-radius: var(--bs-border-radius-top);
+  border-top-right-radius: var(--bs-border-radius-top);
+  max-height: var(--bs-max-height);
+  width: 100%;
+  z-index: 1;
+  pointer-events: auto;
+  transform: translateY(100%);
+  will-change: transform;
+}
+
+.handle {
+  width: 32px;
+  height: 4px;
+  background-color: var(--md-sys-color-on-surface-variant);
+  border-radius: 2px;
+  margin: 16px auto 0;
+  opacity: 0.4;
+}
+
+.content {
+  padding: 0 16px 24px;
+  overflow-y: auto;
+}
+
+.title {
+  font-size: var(--md-sys-typescale-title-medium);
+  font-weight: var(--md-sys-typescale-title-medium-weight);
+  text-align: center;
+  margin-bottom: 16px;
+}

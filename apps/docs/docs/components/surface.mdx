@@ -1,0 +1,153 @@
+---
+source: lib/components/surface
+group: basic
+---
+
+import { Surface, Text } from 'muir-capacitor';
+
+# Surface
+
+Visual background layer for composing other components on top of.
+Plain type renders a solid color fill; crust type renders a frosted-glass
+effect with backdrop blur, grain texture, and specular lighting.
+
+## Usage
+
+```jsx
+import { Surface } from 'muir/basic';
+
+<Surface>Content</Surface>
+```
+
+## Examples
+
+### Plain
+
+Solid color fill. Use as a background layer inside cards, panels, or dialogs.
+
+<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'stretch', margin: '1rem 0' }}>
+  <Surface style={{ padding: '1.5rem', minWidth: '140px' }}>
+    <Text type="body">Plain surface</Text>
+  </Surface>
+  <Surface style={{ padding: '1.5rem', minWidth: '140px', '--surface-color': 'var(--md-sys-color-surface-container)' }}>
+    <Text type="body">Tinted surface</Text>
+  </Surface>
+</div>
+
+### Crust
+
+Frosted glass with backdrop blur, grain texture, and specular lighting. Use for overlays, bottom sheets, and floating panels where content behind the surface should remain partially visible.
+
+<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'stretch', margin: '1rem 0', background: 'linear-gradient(135deg, var(--md-sys-color-primary-container), var(--md-sys-color-tertiary-container))', borderRadius: '1rem', padding: '2rem', background: 'center / cover no-repeat url(https://img.magnific.com/free-vector/voronoi-art-abstract-block-structure-pattern-background-design_1017-54631.jpg)' }}>
+  <Surface type="crust" style={{ padding: '1.5rem', minWidth: '160px' }}>
+    <Text type="body">Crust surface</Text>
+  </Surface>
+  <Surface type="crust" className="heavy-blur" style={{ padding: '1.5rem', minWidth: '160px', '--surface-blur': '16px' }}>
+    <Text type="body">Heavy blur</Text>
+  </Surface>
+</div>
+
+Customise the crust appearance via CSS custom properties on the Surface element:
+
+```css
+.heavy-blur {
+  --surface-blur: 24px;
+}
+```
+
+### Grain Configuration
+
+Customise the grain texture using the `grain` prop. The grain overlay uses an SVG `feTurbulence` filter combined with `feSpecularLighting` for a lit, textured appearance.
+
+<div style={{ display: 'flex', flexDirection: "column", gap: '0.75rem', flexWrap: 'wrap', alignItems: 'stretch', margin: '1rem 0', background: 'linear-gradient(135deg, var(--md-sys-color-primary-container), var(--md-sys-color-tertiary-container))', borderRadius: '1rem', padding: '2rem', background: "center / cover no-repeat url(https://img.magnific.com/premium-vector/blackhanddrawnseamlesspatterns_1213596-151.jpg)" }}>
+  <Surface type="crust" grain={{ opacity: 0.8 }} style={{ padding: '1.5rem', minWidth: '140px' }}>
+    <Text type="body">Default grain</Text>
+  </Surface>
+  <Surface type="crust" grain={{ density: 0.9, opacity: 0.8 }} style={{ padding: '1.5rem', minWidth: '140px' }}>
+    <Text type="body">Fine grain</Text>
+  </Surface>
+  <Surface type="crust" grain={{ density: 0.4, opacity: 0.8, light: { surfaceScale: 5, elevation: 60, specularity: 2 } }} style={{ padding: '1.5rem', minWidth: '140px' }}>
+    <Text type="body">Strong specular</Text>
+  </Surface>
+</div>
+
+```jsx
+<Surface type="crust" grain={{ density: 0.9, opacity: 0.3 }}>
+  Fine grain
+</Surface>
+
+<Surface type="crust" grain={{ density: 0.4, opacity: 0.3, light: { surfaceScale: 5, elevation: 60, specularity: 2 } }}>
+  Strong specular
+</Surface>
+```
+
+> **Note:** Grain texture parameters are defined in the theme's `surface` config. The `grain` prop on Surface overrides the theme defaults.
+
+### Composition
+
+Use Surface inside other components as a visual background layer.
+
+```jsx
+import { Surface, Text, Button } from 'muir/basic';
+
+<Surface type="crust">
+  <Text type="title">Card title</Text>
+  <Button variant="filled-tonal">Action</Button>
+</Surface>
+```
+
+Customise the crust appearance by overriding CSS custom properties on the Surface root:
+
+```css
+.my-surface {
+  --surface-blur: 16px;
+  --surface-opacity: 0.9;
+}
+```
+
+## API
+
+Extends native `<div>` props except `children`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `type` | `'plain' \| 'crust'` | from theme's `surface.type` | Surface variant — solid fill or frosted glass |
+| `grain` | `{ density?: number, opacity?: number, light?: { surfaceScale?: number, elevation?: number, specularity?: number } }` | from theme | Grain and lighting overrides for crust variant |
+| `children` | `ReactNode` | `undefined` | Content rendered on top of the surface |
+
+## Theme Configuration
+
+Surface defaults are defined in the theme's `surface` property:
+
+```ts
+interface SurfaceConfig {
+  type: 'plain' | 'crust'
+  blur: number
+  opacity: number
+  grain: {
+    density: number
+    opacity: number
+    light: {
+      surfaceScale: number
+      elevation: number
+      specularity: number
+    }
+  }
+}
+```
+
+Different themes (light/dark) can have different surface defaults. See `theme-defaults.json` for the built-in values.
+
+## Customization
+
+Override these variables on the Surface root to customize appearance.
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `--surface-shape` | `var(--md-sys-shape-corner-none)` | Border radius |
+| `--surface-color` | `var(--md-sys-color-surface)` | Background color for plain type |
+| `--surface-crust-color` | `color-mix(in srgb, var(--md-sys-color-surface) 70%, transparent)` | Background color for crust type |
+| `--surface-blur` | from theme (`--md-sys-surface-blur`) | Backdrop blur amount (crust only) |
+| `--surface-opacity` | from theme (`--md-sys-surface-opacity`) | Surface transparency |
+| `--surface-grain-density` | from theme (`--md-sys-surface-grain-density`) | Grain pattern density |
+| `--surface-grain-opacity` | from theme (`--md-sys-surface-grain-opacity`) | Grain overlay visibility (0–1) |

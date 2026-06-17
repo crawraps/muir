@@ -1,0 +1,196 @@
+---
+source: lib/components/code
+group: extra
+---
+
+import { Code, CodeStyleProvider, useCodeStyle } from 'muir-capacitor';
+
+# Code
+
+Wraps code content in a themed container with a language icon badge. Supports light/dark/auto theming via a shared `CodeStyleProvider` context.
+
+## Usage
+
+```jsx
+import { Code, CodeStyleProvider } from 'muir/extra';
+
+<CodeStyleProvider>
+  <Code language="tsx">console.log('hello')</Code>
+</CodeStyleProvider>
+```
+
+## Examples
+
+### Basic
+
+Renders children inside `<pre><code>`. The language badge defaults to a `.{language}` label.
+
+<div style={{ margin: '1rem 0' }}>
+  <Code language="tsx">const x: number = 1</Code>
+</div>
+
+```jsx
+<Code language="tsx">const x: number = 1</Code>
+```
+
+### Pre Child
+
+When children are already a `<pre>` element, it is used directly instead of being re-wrapped.
+
+```jsx
+<Code language="js">
+  <pre><code className="language-js">highlighted code here</code></pre>
+</Code>
+```
+
+### Custom Icons
+
+The `icons` prop maps a language to an icon name (string) or arbitrary ReactNode. Unmapped languages show a plain `.{language}` label.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  <Code language="typescript" icons={{ typescript: 'code' }}>const a: string = ''</Code>
+  <Code language="python" icons={{ python: <span style={{ fontSize: '0.75rem' }}>🐍</span> }}>print('hello')</Code>
+  <Code language="rust">fn main() {{}}</Code>
+</div>
+
+```jsx
+<Code language="typescript" icons={{ typescript: 'code' }}>
+  const a: string = ''
+</Code>
+
+<Code language="python" icons={{ python: <span>🐍</span> }}>
+  print('hello')
+</Code>
+
+<Code language="rust">fn main() {}</Code>
+```
+
+### Theme Provider
+
+Wrap multiple `Code` blocks in a `CodeStyleProvider` to share theme state. Set `defaultTheme` to `'light'`, `'dark'`, or `'auto'` (follows the global `ThemeProvider`).
+
+```jsx
+import { Code, CodeStyleProvider } from 'muir/extra';
+
+<CodeStyleProvider defaultTheme="auto">
+  <Code language="tsx">...</Code>
+  <Code language="css">...</Code>
+</CodeStyleProvider>
+```
+
+#### useCodeStyle Hook
+
+Access and change the code theme from within a `CodeStyleProvider`.
+
+```jsx
+import { useCodeStyle } from 'muir/extra';
+
+function ThemeToggle() {
+  const { theme, setTheme, resolvedTheme } = useCodeStyle()
+
+  return (
+    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+      Current: {resolvedTheme}
+    </button>
+  )
+}
+```
+
+> **Note:** If no `CodeStyleProvider` is mounted, `useCodeStyle()` returns a safe default (`theme: 'auto'`, `resolvedTheme: 'dark'`).
+
+### Theme Change Callback
+
+Use `onThemeChange` to react when the resolved theme changes.
+
+```jsx
+<Code language="js" onThemeChange={(mode) => console.log(mode)}>
+  console.log('theme changed')
+</Code>
+```
+
+### Position
+
+Control where the chrome (icon, buttons) appears relative to the code block.
+
+- `'vertical'` — chrome on top
+- `'horizontal'` — chrome on the right
+- `'auto'` (default) — vertical if the `<pre>` height exceeds 12rem or the viewport is narrower than 440px; horizontal otherwise
+
+```jsx
+<Code language="tsx" position="vertical">const x = 1</Code>
+<Code language="tsx" position="horizontal">const x = 1</Code>
+<Code language="tsx" position="auto">const x = 1</Code>
+```
+
+### Filename from First Comment
+
+When `parseFirstCommentAsFilename` is `true` (default), the first line of the code is inspected for a comment signature. If the line starts with a known signature and has text after it, that text is displayed as a filename in the chrome and the first line is removed from the rendered code.
+
+```jsx
+<Code language="tsx">{`// app.tsx\nconst App = () => <div />`}</Code>
+<Code language="py">{`# main.py\nprint('hello')`}</Code>
+```
+
+If the comment line has no text after the signature (e.g. just `//`), the line is kept and no filename is shown.
+
+Custom signatures can be provided via `commentLineSignatures`:
+
+```jsx
+<Code language="sql" commentLineSignatures={['--', '#']}>
+  {`-- schema.sql\nSELECT * FROM users;`}
+</Code>
+```
+
+An explicit `filename` prop overrides parsed filenames:
+
+```jsx
+<Code language="tsx" filename="custom-name.tsx">{`// ignored.ts\nconst x = 1`}</Code>
+```
+
+## API
+
+### Code
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `language` | `string` | **required** | Language identifier (used for the icon badge and `data-language` attribute) |
+| `icons` | `Record<string, string \| ReactNode>` | `undefined` | Map of language → icon. String renders `<Icon name={value} />`; ReactNode renders directly; missing key shows `.{language}` label |
+| `onThemeChange` | `(mode: 'light' \| 'dark') => void` | `undefined` | Called when the resolved theme changes |
+| `position` | `'vertical' \| 'horizontal' \| 'auto'` | `'auto'` | Chrome placement. `'auto'` resolves to vertical when `<pre>` height > 12rem or viewport < 440px |
+| `children` | `ReactNode` | **required** | Code content. If a single `<pre>` child, used directly; otherwise wrapped in `<pre><code>` |
+| `parseFirstCommentAsFilename` | `boolean` | `true` | Whether to parse the first comment line as a filename |
+| `commentLineSignatures` | `string[]` | `['//', '#', '/*', '<!--', '--', ';', '%', '/**']` | Comment prefixes to check when parsing the first line |
+| `filename` | `string` | `undefined` | Explicit filename displayed in the chrome. Overrides any parsed filename |
+
+### CodeStyleProvider
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `defaultTheme` | `'light' \| 'dark' \| 'auto'` | `'auto'` | Initial code theme. `'auto'` follows the global `ThemeProvider` |
+| `children` | `ReactNode` | **required** | Descendants that share the code theme context |
+
+### useCodeStyle
+
+Returns `CodeStyleContextType`:
+
+| Field | Type | Description |
+| ------ | ---- | ----------- |
+| `theme` | `'light' \| 'dark' \| 'auto'` | Current theme setting |
+| `setTheme` | `(theme: CodeTheme) => void` | Update the theme |
+| `resolvedTheme` | `'light' \| 'dark'` | Resolved theme — follows global mode when `theme` is `'auto'` |
+
+## Data Attributes
+
+| Attribute | Value | Description |
+| --------- | ----- | ----------- |
+| `data-code-theme` | `'light' \| 'dark'` | Current resolved theme for CSS targeting |
+| `data-language` | `string` | The `language` prop value for CSS targeting |
+| `data-position` | `'vertical' \| 'horizontal'` | Resolved chrome placement for CSS targeting |
+
+## Customization
+
+Override these variables on the Code root to customize appearance.
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| N/A | — | Styling is driven by `data-code-theme` and `data-language` attributes — target them with CSS attribute selectors |

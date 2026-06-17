@@ -1,0 +1,40 @@
+.root {
+  position: relative;
+  overflow: hidden;
+  background-color: color-mix(in srgb, var(--surface-color) calc(var(--surface-opacity, 0.75) * 100%), transparent);
+}
+
+/* ── Crust type ──────────────────────────────────────────── */
+
+.root[data-surface='crust'] {
+  backdrop-filter: blur(var(--surface-blur));
+}
+
+/* ── Grain overlay (crust only) ──────────────────────────── */
+
+.grain {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--surface-grain-opacity);
+  mix-blend-mode: overlay;
+}
+
+/* ── Grain pattern (crust only) ──────────────────────────── */
+
+.grain-pattern {
+  width: 200px;
+  height: 200px;
+}
+
+/* ── Content slot ───────────────────────────────────────── */
+
+.content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}

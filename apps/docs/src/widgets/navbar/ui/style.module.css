@@ -1,0 +1,41 @@
+.navbar {
+  --font-size: 1rem;
+  --entry-padding: var(--spacing-medium-small);
+
+  font-size: var(--font-size);
+  width: calc(var(--font-size) + var(--entry-padding) * 2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  white-space: nowrap;
+
+  .spacer {
+    flex-grow: 1;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: inherit;
+    gap: var(--spacing-small);
+
+    .nav-entry {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-medium-small);
+      box-sizing: border-box;
+      text-decoration: none;
+      color: var(--md-sys-color-on-surface-variant);
+      border-radius: var(--md-sys-shape-corner-medium-large);
+      cursor: pointer;
+
+      .button[is-active] {
+        --color: var(--md-sys-color-on-primary-container);
+        --background-color: var(--md-sys-color-primary-container);
+      }
+    }
+  }
+}

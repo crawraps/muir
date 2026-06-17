@@ -1,0 +1,7 @@
+.root {
+  --surface-color: var(--md-sys-color-surface);
+  --surface-opacity: var(--md-sys-surface-opacity);
+  --surface-blur: var(--md-sys-surface-blur);
+  --surface-grain-density: var(--md-sys-surface-grain-density);
+  --surface-grain-opacity: var(--md-sys-surface-grain-opacity);
+}

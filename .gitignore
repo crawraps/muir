@@ -9,6 +9,9 @@ dist/
 storybook-static
 doc_build/
 
+# Turborepo
+.turbo
+
 # IDE
 .vscode/*
 !.vscode/extensions.json

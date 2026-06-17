@@ -1,0 +1,19 @@
+.code-block {
+  pre {
+    background-color: #edebe3;
+
+    code {
+      color: #282828;
+    }
+  }
+
+  &[data-code-theme='dark'] {
+    pre {
+      background-color: #32302f;
+
+      code {
+        color: #f6f5f1;
+      }
+    }
+  }
+}

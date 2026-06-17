@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["react", "react-dom"],
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["./src/*"],
+      "docs/*": ["./docs/*"],
+      "muir": ["../../packages/muir/src"],
+      "muir/*": ["../../packages/muir/src/*"],
+      "muir-capacitor": ["../../packages/muir-capacitor/src"],
+      "muir-capacitor/*": ["../../packages/muir-capacitor/src/*"]
+    }
+  },
+  "include": ["src", "docs", "stories", ".storybook", "env.d.ts", "auto-imports.d.ts"]
+}

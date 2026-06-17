@@ -1,0 +1,130 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius);
+  background-color: var(--chrome-color);
+  overflow: hidden;
+  width: 100%;
+  transition: background-color var(--md-sys-motion-expressive-default-effects-duration) var(--md-sys-motion-expressive-default-effects-curve);
+
+  &[is-error] {
+    --chrome-color: var(--error-chrome-color);
+  }
+
+  &[is-disabled] {
+    opacity: var(--disabled-opacity);
+    pointer-events: none;
+  }
+
+  .surface {
+    --surface-color: var(--chrome-color);
+  }
+}
+
+/* ── Header (chrome top bar) ── */
+.header {
+  display: flex;
+  align-items: center;
+  padding: var(--chrome-padding);
+  gap: 0.5rem;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+.label-text {
+  font-family: var(--md-ref-typeface-brand);
+  font-size: var(--md-sys-typescale-label-small-size);
+  font-weight: var(--md-sys-typescale-label-medium-weight);
+  color: var(--md-sys-color-on-surface-variant);
+  transition: color var(--md-sys-motion-expressive-default-effects-duration) var(--md-sys-motion-expressive-default-effects-curve);
+
+  [is-error] & {
+    color: var(--md-sys-color-error);
+  }
+}
+
+/* ── Body (input area) ── */
+.body {
+  padding: var(--body-padding);
+  border-top-left-radius: var(--md-sys-shape-corner-large);
+  border-top-right-radius: var(--md-sys-shape-corner-large);
+  background-color: var(--md-sys-color-surface-container-low);
+  transition: background-color var(--md-sys-motion-expressive-default-effects-duration) var(--md-sys-motion-expressive-default-effects-curve);
+
+  [is-multiline] & {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  &:has(.input:focus-visible) {
+    outline: 2px solid var(--focus-color);
+    outline-offset: -2px;
+  }
+}
+
+/* ── Input / Textarea ── */
+.input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--md-sys-color-on-surface);
+  font: inherit;
+  font-family: var(--md-ref-typeface-plain);
+  font-size: var(--md-sys-typescale-body-large-size);
+  font-weight: var(--md-sys-typescale-body-large-weight);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  padding: 0;
+  margin: 0;
+  caret-color: var(--focus-color);
+
+  &::placeholder {
+    color: var(--md-sys-color-on-surface-variant);
+  }
+
+  [is-error] & {
+    caret-color: var(--md-sys-color-error);
+  }
+}
+
+textarea.input {
+  resize: vertical;
+  field-sizing: content;
+  min-height: 1.5em;
+}
+
+/* ── Footer (chrome bottom strip) ── */
+.footer {
+  display: flex;
+  align-items: center;
+  padding: var(--chrome-padding);
+  gap: 0.375rem;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+/* ── Comment text ── */
+.comment {
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: var(--md-ref-typeface-plain);
+  font-size: var(--md-sys-typescale-body-small-size);
+  font-weight: var(--md-sys-typescale-body-small-weight);
+  line-height: var(--md-sys-typescale-body-small-line-height);
+}
+
+/* ── Error messages ── */
+.errors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.error-item {
+  color: var(--md-sys-color-error);
+  font-family: var(--md-ref-typeface-plain);
+  font-size: var(--md-sys-typescale-body-small-size);
+  font-weight: var(--md-sys-typescale-body-small-weight);
+  line-height: var(--md-sys-typescale-body-small-line-height);
+  opacity: 0;
+  transform: translateY(-0.5rem);
+}

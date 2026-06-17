@@ -1,0 +1,126 @@
+---
+source: lib/components/button
+group: basic
+---
+
+import { Button, Icon } from 'muir-capacitor';
+
+# Button
+
+Trigger an action or event, such as submitting a form, opening a dialog, or deleting an item.
+
+## Usage
+
+```jsx
+import { Button } from 'muir';
+
+<Button variant="filled">Click Me</Button>
+```
+
+## Examples
+
+### Filled
+
+High-emphasis action.
+
+<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', margin: '1rem 0' }}>
+  <Button variant="filled">Filled</Button>
+  <Button variant="filled"><Icon name="info" /><span>With Icon</span></Button>
+  <Button variant="filled"><span>Trailing</span> <Icon name="external-link" /></Button>
+  <Button variant="filled"><Icon name="heart" /></Button>
+  <Button variant="filled" disabled>Disabled</Button>
+</div>
+
+### Elevated
+
+High-emphasis action with elevation.
+
+<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', margin: '1rem 0' }}>
+  <Button variant="elevated">Elevated</Button>
+  <Button variant="elevated"><Icon name="info" /><span>With Icon</span></Button>
+  <Button variant="elevated"><span>Trailing</span> <Icon name="external-link" /></Button>
+  <Button variant="elevated"><Icon name="heart" /></Button>
+  <Button variant="elevated" disabled>Disabled</Button>
+</div>
+
+### Filled Tonal
+
+Medium-emphasis action.
+
+<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', margin: '1rem 0' }}>
+  <Button variant="filled-tonal">Filled Tonal</Button>
+  <Button variant="filled-tonal"><Icon name="info" /> <span>With Icon</span></Button>
+  <Button variant="filled-tonal"><span>Trailing</span> <Icon name="external-link"/></Button>
+  <Button variant="filled-tonal"><Icon name="heart" /></Button>
+  <Button variant="filled-tonal" disabled>Disabled</Button>
+</div>
+
+### Outlined
+
+Medium-emphasis action with a border.
+
+<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', margin: '1rem 0' }}>
+  <Button variant="outlined">Outlined</Button>
+  <Button variant="outlined"><Icon name="info" /> <span>With Icon</span></Button>
+  <Button variant="outlined"><span>Trailing</span> <Icon name="external-link" /></Button>
+  <Button variant="outlined"><Icon name="heart" /></Button>
+  <Button variant="outlined" disabled>Disabled</Button>
+</div>
+
+### Text
+
+Low-emphasis action without a background.
+
+<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', margin: '1rem 0' }}>
+  <Button variant="text">Text</Button>
+  <Button variant="text"><Icon name="info" /> <span>With Icon</span></Button>
+  <Button variant="text"><span>Trailing</span> <Icon name="external-link" /></Button>
+  <Button variant="text"><Icon name="heart" /></Button>
+  <Button variant="text" disabled>Disabled</Button>
+</div>
+
+### Link Button
+
+When `href` is provided, the button renders as an `<a>` tag.
+
+<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', margin: '1rem 0' }}>
+  <Button variant="filled" href="#">Link Button</Button>
+  <Button variant="outlined" href="#"><Icon name="open_in_new" /><span>Open Link</span></Button>
+</div>
+
+## API
+
+Extends native `<button>` props except `prefix`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `variant` | `'elevated' \| 'filled' \| 'outlined' \| 'text' \| 'filled-tonal'` | `'filled'` | Visual style |
+| `href` | `string` | `undefined` | Renders as an `<a>` tag |
+| `target` | `'_blank' \| '_self' \| '_parent' \| '_top' \| string` | `undefined` | Link target |
+| `readOnly` | `boolean` | `false` | Prevents interaction but may still be focusable |
+| `icon` | `boolean` | `false` | Forces a square icon-button shape (no padding, width equals height) |
+| `disabled` | `boolean` | `false` | Disables the button |
+| `children` | `ReactNode` | `undefined` | Button content |
+
+## Customization
+
+Override these variables on the Button root to customize appearance.
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `--height` | `2.5rem` | Minimum height |
+| `--shape` | `var(--md-sys-shape-corner-full)` | Border radius |
+| `--gap` | `0.5rem` | Gap between children |
+| `--padding-x` | `calc(var(--height) / 2)` | Horizontal padding |
+| `--background-color` | `transparent` | Background color |
+| `--color` | `inherit` | Foreground (text/icon) color |
+| `--border` | `none` | Border shorthand |
+| `--box-shadow` | `none` | Box shadow |
+| `--font-family` | `var(--md-ref-typeface-plain)` | Font family |
+| `--font-size` | `var(--md-sys-typescale-label-medium-size)` | Font size |
+| `--font-weight` | `var(--md-sys-typescale-label-medium-weight)` | Font weight |
+| `--line-height` | `var(--md-sys-typescale-label-medium-line-height)` | Line height |
+| `--disabled-opacity` | `0.35` | Opacity when disabled |
+| `--hover-state-opacity` | `0.08` | Hover state opacity |
+| `--focus-state-opacity` | `0.12` | Focus state opacity |
+| `--active-state-opacity` | `0.12` | Active state opacity |

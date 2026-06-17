@@ -1,0 +1,82 @@
+---
+source: lib/components/switch
+group: basic
+variations:
+  - form
+---
+
+import { Switch, Text } from 'muir-capacitor';
+
+# Switch
+
+Toggle input for on/off states.
+
+## Usage
+
+```jsx
+import { Switch } from 'muir/basic';
+import { Text } from 'muir/basic';
+
+<Text type="label"><Switch /> Enable notifications</Text>
+```
+
+## Examples
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  <Text type="label"><Switch /> Unchecked</Text>
+  <Text type="label"><Switch defaultChecked /> Checked</Text>
+  <Text type="label"><Switch error="Required" /> With error (hidden)</Text>
+  <Text type="label"><Switch disabled /> Disabled</Text>
+</div>
+
+## Form Integration
+
+```jsx
+import { Form, FormSwitch } from 'muir/form';
+import { Text } from 'muir/basic';
+
+<Form defaultValues={{ notifications: false }} onSubmit={handleSubmit}>
+  <Text type="label"><FormSwitch name="notifications" /> Enable notifications</Text>
+</Form>
+```
+
+## API
+
+### Switch
+
+Extends native `<input>` props except `type` and `children`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `error` | `ReactNode` | `undefined` | Error message |
+| `showIcon` | `boolean` | `true` | Whether to show the check icon when checked |
+
+### FormSwitch
+
+Extends `Switch` props except `name`, `value`, `defaultValue`, `checked`, `defaultChecked`, `onChange`, and `onBlur`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `name` | `string` | **required** | Field name for react-hook-form registration |
+
+## Customization
+
+Override these variables on the Switch root to customize appearance.
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `--track-height` | `1.75em` | Track height |
+| `--track-width` | `calc(var(--track-height) * 1.875)` | Track width |
+| `--track-border-radius` | `var(--md-sys-shape-corner-full)` | Track corner radius |
+| `--thumb-size` | `calc(var(--track-height) * 0.675)` | Thumb diameter |
+| `--thumb-offset` | `calc((var(--track-height) - var(--thumb-size) - var(--track-border-width) * 2) / 2)` | Thumb vertical offset |
+| `--track-color` | `var(--md-sys-color-surface-container-high)` | Track color when off |
+| `--track-border-width` | `2px` | Track border width |
+| `--checked-track-color` | `var(--md-sys-color-primary)` | Track color when on |
+| `--track-border-color` | `var(--md-sys-color-outline)` | Track border color when off |
+| `--thumb-color` | `var(--md-sys-color-outline)` | Thumb color when off |
+| `--checked-thumb-color` | `var(--md-sys-color-on-primary)` | Thumb color when on |
+| `--error-color` | `var(--md-sys-color-error)` | Color used in error state |
+| `--disabled-opacity` | `0.38` | Opacity when disabled |
+| `--transition-duration` | `var(--md-sys-motion-expressive-default-effects-duration)` | Transition duration |
+| `--transition-easing` | `var(--md-sys-motion-expressive-default-effects-curve)` | Transition easing |

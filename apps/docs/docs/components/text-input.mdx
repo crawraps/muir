@@ -1,0 +1,112 @@
+---
+source: lib/components/text-input
+group: basic
+variations:
+  - form
+---
+
+import { TextInput } from 'muir-capacitor';
+
+# TextInput
+
+Single or multi-line text input with Material Design 3 styling, supporting text, and validation states.
+
+## Usage
+
+```jsx
+import { TextInput } from 'muir/basic';
+
+<TextInput placeholder="Username" />
+```
+
+## Examples
+
+### Default
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '360px', margin: '1rem 0' }}>
+  <TextInput label="Label" />
+  <TextInput placeholder="Type something..." />
+  <TextInput label="Disabled" disabled />
+</div>
+
+### Supporting Text
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '360px', margin: '1rem 0' }}>
+  <TextInput placeholder="Username" supportingText="Must be at least 3 characters" />
+</div>
+
+### Error State
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '360px', margin: '1rem 0' }}>
+  <TextInput placeholder="Email" error="Invalid email address" />
+  <TextInput placeholder="Username" error="This username is taken" />
+  <TextInput placeholder="Custom" error={<span style={{ fontWeight: 600 }}>Custom error component</span>} />
+</div>
+
+### Multiline
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '360px', margin: '1rem 0' }}>
+  <TextInput multiline placeholder="Tell us about yourself..." />
+  <TextInput multiline rows={5} placeholder="Description" />
+</div>
+
+## Form Integration
+
+```jsx
+import { Form, FormTextInput } from 'muir/form';
+
+<Form schema={schema} onSubmit={handleSubmit}>
+  <FormTextInput name="email" placeholder="Email" type="email" />
+  <FormTextInput name="password" placeholder="Password" type="password" />
+  <FormTextInput name="bio" placeholder="Bio" multiline />
+</Form>
+```
+
+## API
+
+### TextInput
+
+Extends native `<input>` props except `prefix`, `type`, and `children`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `type` | `'text' \| 'email' \| 'password' \| 'number' \| 'search' \| 'tel' \| 'url'` | `'text'` | The input type |
+| `supportingText` | `ReactNode` | `undefined` | Helper text below the input |
+| `error` | `ReactNode` | `undefined` | Error message — puts the input in error state |
+| `multiline` | `boolean` | `false` | Renders a textarea |
+| `rows` | `number` | `3` | Visible rows when multiline |
+| `disabled` | `boolean` | `false` | Disables the input |
+| `placeholder` | `string` | `undefined` | Placeholder text |
+
+### FormTextInput
+
+Extends `TextInput` props except `name`, `value`, `defaultValue`, `onChange`, and `onBlur`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `name` | `string` | **required** | Field name for react-hook-form registration |
+
+## Customization
+
+Override these variables on the TextInput root to customize appearance.
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `--height` | `3.5rem` | Minimum height of the field |
+| `--shape` | `var(--md-sys-shape-corner-extra-small)` | Top corner radius |
+| `--padding-x` | `1rem` | Horizontal padding |
+| `--gap` | `0.75rem` | Gap between field children |
+| `--background-color` | `var(--md-sys-color-surface-container-highest)` | Field background |
+| `--border-color` | `var(--md-sys-color-on-surface-variant)` | Bottom border color in resting state |
+| `--hover-border-color` | `var(--md-sys-color-on-surface)` | Bottom border color on hover |
+| `--focus-border-color` | `var(--md-sys-color-primary)` | Bottom border color when focused |
+| `--error-color` | `var(--md-sys-color-error)` | Color applied in error state |
+| `--color` | `var(--md-sys-color-on-surface)` | Text color |
+| `--caret-color` | `var(--md-sys-color-primary)` | Caret (cursor) color |
+| `--font-family` | `var(--md-ref-typeface-plain)` | Font family |
+| `--font-size` | `var(--md-sys-typescale-body-large-size)` | Font size |
+| `--font-weight` | `var(--md-sys-typescale-body-large-weight)` | Font weight |
+| `--line-height` | `var(--md-sys-typescale-body-large-line-height)` | Line height |
+| `--disabled-opacity` | `0.38` | Opacity when disabled |
+| `--transition-duration` | `var(--md-sys-motion-duration-default)` | Transition duration |
+| `--transition-easing` | `var(--md-sys-motion-easing-standard)` | Transition easing |

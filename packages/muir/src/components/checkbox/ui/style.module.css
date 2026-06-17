@@ -1,0 +1,90 @@
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  vertical-align: middle;
+  cursor: pointer;
+
+  &[is-disabled] {
+    opacity: var(--disabled-opacity);
+    pointer-events: none;
+  }
+
+  &[is-error] {
+    --border-color: var(--error-color);
+    --checked-background-color: var(--error-color);
+  }
+}
+
+.control {
+  position: relative;
+  display: inline-flex;
+  width: var(--size);
+  height: var(--size);
+}
+
+.box {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--shape);
+  color: var(--checked-color);
+  background: var(--background-color);
+  transition: border-color var(--color-transition-duration) ease-in;
+
+  .check {
+    width: 92%;
+    height: 92%;
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .background {
+    background-color: var(--checked-background-color);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    border-radius: var(--shape);
+  }
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.input:checked + .box {
+  border-color: var(--checked-background-color);
+  transition: border-color var(--color-transition-duration) ease-out;
+
+  .check {
+    opacity: 1;
+  }
+}
+
+.input:focus-visible + .box {
+  outline: 2px solid var(--border-color);
+  outline-offset: 2px;
+}
+
+.error-text {
+  color: var(--md-sys-color-error);
+  font-family: var(--md-ref-typeface-plain);
+  font-size: var(--md-sys-typescale-body-small-size);
+  line-height: var(--md-sys-typescale-body-small-line-height);
+}

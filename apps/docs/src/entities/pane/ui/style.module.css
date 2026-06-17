@@ -1,0 +1,11 @@
+.pane {
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  --surface-blur: 36px;
+  --surface-opacity: 0.85;
+  --surface-grain-opacity: 0.2;
+
+  >*[data-content] {
+    padding: var(--spacing-large);
+    box-sizing: border-box;
+  }
+}

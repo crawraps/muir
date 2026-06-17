@@ -1,0 +1,7 @@
+.root {
+  --bs-bg-color: var(--md-sys-color-surface);
+  --bs-border-radius-top: var(--md-sys-shape-corner-extra-large);
+  --bs-backdrop-color: rgba(0, 0, 0, 0.5);
+  --bs-transition-duration: 300ms;
+  --bs-max-height: 90vh;
+}

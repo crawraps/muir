@@ -1,0 +1,12 @@
+.root {
+  --size: 1.25rem;
+  --dot-size: 0.625rem;
+  --border-width: 0px;
+  background-color: var(--md-sys-color-surface-container-low);
+  --border-color: var(--md-sys-color-on-surface-variant);
+  --checked-color: var(--md-sys-color-primary);
+  --error-color: var(--md-sys-color-error);
+  --disabled-opacity: 0.38;
+  --transition-duration: var(--md-sys-motion-expressive-default-effects-duration);
+  --transition-easing: var(--md-sys-motion-expressive-default-effects-curve);
+}

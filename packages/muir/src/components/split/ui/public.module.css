@@ -1,0 +1,5 @@
+.split {
+  --shape: var(--md-sys-shape-corner-full);
+  --shape-inner: var(--md-sys-shape-corner-extra-small);
+  --gap: 2px;
+}

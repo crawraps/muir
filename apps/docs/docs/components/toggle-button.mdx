@@ -1,0 +1,76 @@
+---
+source: lib/components/toggle-button
+group: extra
+extends:
+  - button
+---
+
+import { ToggleButton, Icon } from 'muir-capacitor';
+
+# Toggle Button
+
+Toggle a state on or off, such as favoriting an item, enabling dark mode, or subscribing to notifications.
+
+## Usage
+
+```jsx
+import { ToggleButton } from 'muir/extra';
+
+<ToggleButton checked>Following</ToggleButton>
+```
+
+## Examples
+
+<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', margin: '1rem 0' }}>
+  <ToggleButton checked>Following</ToggleButton>
+  <ToggleButton style={{ '--md-sys-color-primary': '#e04939' }}><Icon name="heart" /></ToggleButton>
+  <ToggleButton disabled>Disabled</ToggleButton>
+</div>
+
+### Hiding the Check Icon
+
+```jsx
+<ToggleButton showCheckIcon={false}>Follow</ToggleButton>
+```
+
+## Form Integration
+
+```jsx
+import { Form, FormToggleButton } from 'muir/form';
+
+<Form defaultValues={{ notifications: false }} onSubmit={handleSubmit}>
+  <FormToggleButton name="notifications">Notifications</FormToggleButton>
+</Form>
+```
+
+## API
+
+### ToggleButton
+
+Extends `Button` props except `variant` and `onToggle`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `checked` | `boolean` | `undefined` | Controlled on/off state |
+| `toggled` | `boolean` | `undefined` | Alias for `checked` (backward compatibility) |
+| `showCheckIcon` | `boolean` | `true` | Whether to show the check icon when checked |
+| `onToggle` | `(checked: boolean) => void` | `undefined` | Called when the state changes |
+| `children` | `ReactNode` | `undefined` | Button content |
+
+### FormToggleButton
+
+Extends `ToggleButton` props except `checked`, `toggled`, and `onToggle`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `name` | `string` | **required** | Field name for react-hook-form |
+
+## Customization
+
+Extends [Button variables](./button#customization).
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `--check-size` | `1rem` | Size of the check icon |
+| `--check-opacity` | `1` | Opacity of the icon when visible |
+| `--check-transition` | `opacity 150ms ease-in-out, transform 150ms ease-in-out` | Icon entrance/exit transition |

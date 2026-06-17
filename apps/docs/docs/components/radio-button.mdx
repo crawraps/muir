@@ -1,0 +1,81 @@
+---
+source: lib/components/radio-button
+group: basic
+variations:
+  - form
+---
+
+import { RadioButton, Text } from 'muir-capacitor';
+
+# Radio Button
+
+Single-select input for mutually exclusive options.
+
+## Usage
+
+```jsx
+import { RadioButton } from 'muir/basic';
+import { Text } from 'muir/basic';
+
+<Text type="label"><RadioButton name="size" value="s" /> Small</Text>
+<Text type="label"><RadioButton name="size" value="m" /> Medium</Text>
+<Text type="label"><RadioButton name="size" value="l" /> Large</Text>
+```
+
+## Examples
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  <Text type="label"><RadioButton name="demo-size" value="s" /> Small</Text>
+  <Text type="label"><RadioButton name="demo-size" value="m" defaultChecked /> Medium</Text>
+  <Text type="label"><RadioButton name="demo-size" value="l" /> Large</Text>
+  <Text type="label"><RadioButton name="demo-size" value="d" disabled /> Disabled</Text>
+</div>
+
+## Form Integration
+
+```jsx
+import { Form, FormRadioButton } from 'muir/form';
+import { Text } from 'muir/basic';
+
+<Form defaultValues={{ size: 'm' }} onSubmit={handleSubmit}>
+  <Text type="label"><FormRadioButton name="size" value="s" /> Small</Text>
+  <Text type="label"><FormRadioButton name="size" value="m" /> Medium</Text>
+  <Text type="label"><FormRadioButton name="size" value="l" /> Large</Text>
+</Form>
+```
+
+## API
+
+### RadioButton
+
+Extends native `<input>` props except `type` and `children`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `error` | `ReactNode` | `undefined` | Error message |
+| `showError` | `boolean` | `false` | Renders the error message below the radio |
+
+### FormRadioButton
+
+Extends `RadioButton` props except `name`, `defaultValue`, `checked`, `defaultChecked`, `onChange`, and `onBlur`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `name` | `string` | **required** | Field name for react-hook-form registration |
+| `value` | `string \| number` | **required** | The value assigned to this radio option |
+
+## Customization
+
+Override these variables on the RadioButton root to customize appearance.
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `--size` | `1.25rem` | Outer ring size |
+| `--dot-size` | `0.625rem` | Inner dot size when selected |
+| `--border-width` | `2px` | Border width of the outer ring |
+| `--border-color` | `var(--md-sys-color-on-surface-variant)` | Border color when unselected |
+| `--checked-color` | `var(--md-sys-color-primary)` | Color when selected |
+| `--error-color` | `var(--md-sys-color-error)` | Color used in error state |
+| `--disabled-opacity` | `0.38` | Opacity when disabled |
+| `--transition-duration` | `var(--md-sys-motion-expressive-default-effects-duration)` | Transition duration |
+| `--transition-easing` | `var(--md-sys-motion-expressive-default-effects-curve)` | Transition easing |

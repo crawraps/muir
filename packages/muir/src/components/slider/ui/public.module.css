@@ -1,0 +1,32 @@
+.root {
+  /* Track sizing */
+  --slider-length: 20rem;
+  --bar-thickness: 0.25rem;
+  --thumb-thickness: 2.75rem;
+  --shape: var(--md-sys-shape-corner-full);
+
+  /* Colors — active segments */
+  --active-color: var(--md-sys-color-primary);
+  --active-surface-color: var(--md-sys-color-on-primary);
+
+  /* Colors — inactive segments */
+  --inactive-color: var(--md-sys-color-surface-container-high);
+
+  /* Colors — thumb */
+  --thumb-color: var(--md-sys-color-primary);
+  --thumb-hover-color: var(--md-sys-color-primary);
+
+  /* Expressive gaps */
+  --gap-size: 0.125rem;
+
+  /* Stop marks */
+  --stop-mark-size: 0.125rem;
+
+  /* Error & disabled */
+  --error-color: var(--md-sys-color-error);
+  --disabled-opacity: 0.38;
+
+  /* Motion */
+  --transition-duration: var(--md-sys-motion-expressive-default-effects-duration);
+  --transition-easing: var(--md-sys-motion-expressive-default-effects-curve);
+}

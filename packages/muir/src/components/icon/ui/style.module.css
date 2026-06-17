@@ -1,0 +1,10 @@
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  vertical-align: middle;
+  width: var(--size);
+  height: var(--size);
+}

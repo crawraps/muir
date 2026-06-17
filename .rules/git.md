@@ -117,7 +117,7 @@ Migration guide: docs/migration/v3.md
 - [ ] **Component** — Implement in `lib/components/<name>/ui/<name>.tsx`
 - [ ] **Index** — Re-export from `lib/components/<name>/index.ts` and the root `lib/index.ts`
 - [ ] **Stories** — Create `<name>.stories.tsx` in `stories/` covering: default, all variants, edge cases, a11y story
-- [ ] **Tests** — Write rstest unit tests in `tests/lib/components/<name>/ui/<name>.test.tsx`; target ≥80% branch coverage
+- [ ] **Tests** — Write rstest unit tests in `tests/lib/{component}/{name}.tsx`; target ≥80% branch coverage
 - [ ] **Biome** — Run `bun run lint` before committing; zero lint errors/warnings
 - [ ] **Tokens** — Use design tokens only; no hard-coded colours or spacing values
 - [ ] **Accessibility** — At minimum: keyboard nav, ARIA roles/labels, colour contrast AA
@@ -138,10 +138,8 @@ lib/
 
 tests/
   lib/
-    components/
-      tooltip/
-        ui/
-          tooltip.test.tsx   ← rstest tests
+    tooltip/
+      tooltip.tsx    ← rstest tests
 
 stories/
   tooltip.stories.tsx        ← Storybook stories
@@ -349,7 +347,7 @@ bun run build:storybook
 
 ### 9.4 Test requirements
 
-- Every new component **must** have corresponding tests in the `tests/lib/components/` directory, following the exact structure of the code (e.g. `tests/lib/components/button/ui/button.test.tsx`).
+- Every new component **must** have corresponding tests in the `tests/lib/` directory, following the flat structure convention (e.g. `tests/lib/button/button.tsx`).
 - Every bug fix **must** include a new test that fails before the fix and passes after.
 - Do **not** delete or skip existing tests without explicit human instruction.
 

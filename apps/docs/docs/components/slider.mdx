@@ -1,0 +1,144 @@
+---
+source: lib/components/slider
+group: basic
+variations:
+  - form
+---
+
+import { Slider, Text } from 'muir-capacitor';
+
+# Slider
+
+Range input for selecting numeric values within a min/max range.
+
+## Usage
+
+```jsx
+import { Slider } from 'muir/basic';
+
+<Slider min={0} max={100} defaultValue={50} />
+```
+
+## Examples
+
+### Basic
+
+Standard range slider with default horizontal orientation.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  <Text type="label">Volume</Text>
+  <Slider min={0} max={100} defaultValue={50} />
+</div>
+
+### Stops
+
+Snap points restrict the thumb to specific positions.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  <Text type="label">Brightness</Text>
+  <Slider min={0} max={100} stops={[0, 25, 50, 75, 100]} defaultValue={50} />
+</div>
+
+### Bi-directional
+
+The `origin` prop sets the fill start point, enabling sliders that extend in both directions from a center value.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  <Text type="label">Temperature</Text>
+  <Slider min={-20} max={80} origin={0} defaultValue={30} />
+</div>
+
+### Vertical
+
+Use `orientation="vertical"` for a vertical slider.
+
+<div style={{ display: 'flex', gap: '2rem', margin: '1rem 0', height: '12rem' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+    <Text type="label">Height</Text>
+    <Slider orientation="vertical" min={0} max={100} defaultValue={60} />
+  </div>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+    <Text type="label">Width</Text>
+    <Slider orientation="vertical" min={0} max={100} defaultValue={40} />
+  </div>
+</div>
+
+### Error State
+
+Error state with optional message display.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  <Text type="label">Invalid</Text>
+  <Slider error="Value out of range" showError defaultValue={50} />
+  <Slider error="Value out of range" defaultValue={50} />
+</div>
+
+### Disabled
+
+Disabled slider ignores all interaction.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  <Text type="label">Locked</Text>
+  <Slider disabled defaultValue={30} />
+</div>
+
+## Form Integration
+
+```jsx
+import { Form, FormSlider } from 'muir/form';
+import { Text } from 'muir/basic';
+
+<Form defaultValues={{ volume: 50 }} onSubmit={handleSubmit}>
+  <Text type="label"><FormSlider name="volume" /> Volume</Text>
+</Form>
+```
+
+## API
+
+### Slider
+
+Extends native `<input>` props except `type` and `children`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Slider orientation |
+| `stops` | `(number \| PercentString)[]` | `undefined` | Snap points for the thumb; values are absolute numbers or percentage strings like `'25%'` |
+| `origin` | `number \| PercentString` | `min` value | Fill start point; enables bi-directional fill from origin to value |
+| `error` | `ReactNode` | `undefined` | Error message |
+| `showError` | `boolean` | `false` | Renders the error message below the slider |
+| `disabled` | `boolean` | `false` | Disables the slider |
+| `min` | `number` | `0` | Minimum value |
+| `max` | `number` | `100` | Maximum value |
+| `value` | `number` | `undefined` | Controlled value |
+| `defaultValue` | `number` | `min` value | Default uncontrolled value |
+| `ref` | `Ref<HTMLInputElement>` | `undefined` | Ref to the native input element |
+
+### FormSlider
+
+Extends `Slider` props except `name`, `value`, `defaultValue`, `onChange`, and `onBlur`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `name` | `string` | **required** | Field name for react-hook-form registration |
+
+## Customization
+
+Override these variables on the Slider root to customize appearance.
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `--slider-length` | `20rem` | Total length of the slider (width for horizontal, height for vertical) |
+| `--bar-thickness` | `0.25rem` | Height of the track bar |
+| `--thumb-thickness` | `2.75rem` | Diameter of the thumb |
+| `--shape` | `var(--md-sys-shape-corner-full)` | Border radius for track and thumb |
+| `--active-color` | `var(--md-sys-color-primary)` | Color of active (filled) track segments |
+| `--active-surface-color` | `var(--md-sys-color-on-primary)` | Surface color inside active segments |
+| `--inactive-color` | `var(--md-sys-color-surface-container-high)` | Color of inactive (unfilled) track segments |
+| `--thumb-color` | `var(--md-sys-color-primary)` | Background color of the thumb |
+| `--thumb-hover-color` | `var(--md-sys-color-primary)` | Thumb color on hover |
+| `--gap-size` | `0.125rem` | Expressive gap between segments and thumb |
+| `--stop-mark-size` | `0.125rem` | Width/height of stop marks |
+| `--error-color` | `var(--md-sys-color-error)` | Color used in error state |
+| `--disabled-opacity` | `0.38` | Opacity when disabled |
+| `--transition-duration` | `var(--md-sys-motion-expressive-default-effects-duration)` | Transition duration for color changes |
+| `--transition-easing` | `var(--md-sys-motion-expressive-default-effects-curve)` | Easing curve for transitions |

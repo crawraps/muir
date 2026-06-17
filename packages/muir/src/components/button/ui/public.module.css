@@ -1,0 +1,19 @@
+.button {
+  --height: 2.5rem;
+  --width: var(--height);
+  --shape: var(--md-sys-shape-corner-full);
+  --gap: 0.5rem;
+  --padding-x: calc(var(--height) / 2);
+  --background-color: transparent;
+  --color: inherit;
+  --border: none;
+  --box-shadow: none;
+  --font-family: var(--md-ref-typeface-plain);
+  --font-size: var(--md-sys-typescale-label-medium-size);
+  --font-weight: var(--md-sys-typescale-label-medium-weight);
+  --line-height: var(--md-sys-typescale-label-medium-line-height);
+  --disabled-opacity: 0.35;
+  --hover-state-opacity: 0.1;
+  --focus-state-opacity: 0.18;
+  --active-state-opacity: 0.18;
+}

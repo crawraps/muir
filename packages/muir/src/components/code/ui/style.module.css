@@ -1,0 +1,65 @@
+.code[muir-name='code'] {
+  display: flex;
+  border-radius: var(--md-sys-shape-corner-medium-large);
+  flex-direction: column;
+  overflow: hidden;
+
+  --surface-color: var(--chrome-color);
+
+  pre {
+    flex-grow: 1;
+    margin: 0;
+    padding: 1rem;
+    border-top-right-radius: var(--md-sys-shape-corner-large);
+    border-top-left-radius: var(--md-sys-shape-corner-large);
+    font-size: var(--md-sys-typescale-body-small-size);
+    background-color: var(--md-sys-color-surface-container-low);
+    transition: background-color var(--md-sys-motion-expressive-default-effects-duration) var(--md-sys-motion-expressive-default-effects-curve);
+
+    code {
+      color: var(--md-sys-color-on-surface-variant);
+      transition: color var(--md-sys-motion-expressive-default-effects-duration) var(--md-sys-motion-expressive-default-effects-curve);
+      font-family: var(--md-ref-typeface-monospace);
+    }
+  }
+
+  aside {
+    display: flex;
+    align-items: center;
+    padding: var(--chrome-padding);
+    flex-direction: row;
+    border-top-left-radius: var(--md-sys-shape-corner-large);
+    border-top-right-radius: var(--md-sys-shape-corner-large);
+    gap: 0.5rem;
+
+    .icon {
+      --size: 1.25rem;
+    }
+
+    .filename {
+      font-family: var(--md-ref-typeface-brand);
+      font-size: var(--md-sys-typescale-label-small-size);
+      font-weight: var(--md-sys-typescale-label-medium-weight);
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .spacer {
+      flex-grow: 1;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 1px;
+
+      button {
+        --height: 2rem;
+      }
+    }
+
+    .icon {
+      font-family: var(--icon-font-family);
+      font-size: var(--icon-font-size);
+      letter-spacing: -1px;
+    }
+  }
+}

@@ -1,0 +1,69 @@
+---
+source: lib/shared/smart-clsx.ts
+---
+
+# smart-clsx
+
+Wraps `clsx` with CSS Modules support. The first argument resolves through the CSS Modules map; all subsequent arguments pass through as global class names.
+
+## Usage
+
+```tsx
+import { createSmartClsx } from 'muir'
+
+const cx = createSmartClsx(styles)
+
+// Single modular class + consumer passthrough
+<span className={cx('root', className)} />
+
+// Multiple modular classes
+<span className={cx('root track')} />
+
+// Conditional modular classes (object)
+<span className={cx({ active: isActive, error: hasError })} />
+
+// Array form
+<span className={cx(['root', { active: isActive }])} />
+
+// Mixed: modular first arg + global class
+<span className={cx('root', 'some-global-class', className)} />
+```
+
+## Behavior
+
+| Input | Result |
+| ----- | ------ |
+| `cx('nonexistent')` | `styles['nonexistent']` is `undefined` — silently dropped |
+| `cx(null)` / `cx(undefined)` | Handled by `clsx` — skipped in output |
+| `cx({ active: true })` | Resolves `active` through CSS Modules first |
+| `cx(['root', { active: true }])` | Resolves each element recursively |
+
+## API
+
+### Signature
+
+```ts
+function createSmartClsx(styles: CSSModuleClasses): (moduleClassNames: ClassValue, ...args: ClassValue[]) => string
+```
+
+| Parameter | Type | Default | Description |
+| --------- | ---- | ------- | ----------- |
+| `styles` | `CSSModuleClasses` | — | CSS Modules class map |
+| `moduleClassNames` | `ClassValue` | **required** | First arg: resolved against CSS Modules |
+| `args` | `ClassValue[]` | `[]` | Remaining args: passed to `clsx` as-is |
+
+## Rules
+
+1. Never use string interpolation for classes: `` `root ${className}` ``
+2. Never use `cx` conditional objects for boolean state — use `atr` instead
+3. Always let the Babel plugin handle `cx` auto-import
+4. First argument = CSS Module keys; remaining arguments = global class names
+
+## Division of Labor
+
+| Concern | Tool | Mechanism |
+| ------- | ---- | --------- |
+| Structural classes (layout, spacing, typography) | `cx` | CSS Module keys → hashed selectors |
+| Boolean state (disabled, error, active, checked) | `atr` | `is-*` attributes → CSS `[is-*]` selectors |
+| Consumer class passthrough | `cx` | 2nd+ args = global classes |
+| Variant/string values | `atr` | `data-variant={atr(variant)}` → `[data-variant="primary"]` |

@@ -1,0 +1,12 @@
+.text {
+  --font-family: var(--md-ref-typeface-plain);
+  --font-size: inherit;
+  --font-weight: inherit;
+  --line-height: inherit;
+  --color: inherit;
+  --anchor-color: var(--md-sys-color-primary);
+  --anchor-visited-color: var(--md-sys-color-tertiary);
+  --anchor-transition-duration: var(--md-sys-motion-duration-fast);
+  --anchor-transition-easing: var(--md-sys-motion-easing-standard);
+  --label-gap: 0.5em;
+}

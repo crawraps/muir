@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">muir</string>
+    <string name="title_activity_main">muir</string>
+    <string name="package_name">com.muir.app</string>
+    <string name="custom_url_scheme">com.muir.app</string>
+</resources>

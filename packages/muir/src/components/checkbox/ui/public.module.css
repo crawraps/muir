@@ -1,0 +1,12 @@
+.root {
+  --size: 1.125rem;
+  --shape: var(--md-sys-shape-corner-extra-small);
+  --border-width: 0px;
+  --border-color: var(--md-sys-color-on-surface-variant);
+  --background-color: var(--md-sys-color-surface-container-low);
+  --checked-background-color: var(--md-sys-color-primary);
+  --checked-color: var(--md-sys-color-on-primary);
+  --error-color: var(--md-sys-color-error);
+  --disabled-opacity: 0.38;
+  --color-transition-duration: calc(var(--md-sys-motion-expressive-default-effects-duration) / 3);
+}

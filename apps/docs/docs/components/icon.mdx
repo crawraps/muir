@@ -1,0 +1,66 @@
+---
+source: lib/components/icon
+group: basic
+---
+
+import { Icon } from 'muir-capacitor';
+
+# Icon
+
+Displays an icon from the project's SVG sprite using a symbol reference.
+
+## Usage
+
+```jsx
+import { Icon } from 'muir';
+
+<Icon name="home" />
+<Icon name="search" size={32} />
+```
+
+## Examples
+
+<div style={{ display: 'flex', gap: '1rem', alignItems: 'center', margin: '1rem 0' }}>
+  <Icon name="home" size={24} />
+  <Icon name="search" size={24} />
+  <Icon name="settings" size={24} />
+  <Icon name="favorite" size={24} />
+  <Icon name="arrow-forward" size={24} />
+</div>
+
+### Sizes
+
+<div style={{ display: 'flex', gap: '1rem', alignItems: 'center', margin: '1rem 0' }}>
+  <Icon name="home" size={16} />
+  <Icon name="home" size={24} />
+  <Icon name="home" size={32} />
+  <Icon name="home" size={48} />
+</div>
+
+### Coloring
+
+Icons inherit `currentColor` by default. Wrap in a styled parent to change color.
+
+<div style={{ display: 'flex', gap: '1rem', alignItems: 'center', margin: '1rem 0' }}>
+  <span style={{ color: 'var(--md-sys-color-primary)' }}><Icon name="favorite" size={24} /></span>
+  <span style={{ color: 'var(--md-sys-color-error)' }}><Icon name="favorite" size={24} /></span>
+  <span style={{ color: 'var(--md-sys-color-tertiary)' }}><Icon name="favorite" size={24} /></span>
+</div>
+
+## API
+
+Extends native `<svg>` props except `children` and `name`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `name` | `string` | **required** | SVG symbol name |
+| `size` | `number \| string` | `1.25em` | Icon width and height (numbers become pixels) |
+
+## Customization
+
+Override these variables on the Icon root to customize appearance.
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `--size` | `1.25em` | Icon dimensions |
+| `--color` | `currentColor` | Fill and stroke color |

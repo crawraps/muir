@@ -1,0 +1,5 @@
+.toggle-button {
+  --check-size: 1rem;
+  --check-opacity: 1;
+  --check-transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}

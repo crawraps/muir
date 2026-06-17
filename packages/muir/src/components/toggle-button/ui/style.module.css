@@ -1,0 +1,18 @@
+.toggle-button {
+  .check-icon {
+    width: var(--check-size);
+    height: var(--check-size);
+    flex-shrink: 0;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: var(--check-transition);
+    pointer-events: none;
+  }
+}
+
+.toggle-button[is-checked] {
+  .check-icon {
+    opacity: var(--check-opacity);
+    transform: scale(1);
+  }
+}

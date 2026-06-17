@@ -1,0 +1,212 @@
+---
+source: lib/components/snackbar
+group: extra
+---
+
+import { snackbar, Button } from 'muir-capacitor';
+
+# Snackbar
+
+Informational overlay messages that appear at fixed viewport edges. Wrap your app with `SnackbarProvider` and call `snackbar.show()` imperatively from anywhere.
+
+## Usage
+
+```jsx
+// app.jsx
+
+import { SnackbarProvider, snackbar } from 'muir/extra';
+
+function App() {
+  return (
+    <SnackbarProvider>
+      <MyApp />
+    </SnackbarProvider>
+  );
+}
+
+// Call from any component or handler
+snackbar.show({ content: 'Saved successfully' });
+```
+
+## Examples
+
+### Basic
+
+Default snackbar appears at the bottom-center and auto-hides after 2 seconds.
+
+  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', margin: '1rem 0' }}>
+    <Button variant="filled" onClick={() => snackbar.show({ content: 'Item saved' })}>Show Snackbar</Button>
+    <Button variant="outlined" onClick={() => snackbar.dismiss()}>Dismiss All</Button>
+  </div>
+
+### Anchor Positions
+
+Use the `anchors` array to control placement. Omitting a dimension centers it on that axis. Combining anchors like `['bottom', 'left', 'right']` resolves to bottom-center.
+
+  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', margin: '1rem 0' }}>
+    <Button variant="outlined" onClick={() => snackbar.show({ content: 'Top center', anchors: ['top', 'left', 'right'] })}>Top center</Button>
+    <Button variant="outlined" onClick={() => snackbar.show({ content: 'Bottom left', anchors: ['bottom', 'left'] })}>Bottom Left</Button>
+    <Button variant="outlined" onClick={() => snackbar.show({ content: 'Bottom right', anchors: ['bottom', 'right'] })}>Bottom Right</Button>
+    <Button variant="outlined" onClick={() => snackbar.show({ content: 'Top right corner', anchors: ['top-right'] })}>Top Right</Button>
+    <Button variant="outlined" onClick={() => snackbar.show({ content: 'Top left corner', anchors: ['top-left'] })}>Top Left</Button>
+  </div>
+
+### Templates
+
+Define reusable templates on the provider. Show a snackbar with a template by passing `template` to `show()`.
+
+```jsx
+// app.jsx
+
+<SnackbarProvider
+  templates={{
+    error: {
+      content: '',
+      duration: 5000,
+      anchors: ['bottom', 'left', 'right'],
+      surface: {
+        type: 'plain',
+        style: { '--surface-color': 'var(--md-sys-color-error-container)' },
+      },
+    },
+    success: {
+      content: '',
+      duration: 3000,
+    },
+  }}
+>
+  <App />
+</SnackbarProvider>
+
+// Show with a template
+snackbar.show({ content: 'Something went wrong', template: 'error' })
+snackbar.show({ content: 'Saved!', template: 'success' })
+```
+
+### Per-Snackbar Style
+
+Use the `style` prop on `SnackOptions` to customize individual snackbars.
+
+```jsx
+snackbar.show({
+  content: 'Custom positioned',
+  style: { minWidth: '30rem', borderRadius: '2rem' },
+})
+```
+
+### Duration and Persistence
+
+Set `duration` to a custom value in milliseconds, or `0` to disable auto-hide for persistent snackbars.
+
+  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', margin: '1rem 0' }}>
+    <Button variant="filled-tonal" onClick={() => snackbar.show({ content: 'Auto-hides in 5s', duration: 5000 })}>5s Duration</Button>
+    <Button variant="filled-tonal" onClick={() => { window._snackId = snackbar.show({ content: 'Persistent', duration: 0 }); }}>Persistent</Button>
+    <Button variant="text" onClick={() => snackbar.hide(window._snackId)}>Hide Last Persistent</Button>
+  </div>
+
+### Content Wrapper
+
+Use `contentWrapper` to render custom layouts inside a snackbar — action buttons, icons, or dismiss controls.
+
+  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', margin: '1rem 0' }}>
+    <Button
+      variant="outlined"
+      onClick={() =>
+        snackbar.show({
+          content: 'File deleted',
+          duration: 5000,
+          contentWrapper: ({ content, onDismiss }) => (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem', width: '100%' }}>
+              <span>{content}</span>
+              <button onClick={onDismiss} style={{ background: 'none', border: 'none', color: 'var(--md-sys-color-primary)', cursor: 'pointer', fontWeight: 600, fontSize: '0.875rem' }}>UNDO</button>
+            </div>
+          ),
+        })
+      }
+    >
+      With Dismiss Action
+    </Button>
+  </div>
+
+### Hide vs Dismiss
+
+`hide()` plays the exit animation before removing. `dismiss()` removes instantly.
+
+  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', margin: '1rem 0' }}>
+    <Button variant="filled" onClick={() => snackbar.show({ content: 'Animated message', duration: 0 })}>Show</Button>
+    <Button variant="text" onClick={() => snackbar.hide()}>Hide (animated)</Button>
+    <Button variant="text" onClick={() => snackbar.dismiss()}>Dismiss (instant)</Button>
+  </div>
+
+## API
+
+### SnackbarProvider
+
+Wraps the application (or a subtree) and renders active snackbars grouped by anchor position.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `children` | `ReactNode` | `undefined` | Child content — snackbars render in this tree |
+| `templates` | `Record<string, SnackTemplate>` | `{ default: { ... } }` | Template definitions keyed by name |
+| `style` | `CSSProperties` | `undefined` | Inline styles applied to each anchor group container |
+
+### SnackOptions
+
+Options passed to `snackbar.show()`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `content` | `ReactNode` | **required** | Content to display in the snackbar |
+| `template` | `string` | `'default'` | Template name; falls back to `"default"` if not found |
+| `duration` | `number` | `2000` | Auto-hide duration in ms. Set to `0` to disable |
+| `anchors` | `Anchor[]` | `['bottom', 'left', 'right']` | Anchor position overrides |
+| `surface` | `Omit<SurfaceProps, 'children' \| 'ref'>` | `undefined` | Surface properties for the background layer |
+| `contentWrapper` | `ComponentType<SnackWrapperProps>` | `undefined` | Custom wrapper component around snackbar content |
+| `style` | `CSSProperties` | `undefined` | Inline styles applied to the snackbar element |
+
+### SnackWrapperProps
+
+Props passed to the `contentWrapper` component.
+
+| Prop | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `number` | Unique snackbar identifier |
+| `content` | `ReactNode` | The content to display |
+| `onDismiss` | `() => void` | Instantly remove the snackbar |
+| `onHide` | `() => void` | Hide with exit animation |
+| `onShow` | `() => void` | Re-trigger entrance animation |
+
+### snackbar (module-level)
+
+Imperative control object. Throws if called without a mounted `<SnackbarProvider>`.
+
+| Method | Signature | Description |
+| ------ | --------- | ----------- |
+| `show` | `(options: SnackOptions) => number` | Show a snackbar; returns its id |
+| `hide` | `(id?: number) => void` | Animate out by id (all if omitted) |
+| `dismiss` | `(id?: number) => void` | Instantly remove by id (all if omitted) |
+| `list` | `() => SnackEntry[]` | List active (non-hiding) snackbars |
+
+### Anchor
+
+Anchors specify viewport edge positioning. Missing vertical dimension centers vertically; missing horizontal dimension centers horizontally.
+
+| Value | Position |
+| ----- | -------- |
+| `'top'` | Top center |
+| `'bottom'` | Bottom center |
+| `'left'` | Center left |
+| `'right'` | Center right |
+| `'top-left'` | Top-left corner |
+| `'top-right'` | Top-right corner |
+| `'bottom-left'` | Bottom-left corner |
+| `'bottom-right'` | Bottom-right corner |
+
+Combine multiple anchors for centering on an axis: `['bottom', 'left', 'right']` → bottom-center.
+
+## Accessibility
+
+- Persistent snackbars (`duration: 0`) must provide a manual dismiss mechanism via `contentWrapper`
+- Use `contentWrapper` to add dismiss buttons so keyboard and assistive technology users can close snackbars
+- Add `role="status"` with `aria-live="polite"` for non-urgent messages or `role="alert"` for urgent ones
+- Multiple snackbars stack vertically per anchor group; ensure they do not obscure critical UI or trap focus

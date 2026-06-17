@@ -1,0 +1,117 @@
+---
+source: lib/components/text
+group: basic
+---
+
+import { Text } from 'muir-capacitor';
+
+# Text
+
+Preset typography component that maps semantic HTML tags to Material Design 3 type scales.
+
+## Usage
+
+```jsx
+import { Text } from 'muir';
+
+<Text type="h1">Page Title</Text>
+<Text type="body">Some paragraph content.</Text>
+```
+
+## Examples
+
+### Headings
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  <Text type="h1">Heading 1</Text>
+  <Text type="h2">Heading 2</Text>
+  <Text type="h3">Heading 3</Text>
+  <Text type="h4">Heading 4</Text>
+  <Text type="h5">Heading 5</Text>
+  <Text type="h6">Heading 6</Text>
+</div>
+
+### Body
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  <Text type="body" size="large">Body large</Text>
+  <Text type="body">Body medium (default)</Text>
+  <Text type="body" size="small">Body small</Text>
+</div>
+
+### Label
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', margin: '1rem 0' }}>
+  <Text type="label" size="large">Label large</Text>
+  <Text type="label">Label medium</Text>
+  <Text type="label" size="small">Label small</Text>
+</div>
+
+### Title
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', margin: '1rem 0' }}>
+  <Text type="title" size="large">Title large</Text>
+  <Text type="title">Title medium</Text>
+  <Text type="title" size="small">Title small</Text>
+</div>
+
+### Display
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
+  <Text type="display" size="large">Display large</Text>
+  <Text type="display">Display medium</Text>
+  <Text type="display" size="small">Display small</Text>
+</div>
+
+### Anchor
+
+<div style={{ display: 'flex', gap: '1rem', margin: '1rem 0' }}>
+  <Text type="anchor" href="#">Default link</Text>
+  <Text type="anchor" href="#" size="large">Large link</Text>
+  <Text type="anchor" href="#" size="small">Small link</Text>
+</div>
+
+## Behavior
+
+| Type | HTML Tag | Typographic Scale | Default Size |
+| ---- | -------- | ----------------- | ------------ |
+| `h1` | `<h1>` | headline | large |
+| `h2` | `<h2>` | headline | medium |
+| `h3` | `<h3>` | headline | small |
+| `h4` | `<h4>` | title | large |
+| `h5` | `<h5>` | title | medium |
+| `h6` | `<h6>` | title | small |
+| `body` | `<p>` | body | medium |
+| `label` | `<label>` | label | medium |
+| `title` | `<span>` | title | medium |
+| `display` | `<span>` | display | medium |
+| `anchor` | `<a>` | body | medium |
+
+## API
+
+The available HTML attributes depend on the `type` prop (discriminated union).
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `type` | `'h1' \| 'h2' \| 'h3' \| 'h4' \| 'h5' \| 'h6' \| 'body' \| 'label' \| 'title' \| 'display' \| 'anchor'` | **required** | Controls the HTML tag and typography scale |
+| `size` | `'small' \| 'medium' \| 'large'` | *scale-specific* | Overrides the default size for the chosen type |
+| `children` | `ReactNode` | `undefined` | Content to render |
+| `htmlFor` | `string` | `undefined` | For `type="label"`, associates the label with a form element |
+| `href` | `string` | `undefined` | For `type="anchor"`, the link destination |
+| `target` | `string` | `undefined` | For `type="anchor"`, the link target |
+
+## Customization
+
+Override these variables on the Text root to customize appearance.
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `--font-family` | `var(--md-ref-typeface-plain)` | Font family |
+| `--font-size` | `inherit` | Font size |
+| `--font-weight` | `inherit` | Font weight |
+| `--line-height` | `inherit` | Line height |
+| `--color` | `inherit` | Text color |
+| `--anchor-color` | `var(--md-sys-color-primary)` | Color for `type="anchor"` |
+| `--anchor-visited-color` | `var(--md-sys-color-tertiary)` | Visited link color |
+| `--anchor-transition-duration` | `var(--md-sys-motion-duration-fast)` | Transition duration for anchor color changes |
+| `--anchor-transition-easing` | `var(--md-sys-motion-easing-standard)` | Transition easing for anchor color changes |
