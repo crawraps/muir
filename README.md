@@ -1,6 +1,6 @@
-# Muir
-
-UI component library with Capacitor integration.
+<div align="center"><img width="128" height="128" alt="icon" src="https://github.com/user-attachments/assets/92ae87a2-18b5-455a-82de-63eeda6175f7" /></div>
+<div align="center"><h1>muir</h1></div>
+<div align="center">Material UI Expressive style components with a bit of Reimagination ✨</div>
 
 ## Setup
 
