@@ -31,12 +31,12 @@ table.root {
 
   tbody {
     position: relative;
-    background-color: var(--md-sys-color-surface-container-low);
+    background-color: var(--md-sys-color-surface-container-lowest);
 
     &::before {
       content: '';
       translate: 0 -100%;
-      background-color: var(--md-sys-color-surface-container-low);
+      background-color: var(--md-sys-color-surface-container-lowest);
       display: block;
       top: 0;
       left: 0;
