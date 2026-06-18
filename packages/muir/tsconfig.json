@@ -1,8 +1,0 @@
-{
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "types": ["react", "react-dom"],
-    "baseUrl": "."
-  },
-  "include": ["src", "env.d.ts", "auto-imports.d.ts"]
-}

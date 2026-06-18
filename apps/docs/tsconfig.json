@@ -5,11 +5,7 @@
     "baseUrl": ".",
     "paths": {
       "src/*": ["./src/*"],
-      "docs/*": ["./docs/*"],
-      "muir": ["../../packages/muir/src"],
-      "muir/*": ["../../packages/muir/src/*"],
-      "muir-capacitor": ["../../packages/muir-capacitor/src"],
-      "muir-capacitor/*": ["../../packages/muir-capacitor/src/*"]
+      "docs/*": ["./docs/*"]
     }
   },
   "include": ["src", "docs", "stories", ".storybook", "env.d.ts", "auto-imports.d.ts"]

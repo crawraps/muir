@@ -24,7 +24,7 @@ declare namespace JSX {
 }
 
 import type { ClassValue } from 'clsx'
-import type { BaseAnimatedProps } from 'muir-capacitor'
+import type { BaseAnimatedProps } from '@muir/capacitor'
 declare global {
   const cx: (moduleClassNames: ClassValue, ...args: ClassValue[]) => string
   const Animated: (props: BaseAnimatedProps) => JSX.Element | null

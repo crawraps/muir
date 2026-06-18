@@ -1,0 +1,30 @@
+.page {
+  flex: 1;
+  display: flex;
+  overflow-y: auto;
+
+  .content {
+    padding: var(--spacing-extra-large) var(--spacing-large);
+    max-width: 56.25rem;
+    margin: 0 auto;
+    width: 100%;
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: var(--spacing-medium);
+      color: var(--md-sys-color-on-surface);
+      font-family: var(--md-ref-typeface-brand);
+      font-size: var(--md-sys-typescale-display-small-size);
+      font-weight: var(--md-sys-typescale-display-small-weight);
+      line-height: var(--md-sys-typescale-display-small-line-height);
+    }
+
+    p {
+      font-family: var(--md-ref-typeface-plain);
+      font-size: var(--md-sys-typescale-body-large-size);
+      font-weight: var(--md-sys-typescale-body-large-weight);
+      line-height: var(--md-sys-typescale-body-large-line-height);
+      color: var(--md-sys-color-on-surface-variant);
+    }
+  }
+}

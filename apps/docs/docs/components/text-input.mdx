@@ -5,7 +5,7 @@ variations:
   - form
 ---
 
-import { TextInput } from 'muir-capacitor';
+import { TextInput } from '@muir/capacitor';
 
 # TextInput
 
@@ -14,7 +14,7 @@ Single or multi-line text input with Material Design 3 styling, supporting text,
 ## Usage
 
 ```jsx
-import { TextInput } from 'muir/basic';
+import { TextInput } from '@muir/base';
 
 <TextInput placeholder="Username" />
 ```
@@ -53,7 +53,7 @@ import { TextInput } from 'muir/basic';
 ## Form Integration
 
 ```jsx
-import { Form, FormTextInput } from 'muir/form';
+import { Form, FormTextInput } from '@muir/form';
 
 <Form schema={schema} onSubmit={handleSubmit}>
   <FormTextInput name="email" placeholder="Email" type="email" />

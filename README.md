@@ -15,8 +15,10 @@ bun install
 ```
 muir/
 ├── packages/
-│   ├── muir/              # Core UI library
-│   └── muir-capacitor/    # Capacitor wrapper
+│   ├── base/              # @muir/base
+│   ├── extra/             # @muir/extra
+│   ├── form/              # @muir/form
+│   └── capacitor/         # @muir/capacitor
 ├── apps/
 │   └── docs/              # Landing/docs page
 └── scripts/               # Shared build tooling
@@ -41,8 +43,8 @@ turbo run lint
 ## Individual Packages
 
 ```bash
-# Build library only
-cd packages/muir && bun run build
+# Build base library only
+cd packages/base && bun run build
 
 # Dev docs app
 cd apps/docs && bun run dev

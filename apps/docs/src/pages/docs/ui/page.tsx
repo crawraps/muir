@@ -1,54 +1,36 @@
-import type { Scope } from 'animejs'
-import { useEffect, useRef } from 'react'
-import { useLocation } from 'wouter'
-import { AnimeScope, atr } from 'muir-capacitor'
+import { useRef } from 'react'
 import { getDocComponent } from 'src/entities/docs'
+import { Pane } from 'src/entities/pane'
 import { DocsMDXProvider } from 'src/features/mdx-renderer'
-import { useAnimatedTransition } from 'src/shared/lib'
-import { animeInit } from './animation'
+import { useScrollRestore } from 'src/shared/lib'
+import { Sidebar } from 'src/widgets/sidebar'
+import { useLocation } from 'wouter'
 
-export function Page() {
+export function DocPage() {
   const [location] = useLocation()
-  const Component = getDocComponent(location.replace('/docs/', ''))
+  const docName = location.replace('/docs/', '').replace(/^\//, '')
+  const DocComponent = docName ? getDocComponent(docName) : null
+  const scrollRef = useRef<HTMLDivElement>(null)
+  useScrollRestore(scrollRef)
 
-  const anime = useRef<Scope>(null)
-  const { previous: Previous, current: Current, isTransitioning, completeExit } = useAnimatedTransition(Component)
-
-  useEffect(() => {
-    if (isTransitioning && Previous && anime.current) {
-      anime.current.methods.disappear(completeExit)
-      anime.current.methods.reveal()
-    }
-  }, [isTransitioning, Previous, completeExit])
-  //
-  // useEffect(() => {
-  //   if (!isTransitioning && anime.current) {
-  //     anime.current.methods.reveal()
-  //   }
-  // }, [Current, isTransitioning])
-
-  if (!Current && !Previous) return null
   return (
-    <AnimeScope init={animeInit} ref={anime}>
-      <div className={cx('page')}>
-        <div className={cx(['docs-pane'])}>
-          {Previous && isTransitioning && (
-            <div className={cx('docs-content', 'outgoing')} data-transition='outgoing'>
+    <div className={cx('doc-layout')}>
+      <Sidebar className={cx('sidebar')} />
+      <div className={cx('doc-content')} ref={scrollRef}>
+        <Pane>
+          {DocComponent ? (
+            <div className={cx('docs-content')}>
               <DocsMDXProvider>
-                <Previous />
+                <DocComponent />
               </DocsMDXProvider>
             </div>
-          )}
-          {Current && (
-            <div className={cx('docs-content')} data-transition='incoming' is-transitioning={atr(isTransitioning)}>
-              <DocsMDXProvider>
-                <Current />
-              </DocsMDXProvider>
+          ) : (
+            <div className={cx('docs-content', 'empty')}>
+              <p>Select a component from the sidebar to view its documentation.</p>
             </div>
           )}
-        </div>
+        </Pane>
       </div>
-    </AnimeScope>
+    </div>
   )
 }
-

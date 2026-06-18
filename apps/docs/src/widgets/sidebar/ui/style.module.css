@@ -5,8 +5,9 @@
   flex-direction: column;
   align-items: stretch;
 
-  a {
+  .nav-link {
     display: block;
+    text-decoration: none;
 
     button {
       width: 100%;

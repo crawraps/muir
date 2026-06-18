@@ -5,7 +5,7 @@ variations:
   - form
 ---
 
-import { Checkbox, Text } from 'muir-capacitor';
+import { Checkbox, Text } from '@muir/capacitor';
 
 # Checkbox
 
@@ -14,8 +14,8 @@ Single or multi-select input for binary choices.
 ## Usage
 
 ```jsx
-import { Checkbox } from 'muir/basic';
-import { Text } from 'muir/basic';
+import { Checkbox } from '@muir/base';
+import { Text } from '@muir/base';
 
 <Text type="label"><Checkbox /> Accept terms</Text>
 ```
@@ -32,8 +32,8 @@ import { Text } from 'muir/basic';
 ## Form Integration
 
 ```jsx
-import { Form, FormCheckbox } from 'muir/form';
-import { Text } from 'muir/basic';
+import { Form, FormCheckbox } from '@muir/form';
+import { Text } from '@muir/base';
 
 <Form defaultValues={{ agree: false }} onSubmit={handleSubmit}>
   <Text type="label"><FormCheckbox name="agree" /> I agree to the terms</Text>

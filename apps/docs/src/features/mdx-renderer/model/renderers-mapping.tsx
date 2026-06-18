@@ -1,5 +1,5 @@
+import { Text } from '@muir/capacitor'
 import type React from 'react'
-import { Text } from 'muir-capacitor'
 import { CodeBlock } from 'src/entities/code-block'
 import { Table } from 'src/entities/table'
 

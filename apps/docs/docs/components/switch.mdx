@@ -5,7 +5,7 @@ variations:
   - form
 ---
 
-import { Switch, Text } from 'muir-capacitor';
+import { Switch, Text } from '@muir/capacitor';
 
 # Switch
 
@@ -14,8 +14,8 @@ Toggle input for on/off states.
 ## Usage
 
 ```jsx
-import { Switch } from 'muir/basic';
-import { Text } from 'muir/basic';
+import { Switch } from '@muir/base';
+import { Text } from '@muir/base';
 
 <Text type="label"><Switch /> Enable notifications</Text>
 ```
@@ -32,8 +32,8 @@ import { Text } from 'muir/basic';
 ## Form Integration
 
 ```jsx
-import { Form, FormSwitch } from 'muir/form';
-import { Text } from 'muir/basic';
+import { Form, FormSwitch } from '@muir/form';
+import { Text } from '@muir/base';
 
 <Form defaultValues={{ notifications: false }} onSubmit={handleSubmit}>
   <Text type="label"><FormSwitch name="notifications" /> Enable notifications</Text>

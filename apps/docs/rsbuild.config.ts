@@ -27,7 +27,7 @@ export default defineConfig({
     alias: {
       'src': resolve(__dirname, './src'),
       'docs': resolve(__dirname, './docs'),
-      '#shared': resolve(__dirname, '../../packages/muir/src/shared'),
+      '#shared': resolve(__dirname, '../../packages/base/src/shared'),
     },
   },
   html: {

@@ -1,4 +1,4 @@
-import { Surface } from 'muir-capacitor'
+import { Surface } from '@muir/capacitor'
 import type { PaneProps } from '../model/types'
 
 export function Pane({ children, className, ...props }: PaneProps) {

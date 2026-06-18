@@ -1,0 +1,56 @@
+{
+  "name": "@muir/capacitor",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./basic": {
+      "types": "./dist/basic.d.ts",
+      "import": "./dist/basic.js"
+    },
+    "./base": {
+      "types": "./dist/base.d.ts",
+      "import": "./dist/base.js"
+    },
+    "./form": {
+      "types": "./dist/form.d.ts",
+      "import": "./dist/form.js"
+    },
+    "./extra": {
+      "types": "./dist/extra.d.ts",
+      "import": "./dist/extra.js"
+    }
+  },
+  "files": ["dist"],
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0",
+    "@capacitor/core": "^8.4.0"
+  },
+  "dependencies": {
+    "@muir/base": "workspace:*",
+    "@muir/extra": "workspace:*",
+    "@muir/form": "workspace:*"
+  },
+  "devDependencies": {
+    "@capacitor/core": "^8.4.0",
+    "@rsbuild/plugin-babel": "^1.2.1",
+    "@rsbuild/plugin-react": "^1.4.6",
+    "@rslib/core": "^0.19.6",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "build": "rslib build",
+    "dev": "rslib build --watch",
+    "lint": "biome check"
+  }
+}

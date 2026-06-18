@@ -5,7 +5,7 @@ extends:
   - button
 ---
 
-import { ToggleButton, Icon } from 'muir-capacitor';
+import { ToggleButton, Icon } from '@muir/capacitor';
 
 # Toggle Button
 
@@ -14,7 +14,7 @@ Toggle a state on or off, such as favoriting an item, enabling dark mode, or sub
 ## Usage
 
 ```jsx
-import { ToggleButton } from 'muir/extra';
+import { ToggleButton } from '@muir/extra';
 
 <ToggleButton checked>Following</ToggleButton>
 ```
@@ -36,7 +36,7 @@ import { ToggleButton } from 'muir/extra';
 ## Form Integration
 
 ```jsx
-import { Form, FormToggleButton } from 'muir/form';
+import { Form, FormToggleButton } from '@muir/form';
 
 <Form defaultValues={{ notifications: false }} onSubmit={handleSubmit}>
   <FormToggleButton name="notifications">Notifications</FormToggleButton>

@@ -3,7 +3,7 @@ source: lib/components/code
 group: extra
 ---
 
-import { Code, CodeStyleProvider, useCodeStyle } from 'muir-capacitor';
+import { Code, CodeStyleProvider, useCodeStyle } from '@muir/capacitor';
 
 # Code
 
@@ -12,7 +12,7 @@ Wraps code content in a themed container with a language icon badge. Supports li
 ## Usage
 
 ```jsx
-import { Code, CodeStyleProvider } from 'muir/extra';
+import { Code, CodeStyleProvider } from '@muir/extra';
 
 <CodeStyleProvider>
   <Code language="tsx">console.log('hello')</Code>
@@ -70,7 +70,7 @@ The `icons` prop maps a language to an icon name (string) or arbitrary ReactNode
 Wrap multiple `Code` blocks in a `CodeStyleProvider` to share theme state. Set `defaultTheme` to `'light'`, `'dark'`, or `'auto'` (follows the global `ThemeProvider`).
 
 ```jsx
-import { Code, CodeStyleProvider } from 'muir/extra';
+import { Code, CodeStyleProvider } from '@muir/extra';
 
 <CodeStyleProvider defaultTheme="auto">
   <Code language="tsx">...</Code>
@@ -83,7 +83,7 @@ import { Code, CodeStyleProvider } from 'muir/extra';
 Access and change the code theme from within a `CodeStyleProvider`.
 
 ```jsx
-import { useCodeStyle } from 'muir/extra';
+import { useCodeStyle } from '@muir/extra';
 
 function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useCodeStyle()
@@ -122,29 +122,10 @@ Control where the chrome (icon, buttons) appears relative to the code block.
 <Code language="tsx" position="auto">const x = 1</Code>
 ```
 
-### Filename from First Comment
-
-When `parseFirstCommentAsFilename` is `true` (default), the first line of the code is inspected for a comment signature. If the line starts with a known signature and has text after it, that text is displayed as a filename in the chrome and the first line is removed from the rendered code.
+An explicit `filename` prop sets the filename shown in the chrome:
 
 ```jsx
-<Code language="tsx">{`// app.tsx\nconst App = () => <div />`}</Code>
-<Code language="py">{`# main.py\nprint('hello')`}</Code>
-```
-
-If the comment line has no text after the signature (e.g. just `//`), the line is kept and no filename is shown.
-
-Custom signatures can be provided via `commentLineSignatures`:
-
-```jsx
-<Code language="sql" commentLineSignatures={['--', '#']}>
-  {`-- schema.sql\nSELECT * FROM users;`}
-</Code>
-```
-
-An explicit `filename` prop overrides parsed filenames:
-
-```jsx
-<Code language="tsx" filename="custom-name.tsx">{`// ignored.ts\nconst x = 1`}</Code>
+<Code language="tsx" filename="app.tsx">const x = 1</Code>
 ```
 
 ## API
@@ -158,9 +139,7 @@ An explicit `filename` prop overrides parsed filenames:
 | `onThemeChange` | `(mode: 'light' \| 'dark') => void` | `undefined` | Called when the resolved theme changes |
 | `position` | `'vertical' \| 'horizontal' \| 'auto'` | `'auto'` | Chrome placement. `'auto'` resolves to vertical when `<pre>` height > 12rem or viewport < 440px |
 | `children` | `ReactNode` | **required** | Code content. If a single `<pre>` child, used directly; otherwise wrapped in `<pre><code>` |
-| `parseFirstCommentAsFilename` | `boolean` | `true` | Whether to parse the first comment line as a filename |
-| `commentLineSignatures` | `string[]` | `['//', '#', '/*', '<!--', '--', ';', '%', '/**']` | Comment prefixes to check when parsing the first line |
-| `filename` | `string` | `undefined` | Explicit filename displayed in the chrome. Overrides any parsed filename |
+| `filename` | `string` | `undefined` | Filename displayed in the chrome |
 
 ### CodeStyleProvider
 

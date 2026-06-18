@@ -1,5 +1,5 @@
 import type { Scope } from 'animejs'
-import { AnimeScope, Icon, useComponentDidUpdate, useTheme } from 'muir-capacitor'
+import { AnimeScope, Icon, useComponentDidUpdate } from '@muir/capacitor'
 import { initAnimation } from './animation'
 import type { ThemeIconProps } from './props'
 

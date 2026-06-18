@@ -1,4 +1,4 @@
-import { Button, Icon, useTheme } from 'muir-capacitor'
+import { Button, Icon, useTheme } from '@muir/capacitor'
 import { ThemeIcon } from 'src/shared'
 import type { Props } from '../model/types'
 import { NavEntry } from './nav-entry'

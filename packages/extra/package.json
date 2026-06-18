@@ -1,0 +1,40 @@
+{
+  "name": "@muir/extra",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "animejs": "^4.4.1",
+    "clsx": "^2.1.1"
+  },
+  "dependencies": {
+    "@muir/base": "workspace:*"
+  },
+  "devDependencies": {
+    "@rsbuild/plugin-babel": "^1.2.1",
+    "@rsbuild/plugin-react": "^1.4.6",
+    "@rslib/core": "^0.19.6",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "animejs": "^4.4.1",
+    "clsx": "^2.1.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "typescript": "^5.9.3",
+    "unplugin-auto-import": "^21.0.0"
+  },
+  "scripts": {
+    "build": "rslib build",
+    "dev": "rslib build --watch",
+    "lint": "biome check"
+  }
+}

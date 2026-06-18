@@ -5,7 +5,7 @@ variations:
   - form
 ---
 
-import { Slider, Text } from 'muir-capacitor';
+import { Slider, Text } from '@muir/capacitor';
 
 # Slider
 
@@ -14,7 +14,7 @@ Range input for selecting numeric values within a min/max range.
 ## Usage
 
 ```jsx
-import { Slider } from 'muir/basic';
+import { Slider } from '@muir/base';
 
 <Slider min={0} max={100} defaultValue={50} />
 ```
@@ -85,8 +85,8 @@ Disabled slider ignores all interaction.
 ## Form Integration
 
 ```jsx
-import { Form, FormSlider } from 'muir/form';
-import { Text } from 'muir/basic';
+import { Form, FormSlider } from '@muir/form';
+import { Text } from '@muir/base';
 
 <Form defaultValues={{ volume: 50 }} onSubmit={handleSubmit}>
   <Text type="label"><FormSlider name="volume" /> Volume</Text>

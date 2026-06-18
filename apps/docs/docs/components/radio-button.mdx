@@ -5,7 +5,7 @@ variations:
   - form
 ---
 
-import { RadioButton, Text } from 'muir-capacitor';
+import { RadioButton, Text } from '@muir/capacitor';
 
 # Radio Button
 
@@ -14,8 +14,8 @@ Single-select input for mutually exclusive options.
 ## Usage
 
 ```jsx
-import { RadioButton } from 'muir/basic';
-import { Text } from 'muir/basic';
+import { RadioButton } from '@muir/base';
+import { Text } from '@muir/base';
 
 <Text type="label"><RadioButton name="size" value="s" /> Small</Text>
 <Text type="label"><RadioButton name="size" value="m" /> Medium</Text>
@@ -34,8 +34,8 @@ import { Text } from 'muir/basic';
 ## Form Integration
 
 ```jsx
-import { Form, FormRadioButton } from 'muir/form';
-import { Text } from 'muir/basic';
+import { Form, FormRadioButton } from '@muir/form';
+import { Text } from '@muir/base';
 
 <Form defaultValues={{ size: 'm' }} onSubmit={handleSubmit}>
   <Text type="label"><FormRadioButton name="size" value="s" /> Small</Text>
