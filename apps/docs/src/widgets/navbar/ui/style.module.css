@@ -22,20 +22,9 @@
     flex-direction: inherit;
     gap: var(--spacing-small);
 
-    .nav-entry {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-medium-small);
-      box-sizing: border-box;
-      text-decoration: none;
-      color: var(--md-sys-color-on-surface-variant);
-      border-radius: var(--md-sys-shape-corner-medium-large);
-      cursor: pointer;
-
-      .button[is-active] {
-        --color: var(--md-sys-color-on-primary-container);
-        --background-color: var(--md-sys-color-primary-container);
-      }
+    .button[is-active] {
+      --color: var(--md-sys-color-on-primary-container);
+      --background-color: var(--md-sys-color-primary-container);
     }
   }
 }

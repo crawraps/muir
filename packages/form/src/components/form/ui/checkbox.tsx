@@ -1,5 +1,5 @@
-import { useFormContext } from 'react-hook-form'
 import { Checkbox } from '@muir/base'
+import { useFormContext } from 'react-hook-form'
 import type { FormCheckboxProps } from '../model/properties'
 
 /**

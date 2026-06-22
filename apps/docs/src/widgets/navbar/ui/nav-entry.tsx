@@ -1,15 +1,17 @@
 import { atr, Button, Icon } from '@muir/capacitor'
-import { Link, useLocation } from 'wouter'
-import type { NavEntry as NavEntryType } from '../model/types'
+import { type TabDefinition, useIsTabActive, useTabMemory } from '@muir/navigation'
+import { Link } from 'wouter'
 
-export function NavEntry(entry: NavEntryType) {
-  const [location] = useLocation()
-  const isActive = entry.href === '/' ? location === '/' : location.startsWith(entry.href)
+export function NavEntry({ tab }: { tab: TabDefinition }) {
+  const active = useIsTabActive(tab.id)
+  const [memory] = useTabMemory(tab.id)
+  const href = tab.persistent === false ? tab.path : memory.path
+  const icon = tab.icon as string | undefined
 
   return (
-    <Link className={cx('nav-entry')} href={entry.href}>
-      <Button className={cx('button')} is-active={atr(isActive)} variant='text'>
-        <Icon name={entry.icon} />
+    <Link asChild href={href}>
+      <Button className={cx('button')} is-active={atr(active)} variant='text'>
+        {icon && <Icon name={icon} />}
       </Button>
     </Link>
   )

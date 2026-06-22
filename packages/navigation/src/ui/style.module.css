@@ -1,0 +1,5 @@
+.tab-bar {
+  display: flex;
+  gap: var(--spacing-small, 0.5rem);
+  align-items: center;
+}

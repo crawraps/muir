@@ -13,8 +13,8 @@ export const Navbar = (props: Props) => {
       </Button>
       <span className={cx('spacer')} />
       <nav>
-        {(props.entries ?? []).map(entry => (
-          <NavEntry key={entry.href} {...entry} />
+        {props.tabs.map(tab => (
+          <NavEntry key={tab.id} tab={tab} />
         ))}
       </nav>
       <span className={cx('spacer')} />

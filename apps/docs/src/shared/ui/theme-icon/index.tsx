@@ -1,9 +1,9 @@
-import type { Scope } from 'animejs'
 import { AnimeScope, Icon, useComponentDidUpdate } from '@muir/capacitor'
+import type { Scope } from 'animejs'
 import { initAnimation } from './animation'
 import type { ThemeIconProps } from './props'
 
-export function ThemeIcon(props: ThemeIconProps) {
+function ThemeIconUO(props: ThemeIconProps) {
   const animeRef = useRef<Scope>(null)
   const mode = props.theme
 
@@ -29,3 +29,5 @@ export function ThemeIcon(props: ThemeIconProps) {
     </AnimeScope>
   )
 }
+
+export const ThemeIcon = memo(ThemeIconUO)

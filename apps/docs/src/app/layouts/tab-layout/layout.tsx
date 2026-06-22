@@ -1,6 +1,4 @@
-import { KeepAlive } from 'keepalive-for-react'
-import type { ReactNode } from 'react'
-import { useMemo, useRef } from 'react'
+import { type TabDefinition, TabProvider, TabView } from '@muir/navigation'
 import { getDocFrontmatter } from 'src/entities/docs'
 import { AboutPage } from 'src/pages/about'
 import { DocPage } from 'src/pages/docs'
@@ -36,24 +34,14 @@ const groupToBlobIndex: Record<string, number> = {
   extra: 1,
 }
 
-function getActiveContent(location: string): { cacheKey: string; element: ReactNode } {
-  if (location.startsWith('/docs')) {
-    return { cacheKey: location, element: <DocPage /> }
-  }
-  if (location === '/about') {
-    return { cacheKey: '/about', element: <AboutPage /> }
-  }
-  return { cacheKey: '/', element: <HomePage /> }
-}
+const tabs: TabDefinition[] = [
+  { id: 'home', path: '/', element: <HomePage />, icon: 'home', label: 'Home' },
+  { id: 'docs', path: '/docs', element: <DocPage />, icon: 'components', label: 'Docs', initialMemory: { path: '/docs/components/button' } },
+  { id: 'about', path: '/about', element: <AboutPage />, icon: 'info', label: 'About' },
+]
 
-export function TabLayout() {
+function LayoutContent() {
   const [location] = useLocation()
-  const { cacheKey, element } = getActiveContent(location)
-  const lastDocsPath = useRef('/docs/components/surface')
-
-  if (location.startsWith('/docs')) {
-    lastDocsPath.current = location
-  }
 
   const currentBlob = useMemo(() => {
     if (!location.startsWith('/docs/')) return 0
@@ -65,20 +53,19 @@ export function TabLayout() {
 
   return (
     <div className={cx('layout')}>
-      <Navbar
-        className={cx('navbar')}
-        entries={[
-          { href: '/', icon: 'home', label: 'Home' },
-          { href: lastDocsPath.current, icon: 'components', label: 'Docs' },
-          { href: '/about', icon: 'info', label: 'About' },
-        ]}
-      />
+      <Navbar className={cx('navbar')} tabs={tabs} />
       <div className={cx('main-content')}>
-        <KeepAlive activeCacheKey={cacheKey} containerClassName={cx('keepalive-container')} max={10} transition>
-          {element}
-        </KeepAlive>
+        <TabView max={10} transition />
       </div>
       <BlobScene blob={blobs[currentBlob]} className={cx('blob-scene')} />
     </div>
+  )
+}
+
+export function TabLayout() {
+  return (
+    <TabProvider tabs={tabs}>
+      <LayoutContent />
+    </TabProvider>
   )
 }

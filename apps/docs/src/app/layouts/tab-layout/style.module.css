@@ -14,10 +14,6 @@
     flex-shrink: 0;
   }
 
-  .keepalive-container {
-    width: 100%;
-  }
-
   .main-content {
     flex-grow: 1;
     border-top-left-radius: var(--md-sys-shape-corner-large);

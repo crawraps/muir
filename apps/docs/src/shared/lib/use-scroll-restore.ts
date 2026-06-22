@@ -1,4 +1,4 @@
-import { useKeepAliveContext } from 'keepalive-for-react'
+import { useKeepAliveContext } from '@muir/navigation'
 import { useEffect, useRef } from 'react'
 
 /**
@@ -13,13 +13,11 @@ export function useScrollRestore(scrollContainerRef: React.RefObject<HTMLElement
   const { active } = useKeepAliveContext()
 
   useEffect(() => {
-    if (!active && scrollContainerRef.current) {
-      scrollPos.current = scrollContainerRef.current.scrollTop
-    }
-  }, [active, scrollContainerRef])
+    if (!scrollContainerRef.current) return
 
-  useEffect(() => {
-    if (active && scrollContainerRef.current) {
+    if (!active) {
+      scrollPos.current = scrollContainerRef.current.scrollTop
+    } else if (active) {
       scrollContainerRef.current.scrollTop = scrollPos.current
     }
   }, [active, scrollContainerRef])

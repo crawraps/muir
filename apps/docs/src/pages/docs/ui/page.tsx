@@ -16,10 +16,10 @@ export function DocPage() {
   return (
     <div className={cx('doc-layout')}>
       <Sidebar className={cx('sidebar')} />
-      <div className={cx('doc-content')} ref={scrollRef}>
+      <div className={cx('doc-content')}>
         <Pane>
           {DocComponent ? (
-            <div className={cx('docs-content')}>
+            <div className={cx('docs-content')} ref={scrollRef}>
               <DocsMDXProvider>
                 <DocComponent />
               </DocsMDXProvider>

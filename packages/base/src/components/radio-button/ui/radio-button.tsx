@@ -1,10 +1,9 @@
 import { atr } from 'src/shared/attributify'
 import type { RadioButtonProps } from '../model/properties'
-import { Animated } from './animation'
 import styling from './public.module.css'
 
 /**
- * A Material Design 3 RadioButton built on a visually hidden native
+ * A Material Design 3 Radio Button built on a visually hidden native
  * `<input type="radio">` for accessibility and SEO.
  *
  * Compose it with `<Text type="label">` to provide a visible label:
@@ -17,17 +16,15 @@ function RadioButton({ error, showError = false, className, ref, ...props }: Rad
   const hasError = error !== undefined && error !== null && error !== false
 
   return (
-    <Animated checked={props.checked}>
-      <span className={cx('root', styling.root, className)} is-disabled={atr(props.disabled)} is-error={atr(hasError)}>
-        <span className={cx('control')}>
-          <input {...props} aria-invalid={hasError || undefined} className={cx('input')} ref={ref} type='radio' />
-          <span aria-hidden='true' className={cx('ring')}>
-            <span className={cx('dot')} />
-          </span>
+    <span className={cx('root', styling.root, className)} is-disabled={atr(props.disabled)} is-error={atr(hasError)}>
+      <span className={cx('control')}>
+        <input {...props} aria-invalid={hasError || undefined} className={cx('input')} ref={ref} type='radio' />
+        <span aria-hidden='true' className={cx('box')}>
+          <span className={cx('dot')} />
         </span>
-        {showError && hasError && <span className={cx('error-text')}>{error}</span>}
       </span>
-    </Animated>
+      {showError && hasError && <span className={cx('error-text')}>{error}</span>}
+    </span>
   )
 }
 

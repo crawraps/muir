@@ -1,8 +1,7 @@
 import { Router } from 'wouter'
 import { TabLayout } from './layouts/tab-layout/layout'
 import './global.css'
-import { type Theme, ThemeProvider } from '@muir/base'
-import { CodeStyleProvider, SnackbarProvider } from '@muir/extra'
+import { CodeStyleProvider, SnackbarProvider, type Theme, ThemeProvider } from '@muir/capacitor'
 import theme from 'src/app/theme.json'
 
 export const App = () => {
