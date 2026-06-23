@@ -9,5 +9,6 @@ export function useComponentDidUpdate(callback: EffectCallback, deps: Dependency
     } else {
       return callback()
     }
+    // biome-ignore lint/correctness/useExhaustiveDependencies: deps are passed through intentionally
   }, deps)
 }

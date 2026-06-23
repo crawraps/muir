@@ -191,14 +191,14 @@
   "surfaceDark": {
     "type": "crust",
     "blur": 12,
-    "opacity": 0.8,
+    "opacity": 0.9,
     "grain": {
       "density": 0.5,
-      "opacity": 0.2,
+      "opacity": 0.0,
       "light": {
-        "surfaceScale": 2,
-        "elevation": 45,
-        "specularity": 1
+        "surfaceScale": 20,
+        "elevation": 15,
+        "specularity": 2
       }
     }
   }

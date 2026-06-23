@@ -1,12 +1,13 @@
 import { Button } from '@muir/capacitor'
+import { useTabPath } from '@muir/navigation'
 import { getAvailableDocs } from 'src/entities/docs'
 import { Pane } from 'src/entities/pane'
-import { Link, useLocation } from 'wouter'
+import { Link } from 'wouter'
 import type { Props } from '../model/types'
 
 export function Sidebar(props: Props) {
   const docs = getAvailableDocs()
-  const [location] = useLocation()
+  const location = useTabPath()
 
   return (
     <Pane className={cx('sidebar', props.className)}>

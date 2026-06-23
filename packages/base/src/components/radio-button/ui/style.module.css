@@ -63,7 +63,7 @@
   }
 
   &:hover {
-    .input+.box {
+    .input + .box {
       .dot {
         opacity: 0.4;
         scale: 0.65;
@@ -71,7 +71,7 @@
     }
   }
 
-  .input:checked+.box {
+  .input:checked + .box {
     border-color: var(--checked-color);
 
     .dot {
@@ -81,7 +81,7 @@
   }
 
   &:active {
-    .input+.box {
+    .input + .box {
       .dot {
         opacity: 0.7;
         scale: 1.2;
@@ -89,7 +89,7 @@
     }
   }
 
-  .input:focus-visible+.box {
+  .input:focus-visible + .box {
     outline: 2px solid var(--border-color);
     outline-offset: 2px;
   }

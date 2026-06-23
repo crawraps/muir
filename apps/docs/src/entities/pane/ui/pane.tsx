@@ -9,9 +9,9 @@ export function Pane({ children, className, ...props }: PaneProps) {
       {...props}
       grain={{
         light: {
-          surfaceScale: 5,
-          elevation: 15,
-          specularity: 1.2,
+          surfaceScale: 3,
+          elevation: 5,
+          specularity: 2,
         },
       }}
     >

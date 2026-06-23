@@ -1,14 +1,14 @@
+import { useTabPath } from '@muir/navigation'
 import { useRef } from 'react'
 import { getDocComponent } from 'src/entities/docs'
 import { Pane } from 'src/entities/pane'
 import { DocsMDXProvider } from 'src/features/mdx-renderer'
 import { useScrollRestore } from 'src/shared/lib'
 import { Sidebar } from 'src/widgets/sidebar'
-import { useLocation } from 'wouter'
 
 export function DocPage() {
-  const [location] = useLocation()
-  const docName = location.replace('/docs/', '').replace(/^\//, '')
+  const path = useTabPath()
+  const docName = path.replace('/docs/', '').replace(/^\//, '')
   const DocComponent = docName ? getDocComponent(docName) : null
   const scrollRef = useRef<HTMLDivElement>(null)
   useScrollRestore(scrollRef)

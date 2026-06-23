@@ -10,7 +10,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "react": ">=16.9.0",
     "@hookform/resolvers": "^5.2.2",
@@ -40,6 +42,6 @@
   "scripts": {
     "build": "rslib build",
     "dev": "rslib build --watch",
-    "lint": "biome check"
+    "lint": "biome check --write"
   }
 }

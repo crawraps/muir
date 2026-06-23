@@ -12,6 +12,7 @@ function BlobScene({ blob, layers = 7, scaleStep = 0.9, ...props }: BlobScenePro
   return (
     <Animated points={path}>
       <svg aria-hidden viewBox='0 0 3000 3000' {...props}>
+        <title>Blob Scene</title>
         {Array.from({ length: layerCount }, (_, i) => {
           const scale = 1 + (layerCount - 1 - i) * scaleStep
           const pct = ((i + 1) / layerCount) * 100

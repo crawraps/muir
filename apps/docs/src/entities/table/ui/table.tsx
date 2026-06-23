@@ -1,5 +1,5 @@
 import { Surface } from '@muir/capacitor'
-import type { TableCellProps, TableRootProps, TableRowProps, TableSectionProps } from './model/types'
+import type { TableCellProps, TableRootProps, TableRowProps, TableSectionProps } from '../model/types'
 import styling from './style.module.css'
 
 function TableRoot({ className, ref, ...props }: TableRootProps) {
@@ -23,7 +23,7 @@ function TableRow({ className, ref, ...props }: TableRowProps) {
 }
 
 function TableHeaderCell({ className, ref, ...props }: TableCellProps) {
-  return <th className={cx('cell', styling.cell, className)} ref={ref} role='columnheader' {...props} />
+  return <th className={cx('cell', styling.cell, className)} ref={ref} {...props} />
 }
 
 function TableCell({ className, ref, ...props }: TableCellProps) {

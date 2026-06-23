@@ -17,9 +17,15 @@ declare module '*.svg?url' {
   export default url
 }
 
+interface DotLottiePlayerElement extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
+  src?: string
+  autoplay?: boolean
+  loop?: boolean
+}
+
 declare namespace JSX {
   interface IntrinsicElements {
-    'dotlottie-player': any
+    'dotlottie-player': DotLottiePlayerElement
   }
 }
 

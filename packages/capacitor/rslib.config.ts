@@ -1,4 +1,3 @@
-import { resolve } from 'node:path'
 import { pluginBabel } from '@rsbuild/plugin-babel'
 import { pluginReact } from '@rsbuild/plugin-react'
 import { defineConfig } from '@rslib/core'

@@ -15,7 +15,7 @@ function Code({ filename, ...props }: CodeProps) {
   const { content, ref } = resolveContent(props.children)
 
   return (
-    <Surface className={cx('code', styling.root, props.className)} muir-name='code' data-code-theme={resolvedTheme} data-language={props.language} ref={ref}>
+    <Surface className={cx('code', styling.root, props.className)} data-code-theme={resolvedTheme} data-language={props.language} muir-name='code' ref={ref}>
       <aside>
         {icon}
         {filename && <span className={cx('filename')}>{filename}</span>}

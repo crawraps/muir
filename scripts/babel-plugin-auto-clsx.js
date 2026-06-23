@@ -1,10 +1,8 @@
-import path from 'node:path'
-
 export default function autoClsxPlugin({ types: t }) {
   return {
     name: 'auto-clsx',
     visitor: {
-      Program(programPath, state) {
+      Program(programPath, _state) {
         let needsClsx = false
 
         programPath.traverse({

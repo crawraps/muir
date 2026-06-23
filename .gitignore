@@ -18,3 +18,5 @@ doc_build/
 .idea
 
 .direnv
+
+.omo

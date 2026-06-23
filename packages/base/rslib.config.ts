@@ -10,7 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '#shared': resolve(__dirname, './src/shared'),
-      'src': resolve(__dirname, './src'),
+      src: resolve(__dirname, './src'),
     },
   },
   lib: [

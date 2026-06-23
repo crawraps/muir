@@ -10,7 +10,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "react": ">=16.9.0",
     "animejs": "^4.4.1",
@@ -35,6 +37,6 @@
   "scripts": {
     "build": "rslib build",
     "dev": "rslib build --watch",
-    "lint": "biome check"
+    "lint": "biome check --write"
   }
 }

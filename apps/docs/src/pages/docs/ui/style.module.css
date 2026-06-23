@@ -141,7 +141,7 @@
     font-style: italic;
   }
 
-  & blockquote>p:last-child {
+  & blockquote > p:last-child {
     margin-bottom: 0;
   }
 

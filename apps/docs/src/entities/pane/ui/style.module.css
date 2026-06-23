@@ -4,8 +4,12 @@ div.pane {
   --surface-opacity: 0.85;
   --surface-grain-opacity: 0.2;
 
-  >*[data-content] {
+  > *[data-content] {
     padding: var(--spacing-large);
     box-sizing: border-box;
   }
+}
+
+body[data-theme='dark'] div.pane {
+  --surface-grain-opacity: 0.2;
 }

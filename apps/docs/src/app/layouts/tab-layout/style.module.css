@@ -65,7 +65,7 @@
         }
       }
 
-      &> :not(nav) {
+      & > :not(nav) {
         display: none;
       }
     }

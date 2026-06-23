@@ -25,8 +25,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      'src': resolve(__dirname, './src'),
-      'docs': resolve(__dirname, './docs'),
+      src: resolve(__dirname, './src'),
+      docs: resolve(__dirname, './docs'),
       '#shared': resolve(__dirname, '../../packages/base/src/shared'),
     },
   },

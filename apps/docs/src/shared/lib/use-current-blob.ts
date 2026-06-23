@@ -1,6 +1,6 @@
-import { type BlobConfig } from 'src/widgets/blob-scene'
-import { getDocFrontmatter } from 'src/entities/docs'
 import { useMemo } from 'react'
+import { getDocFrontmatter } from 'src/entities/docs'
+import type { BlobConfig } from 'src/widgets/blob-scene'
 import { useLocation } from 'wouter'
 
 const blobs: BlobConfig[] = [

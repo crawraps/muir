@@ -1,28 +1,27 @@
 import type React from 'react'
 
-type DivProps = React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }
+type TableProps = React.HTMLAttributes<HTMLTableElement> & { ref?: React.Ref<HTMLTableElement> }
+type TableSectionPropsBase = React.HTMLAttributes<HTMLTableSectionElement> & { ref?: React.Ref<HTMLTableSectionElement> }
+type TableRowPropsBase = React.HTMLAttributes<HTMLTableRowElement> & { ref?: React.Ref<HTMLTableRowElement> }
+type TableCellPropsBase = React.HTMLAttributes<HTMLTableCellElement> & { ref?: React.Ref<HTMLTableCellElement> }
 
 /**
  * @docs
  * Properties for the Table root.
- *
- * Implemented as a `<div role="table">` with `display: block` so that
- * downstream styles can freely apply scroll, sticky headers, or card
- * stacks without fighting the browser's default `table` display value.
  */
-export interface TableRootProps extends Omit<DivProps, 'children'> {
+export interface TableRootProps extends Omit<TableProps, 'children'> {
   children?: React.ReactNode
 }
 
-export interface TableSectionProps extends Omit<DivProps, 'children' | 'role'> {
+export interface TableSectionProps extends Omit<TableSectionPropsBase, 'children' | 'role'> {
   children?: React.ReactNode
 }
 
-export interface TableRowProps extends Omit<DivProps, 'children' | 'role'> {
+export interface TableRowProps extends Omit<TableRowPropsBase, 'children' | 'role'> {
   children?: React.ReactNode
 }
 
 /** Shared shape for `TableCell` and `TableHeaderCell`. */
-export interface TableCellProps extends Omit<DivProps, 'children' | 'role'> {
+export interface TableCellProps extends Omit<TableCellPropsBase, 'children' | 'role'> {
   children?: React.ReactNode
 }

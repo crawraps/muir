@@ -1,5 +1,5 @@
-import { animate, type Scope, stagger, svg } from 'animejs'
 import { AnimeScope, type AnimeScopeInit } from '@muir/capacitor'
+import { animate, type Scope, stagger, svg } from 'animejs'
 import type { JSX } from 'react'
 
 const init: AnimeScopeInit = (scope, _motion) => {

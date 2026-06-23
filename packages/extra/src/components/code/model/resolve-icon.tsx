@@ -1,5 +1,4 @@
-import { Icon } from '@muir/base'
-import { Text } from '@muir/base'
+import { Icon, Text } from '@muir/base'
 
 export function resolveIcon(language: string, icons?: Record<string, string | React.ReactNode>, className?: string): React.ReactNode {
   const value = icons?.[language]

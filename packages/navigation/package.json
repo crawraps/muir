@@ -37,6 +37,6 @@
   "scripts": {
     "build": "rslib build",
     "dev": "rslib build --watch",
-    "lint": "biome check"
+    "lint": "biome check --write"
   }
 }

@@ -46,13 +46,14 @@ function Slider({ error, showError = false, orientation = 'horizontal', stops, o
 
   const currentValue = isControlled ? Number(props.value) : internalValue
 
+  const { onChange } = props
   const handleInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = Number(e.target.value)
       setInternalValue(newValue)
-      props.onChange?.(e)
+      onChange?.(e)
     },
-    [props.onChange],
+    [onChange],
   )
 
   const originPct = toPercent(origin ?? min, min, max)
@@ -65,8 +66,8 @@ function Slider({ error, showError = false, orientation = 'horizontal', stops, o
         <span className={cx('control')}>
           <input {...props} aria-invalid={hasError || undefined} className={cx('input')} max={props.max} min={props.min} onChange={handleInput} ref={mergedRef} type='range' />
           <span className={cx('track')}>
-            {segments.map((seg, i) => (
-              <span className={cx('segment')} data-active={atr(seg.active)} key={i} style={{ '--segment-length': `${seg.length}%` } as React.CSSProperties}>
+            {segments.map(seg => (
+              <span className={cx('segment')} data-active={atr(seg.active)} key={`segment-${seg.start}`} style={{ '--segment-length': `${seg.length}%` } as React.CSSProperties}>
                 <Surface
                   className={cx('segment-fill')}
                   style={
@@ -76,9 +77,9 @@ function Slider({ error, showError = false, orientation = 'horizontal', stops, o
                 />
               </span>
             ))}
-            {stops?.map((stop, i) => {
+            {stops?.map(stop => {
               const pct = toPercent(stop, min, max)
-              return <span className={cx('stop-mark')} key={i} style={{ '--stop-offset': `${pct}%` } as React.CSSProperties} />
+              return <span className={cx('stop-mark')} key={`stop-${stop}`} style={{ '--stop-offset': `${pct}%` } as React.CSSProperties} />
             })}
             <span className={cx('thumb')} style={{ '--thumb-offset': `${valuePct}%` } as React.CSSProperties}>
               <Surface className={cx('thumb-fill')} style={{ '--surface-color': 'var(--thumb-color)' } as React.CSSProperties} type='plain' />

@@ -1,5 +1,5 @@
-import { useFormContext } from 'react-hook-form'
 import { Switch } from '@muir/base'
+import { useFormContext } from 'react-hook-form'
 import type { FormSwitchProps } from '../model/properties'
 
 /**

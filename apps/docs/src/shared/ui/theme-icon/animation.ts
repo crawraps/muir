@@ -1,5 +1,5 @@
-import { animate, set, spring } from 'animejs'
 import type { AnimeScopeType, Theme } from '@muir/capacitor'
+import { animate, set, spring } from 'animejs'
 
 const mapping = {
   light: '36%',

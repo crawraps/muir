@@ -1,5 +1,5 @@
-import { useCallback, useContext, useMemo, useState } from 'react'
 import { useSafeThemeMode } from '@muir/base'
+import { useCallback, useContext, useMemo, useState } from 'react'
 import type { CodeStyleContextType, CodeStyleProviderProps, CodeTheme } from './properties'
 import { getSavedCodeTheme, setSavedCodeTheme } from './storage'
 

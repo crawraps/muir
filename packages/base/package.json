@@ -10,7 +10,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0",
@@ -36,6 +38,6 @@
   "scripts": {
     "build": "rslib build",
     "dev": "rslib build --watch",
-    "lint": "biome check"
+    "lint": "biome check --write && tsc"
   }
 }

@@ -11,12 +11,12 @@
   height: 100%;
 }
 
-.container > div.inactive {
+.container > div:global(.inactive) {
   visibility: hidden;
   pointer-events: none;
   z-index: 0;
 }
 
-.container > div.active {
+.container > div:global(.active) {
   z-index: 1;
 }

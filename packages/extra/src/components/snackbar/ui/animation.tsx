@@ -1,8 +1,7 @@
+import { AnimeScope, type AnimeScopeInit, useComponentDidUpdate, useTheme } from '@muir/base'
 import { type Scope, spring, waapi } from 'animejs'
 import type { JSX } from 'react'
 import { useRef } from 'react'
-import { useTheme } from '@muir/base'
-import { AnimeScope, type AnimeScopeInit, useComponentDidUpdate } from '@muir/base'
 
 const init: AnimeScopeInit = (scope, theme) => {
   console.log('[snackbar] animation init: scope=', scope?.root ? 'has root' : 'no root', 'theme=', theme ? 'has theme' : 'no theme')

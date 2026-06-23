@@ -1,7 +1,6 @@
+import { atr, Button } from '@muir/base'
 import type React from 'react'
 import { useMemo, useState } from 'react'
-import { Button } from '@muir/base'
-import { atr } from '@muir/base'
 import type { ToggleButtonProps } from '../model/properties'
 import styling from './public.module.css'
 

@@ -1,5 +1,5 @@
-import { useFormContext } from 'react-hook-form'
 import { ToggleButton } from '@muir/extra'
+import { useFormContext } from 'react-hook-form'
 import type { FormToggleButtonProps } from '../model/properties'
 
 /**

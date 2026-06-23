@@ -1,5 +1,5 @@
-import { useFormContext } from 'react-hook-form'
 import { Slider } from '@muir/base'
+import { useFormContext } from 'react-hook-form'
 import type { FormSliderProps } from '../model/properties'
 
 /**

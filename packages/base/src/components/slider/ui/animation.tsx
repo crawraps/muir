@@ -48,7 +48,6 @@ const init: AnimeScopeInit = (scope, theme) => {
   let isPressed = false
   let pressStart = 0
   let pressTimer: ReturnType<typeof setTimeout> | undefined
-  let wasPressShown = false
 
   // 4. Animators
   const animateThumbTo = (to: StateKey, easeOverride?: typeof spatial | typeof effects) => {
@@ -79,7 +78,6 @@ const init: AnimeScopeInit = (scope, theme) => {
       pressStart = Date.now()
       animateThumbTo(resolveState(true, false))
       pressTimer = setTimeout(() => {
-        wasPressShown = true
         animateThumbTo('idle')
       }, pressedThreshold)
     }
@@ -94,7 +92,6 @@ const init: AnimeScopeInit = (scope, theme) => {
       isPressed = false
       clearTimeout(pressTimer)
       pressTimer = undefined
-      wasPressShown = false
       if (wasHeld) animateThumbTo(resolveState(isHovering(), false), spatial)
     }
 

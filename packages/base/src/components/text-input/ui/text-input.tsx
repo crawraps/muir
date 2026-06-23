@@ -19,7 +19,7 @@ function TextInput({ multiline = false, rows = 3, ref, label, comment, errors, c
   })
 
   return (
-    <label className={cx('root', styling.root, className)} muir-name='text-input' is-disabled={atr(props.disabled)} is-error={atr(hasError)} is-multiline={atr(multiline)}>
+    <label className={cx('root', styling.root, className)} is-disabled={atr(props.disabled)} is-error={atr(hasError)} is-multiline={atr(multiline)} muir-name='text-input'>
       <Surface className={cx('surface')}>
         {label && (
           <aside className={cx('header')}>

@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from 'react'
 import { atr } from '@muir/base'
+import { useEffect, useMemo } from 'react'
 import type { ResolvedPosition, SnackbarActions, SnackbarProviderProps, SnackEntry } from '../model/properties'
 import { resolveAnchors } from '../model/properties'
 import { registerProvider, SnackbarContext, unregisterProvider } from '../model/snackbar-context'

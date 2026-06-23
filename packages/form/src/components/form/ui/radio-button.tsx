@@ -1,5 +1,5 @@
-import { useFormContext } from 'react-hook-form'
 import { RadioButton } from '@muir/base'
+import { useFormContext } from 'react-hook-form'
 import type { FormRadioButtonProps } from '../model/properties'
 
 /**

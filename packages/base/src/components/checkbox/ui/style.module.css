@@ -68,7 +68,7 @@
   border: 0;
 }
 
-.input:checked+.box {
+.input:checked + .box {
   border-color: var(--checked-background-color);
   transition: border-color var(--color-transition-duration) ease-out;
 
@@ -77,7 +77,7 @@
   }
 }
 
-.input:focus-visible+.box {
+.input:focus-visible + .box {
   outline: 2px solid var(--border-color);
   outline-offset: 2px;
 }

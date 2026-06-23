@@ -1,12 +1,8 @@
+import type { CheckboxProps, RadioButtonProps, SliderProps, SwitchProps, TextInputProps } from '@muir/base'
+import type { ToggleButtonProps } from '@muir/extra'
 import type React from 'react'
 import type { DefaultValues, FieldErrors, FieldPath, FieldValues, Mode } from 'react-hook-form'
 import type { ObjectSchema } from 'yup'
-import type { CheckboxProps } from '@muir/base'
-import type { RadioButtonProps } from '@muir/base'
-import type { SliderProps } from '@muir/base'
-import type { SwitchProps } from '@muir/base'
-import type { TextInputProps } from '@muir/base'
-import type { ToggleButtonProps } from '@muir/extra'
 
 /**
  * @docs
