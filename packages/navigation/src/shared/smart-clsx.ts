@@ -12,7 +12,8 @@ export function createSmartClsx(styles: CSSModuleClasses) {
   function resolveComplexClassValue(value: ClassValue): ClassValue {
     if (Array.isArray(value)) return value.map(resolveComplexClassValue)
     if (typeof value === 'object' && value !== null) return Object.entries(value).reduce((prev, [key, val]) => ({ ...prev, [styles[key]]: val }), {})
-    return value && styles[value?.toString()]
+    if (typeof value === 'string') return styles[value] ?? value
+    return value
   }
 
   /**

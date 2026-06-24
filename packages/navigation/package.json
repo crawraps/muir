@@ -8,6 +8,22 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./model/*": {
+      "types": "./dist/model/*.d.ts",
+      "import": "./dist/model/*.js"
+    },
+    "./ui/*": {
+      "types": "./dist/ui/*.d.ts",
+      "import": "./dist/ui/*.js"
+    },
+    "./shared/*": {
+      "types": "./dist/shared/*.d.ts",
+      "import": "./dist/shared/*.js"
+    },
+    "./model/types": {
+      "types": "./dist/model/types.d.ts",
+      "import": "./dist/model/types.js"
     }
   },
   "files": [
@@ -24,12 +40,14 @@
     "@rsbuild/plugin-babel": "^1.2.1",
     "@rsbuild/plugin-react": "^1.4.6",
     "@rslib/core": "^0.19.6",
+    "@testing-library/react": "^16.0.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "clsx": "^2.1.1",
-    "keepalive-for-react": "^5.0.11",
+    "happy-dom": "^20.6.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "@rstest/core": "^0.8.0",
     "typescript": "^5.9.3",
     "unplugin-auto-import": "^21.0.0",
     "wouter": "^3.10.0"
@@ -37,6 +55,7 @@
   "scripts": {
     "build": "rslib build",
     "dev": "rslib build --watch",
-    "lint": "biome check --write"
+    "lint": "biome check --write",
+    "test": "rstest --passWithNoTests"
   }
 }

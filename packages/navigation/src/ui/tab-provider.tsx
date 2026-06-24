@@ -1,8 +1,17 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useLocation } from 'wouter'
-import { defaultMemoryFor, resolveActiveTab } from '../model/resolve-active-tab'
+import { defaultMemoryFor, memoizedResolveActiveTab } from '../model/resolve-active-tab'
 import type { TabDefinition, TabMemory, TabNavigationContextValue, TabProviderProps } from '../model/types'
 
+/** Stable metadata that rarely changes — tabs list and fallback id. */
+export interface TabNavigationMetadata {
+  tabs: TabDefinition[]
+  fallbackId: string
+}
+
+const MetadataContext = createContext<TabNavigationMetadata | null>(null)
+
+/** Keep the public export name for backward compatibility. */
 export const TabNavigationContext = createContext<TabNavigationContextValue | null>(null)
 
 function initMemory(tabs: TabDefinition[]): Record<string, TabMemory> {
@@ -13,23 +22,13 @@ function initMemory(tabs: TabDefinition[]): Record<string, TabMemory> {
   return memory
 }
 
-/**
- * Provides tab definitions, active-tab resolution and per-tab memory to
- * descendants.
- *
- * Does not render a wouter `<Router>` — wrap your app with one. Resolves the
- * active tab from the current location on every render and keeps each tab's
- * memory (`path` plus arbitrary keys) in sync with the location.
- */
 export function TabProvider({ tabs, fallbackId, children }: TabProviderProps) {
   const [location] = useLocation()
   const resolvedFallback = fallbackId ?? tabs[0]?.id ?? ''
-  const { tab, cacheKey } = resolveActiveTab(tabs, location, resolvedFallback)
+  const { tab, cacheKey } = memoizedResolveActiveTab(tabs, location, resolvedFallback)
 
   const [memory, setMemoryState] = useState<Record<string, TabMemory>>(() => initMemory(tabs))
 
-  // Keep each tab's memory in sync with the location. When the location moves
-  // inside a persistent tab, remember it; non-persistent tabs keep their base.
   useEffect(() => {
     if (tab.persistent === false) return
     setMemoryState(prev => ({ ...prev, [tab.id]: { ...prev[tab.id], path: location } }))
@@ -46,12 +45,32 @@ export function TabProvider({ tabs, fallbackId, children }: TabProviderProps) {
     [tabs],
   )
 
-  const ctx = useMemo<TabNavigationContextValue>(
+  const metadata = useMemo<TabNavigationMetadata>(() => ({ tabs, fallbackId: resolvedFallback }), [tabs, resolvedFallback])
+
+  const state = useMemo<TabNavigationContextValue>(
     () => ({ tabs, activeTab: tab, cacheKey, fallbackId: resolvedFallback, memory, setMemory }),
     [tabs, tab, cacheKey, resolvedFallback, memory, setMemory],
   )
 
-  return <TabNavigationContext.Provider value={ctx}>{children}</TabNavigationContext.Provider>
+  return (
+    <MetadataContext.Provider value={metadata}>
+      <TabNavigationContext.Provider value={state}>{children}</TabNavigationContext.Provider>
+    </MetadataContext.Provider>
+  )
+}
+
+/** Internal helper: read metadata context or throw. */
+export function useTabMetadata(): TabNavigationMetadata {
+  const ctx = useContext(MetadataContext)
+  if (!ctx) throw new Error('useTabNavigation must be used within a <TabProvider>.')
+  return ctx
+}
+
+/** Internal helper: read state context or throw. */
+export function useTabState(): TabNavigationContextValue {
+  const ctx = useContext(TabNavigationContext)
+  if (!ctx) throw new Error('useTabNavigation must be used within a <TabProvider>.')
+  return ctx
 }
 
 export type { TabDefinition, TabMemory }

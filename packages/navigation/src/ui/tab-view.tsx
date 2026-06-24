@@ -1,7 +1,11 @@
 import { KeepAlive } from 'keepalive-for-react'
+import { useMemo } from 'react'
 import type { TabViewProps } from '../model/types'
 import { useTabNavigation } from '../model/use-tab-navigation'
+import { createSmartClsx } from '../shared/smart-clsx'
 import styles from './tab-view.module.css'
+
+const cx = createSmartClsx(styles)
 
 /**
  * Renders the active tab inside a `keepalive-for-react` `KeepAlive` so that
@@ -21,7 +25,10 @@ import styles from './tab-view.module.css'
  */
 export function TabView({ className, ...keepAliveProps }: TabViewProps) {
   const { tab } = useTabNavigation()
-  const element = tab.component ? <tab.component /> : tab.element
+
+  const element = useMemo(() => {
+    return tab.component ? <tab.component /> : tab.element
+  }, [tab.component, tab.element])
 
   return (
     <KeepAlive activeCacheKey={tab.id} containerClassName={cx('container', styles.container, className)} {...keepAliveProps}>

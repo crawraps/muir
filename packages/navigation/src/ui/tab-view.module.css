@@ -20,3 +20,9 @@
 .container > div:global(.active) {
   z-index: 1;
 }
+
+.tab-bar {
+  display: flex;
+  gap: var(--spacing-small, 0.5rem);
+  align-items: center;
+}

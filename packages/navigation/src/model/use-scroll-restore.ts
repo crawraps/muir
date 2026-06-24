@@ -1,5 +1,5 @@
-import { useKeepAliveContext } from '@muir/navigation'
 import { useEffect, useRef } from 'react'
+import { useKeepAliveContext } from './use-keep-alive-context'
 
 /**
  * Saves and restores the scroll position of a scrollable container
@@ -36,16 +36,10 @@ export function useScrollRestore(scrollContainerRef: React.RefObject<HTMLElement
     const el = scrollContainerRef.current
     const savedScroll = scrollPos.current
 
-    // Defer to next frame so the browser has laid out the content
-    // (the cache node may have just been made visible again).
+    // Restore once per activation — no chained rAF.
     const raf = requestAnimationFrame(() => {
-      // If content isn't tall enough yet, try again on the following frame.
       if (el.scrollHeight >= savedScroll) {
         el.scrollTop = savedScroll
-      } else {
-        requestAnimationFrame(() => {
-          el.scrollTop = savedScroll
-        })
       }
     })
 

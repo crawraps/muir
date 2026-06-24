@@ -1,0 +1,55 @@
+{
+  "sourceMaps": false,
+  "module": {
+    "type": "es6"
+  },
+  "jsc": {
+    "target": "es2022",
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "decorators": false,
+      "dynamicImport": false,
+      "privateMethod": false,
+      "classProperty": {
+        "privateName": false
+      },
+      "functionBind": false,
+      "decoratorsBeforeExport": false,
+      "classPrivateMethod": false,
+      "classPublicMethod": false,
+      "exportDefaultFrom": false,
+      "exportNamespaceFrom": false,
+      "asyncGenerators": false,
+      "topLevelAwait": false,
+      "importMeta": false,
+      "nullishCoalescing": false,
+      "optionalChaining": false,
+      "functionSent": false,
+      "throwExpressions": false,
+      "decorators": false,
+      "pipelineOperator": {
+        "proposal": "fsharp"
+      },
+      "recordAndTuple": false,
+      "importAssertions": false,
+      "asyncDoExpression": false,
+      "doExpression": false,
+      "objectBeyondPlatform": false,
+      "atomics": false,
+      "nullishCoalescing": false,
+      "optionalChaining": false,
+      "numericSeparator": false,
+      "optionalCatchBinding": false,
+      "legacyDecorator": false,
+      "decoratorMetadata": false,
+      "react": {
+        "runtime": "automatic",
+        "development": false,
+        "refresh": false
+      }
+    }
+  },
+  "include": ["tests/**/*.ts", "tests/**/*.tsx", "src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
+}

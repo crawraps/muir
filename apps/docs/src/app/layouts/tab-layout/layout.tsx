@@ -1,3 +1,5 @@
+// FSD exception: @muir/navigation is imported directly because muir-capacitor
+// does not re-export it. This is documented in .omo/plans/navigation-remake.md.
 import { type TabDefinition, TabProvider, TabView } from '@muir/navigation'
 import { getDocFrontmatter } from 'src/entities/docs'
 import { AboutPage } from 'src/pages/about'
@@ -55,7 +57,7 @@ function LayoutContent() {
     <div className={cx('layout')}>
       <Navbar className={cx('navbar')} tabs={tabs} />
       <div className={cx('main-content')}>
-        <TabView max={10} transition />
+        <TabView max={tabs.length} transition />
       </div>
       <BlobScene blob={blobs[currentBlob]} className={cx('blob-scene')} />
     </div>

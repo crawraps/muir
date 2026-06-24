@@ -1,9 +1,8 @@
-import { useTabPath } from '@muir/navigation'
+import { useScrollRestore, useTabPath } from '@muir/navigation'
 import { useRef } from 'react'
 import { getDocComponent } from 'src/entities/docs'
 import { Pane } from 'src/entities/pane'
 import { DocsMDXProvider } from 'src/features/mdx-renderer'
-import { useScrollRestore } from 'src/shared/lib'
 import { Sidebar } from 'src/widgets/sidebar'
 
 export function DocPage() {

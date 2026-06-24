@@ -1,8 +1,11 @@
-import { useContext } from 'react'
+import { Fragment } from 'react'
 import type { TabBarProps } from '../model/types'
-import styles from './style.module.css'
+import { createSmartClsx } from '../shared/smart-clsx'
 import { TabItem } from './tab-item'
-import { TabNavigationContext } from './tab-provider'
+import { useTabMetadata, useTabState } from './tab-provider'
+import styles from './tab-view.module.css'
+
+const cx = createSmartClsx(styles)
 
 /**
  * UI-agnostic bottom/side tab bar. Renders a `<nav>` with one entry per tab.
@@ -14,18 +17,20 @@ import { TabNavigationContext } from './tab-provider'
  * Must be used inside a `<TabProvider>`.
  */
 export function TabBar({ tabs, renderItem, className, keyPrefix = 'tab', children }: TabBarProps) {
-  const ctx = useContext(TabNavigationContext)
-  if (!ctx) {
-    throw new Error('TabBar must be used within a <TabProvider>.')
-  }
-  const list = tabs ?? ctx.tabs
+  const meta = useTabMetadata()
+  const state = useTabState()
+  const list = tabs ?? meta.tabs
 
   return (
     <nav className={cx('tab-bar', styles['tab-bar'], className)}>
       {list.map(tab => {
-        const active = tab.id === ctx.activeTab.id
-        return (
-          <span key={`${keyPrefix}-${tab.id}`}>{renderItem ? renderItem(tab, active) : <TabItem tab={tab}>{typeof tab.label === 'string' ? tab.label : tab.id}</TabItem>}</span>
+        const active = tab.id === state.activeTab.id
+        return renderItem ? (
+          <Fragment key={`${keyPrefix}-${tab.id}`}>{renderItem(tab, active)}</Fragment>
+        ) : (
+          <TabItem key={`${keyPrefix}-${tab.id}`} tab={tab}>
+            {typeof tab.label === 'string' ? tab.label : tab.id}
+          </TabItem>
         )
       })}
       {children}

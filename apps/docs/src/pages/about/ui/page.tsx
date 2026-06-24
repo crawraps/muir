@@ -1,6 +1,6 @@
+import { useScrollRestore } from '@muir/navigation'
 import { useRef } from 'react'
 import { Pane } from 'src/entities/pane'
-import { useScrollRestore } from 'src/shared/lib'
 
 export function AboutPage() {
   const scrollRef = useRef<HTMLDivElement>(null)

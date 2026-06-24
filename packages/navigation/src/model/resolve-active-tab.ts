@@ -22,6 +22,26 @@ export function resolveActiveTab(tabs: TabDefinition[], location: string, fallba
   return { tab: fallback, matched: false, cacheKey: fallback.id }
 }
 
+let lastTabs: TabDefinition[] | null = null
+let lastLocation = ''
+let lastFallbackId = ''
+let lastResult: TabMatch | null = null
+
+/**
+ * Memoized version of `resolveActiveTab` — returns the cached result when
+ * `tabs`, `location`, and `fallbackId` have not changed.
+ */
+export function memoizedResolveActiveTab(tabs: TabDefinition[], location: string, fallbackId: string): TabMatch {
+  if (tabs === lastTabs && location === lastLocation && fallbackId === lastFallbackId && lastResult) {
+    return lastResult
+  }
+  lastTabs = tabs
+  lastLocation = location
+  lastFallbackId = fallbackId
+  lastResult = resolveActiveTab(tabs, location, fallbackId)
+  return lastResult
+}
+
 /** Build the default memory object for a tab. */
 export function defaultMemoryFor(tab: TabDefinition): TabMemory {
   return { path: tab.path, ...(tab.initialMemory ?? {}) }

@@ -131,3 +131,6 @@ export interface TabNavigationResult {
   /** The tab's memory object. */
   memory: TabMemory
 }
+
+/** Return type of `useTabItemHref`. */
+export type TabItemHref = string
