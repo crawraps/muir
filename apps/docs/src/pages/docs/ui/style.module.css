@@ -15,11 +15,28 @@
     border-radius: var(--md-sys-shape-corner-large);
   }
 
-  @media screen and (max-width: 1200px) {
+  &[is-sidebar-hidden] {
     .sidebar {
       display: none;
     }
   }
+
+  @media screen and (max-width: 700px) {
+    gap: 0;
+
+    .sidebar {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+  }
+}
+
+.docs-list-pane {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  border-radius: var(--md-sys-shape-corner-large);
+  padding: var(--spacing-small);
 }
 
 .docs-content {

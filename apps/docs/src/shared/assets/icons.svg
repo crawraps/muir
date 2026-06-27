@@ -43,6 +43,10 @@
       <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
         stroke-width="2" d="M12 11v5m0 5a9 9 0 1 1 0-18a9 9 0 0 1 0 18m.05-13v.1h-.1V8z"></path>
     </symbol>
+    <symbol viewBox="0 0 24 24" id="settings">
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+        stroke-width="2" d="M12 15a3 3 0 1 0 0-6a3 3 0 0 0 0 6m7.4-3a7.4 7.4 0 0 0-.1-1l2-1.6l-2-3.5l-2.4 1a7.3 7.3 0 0 0-1.7-1l-.4-2.6h-4l-.4 2.6a7.3 7.3 0 0 0-1.7 1l-2.4-1l-2 3.5l2 1.6a7.4 7.4 0 0 0 0 2l-2 1.6l2 3.5l2.4-1a7.3 7.3 0 0 0 1.7 1l.4 2.6h4l.4-2.6a7.3 7.3 0 0 0 1.7-1l2.4 1l2-3.5l-2-1.6a7.4 7.4 0 0 0 .1-1"></path>
+    </symbol>
     <symbol
       viewBox="0 0 24 24" id="attachment-tilt">
       <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"

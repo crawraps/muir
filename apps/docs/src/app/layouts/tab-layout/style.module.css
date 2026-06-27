@@ -51,7 +51,7 @@
 
   @media screen and (max-width: 500px) {
     flex-direction: column-reverse;
-    padding: var(--spacing-small);
+    padding: 0 0 var(--spacing-small);
     gap: var(--spacing-small);
 
     .navbar {
@@ -65,13 +65,17 @@
         }
       }
 
-      & > :not(nav) {
+      &> :not(nav) {
         display: none;
       }
     }
 
     .main-content {
       border-radius: var(--md-sys-shape-corner-large);
+    }
+
+    .blob-scene {
+      display: none;
     }
   }
 }

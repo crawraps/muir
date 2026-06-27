@@ -5,7 +5,9 @@ import { getDocFrontmatter } from 'src/entities/docs'
 import { AboutPage } from 'src/pages/about'
 import { DocPage } from 'src/pages/docs'
 import { HomePage } from 'src/pages/home'
+import { SettingsPage } from 'src/pages/settings'
 import iconsUrl from 'src/shared/assets/icons.svg?url'
+import { useMediaQuery } from 'src/shared/lib'
 import { injectSvgSprite } from 'src/shared/lib/inject-svg-sprite'
 import { type BlobConfig, BlobScene } from 'src/widgets/blob-scene'
 import { Navbar } from 'src/widgets/navbar'
@@ -36,14 +38,22 @@ const groupToBlobIndex: Record<string, number> = {
   extra: 1,
 }
 
-const tabs: TabDefinition[] = [
+const desktopTabs: TabDefinition[] = [
   { id: 'home', path: '/', element: <HomePage />, icon: 'home', label: 'Home' },
   { id: 'docs', path: '/docs', element: <DocPage />, icon: 'components', label: 'Docs', initialMemory: { path: '/docs/components/button' } },
   { id: 'about', path: '/about', element: <AboutPage />, icon: 'info', label: 'About' },
 ]
 
+const mobileTabs: TabDefinition[] = [
+  { id: 'home', path: '/', element: <HomePage />, icon: 'home', label: 'Home' },
+  { id: 'docs', path: '/docs', element: <DocPage />, icon: 'components', label: 'Docs', initialMemory: { path: '/docs/components/button' } },
+  { id: 'settings', path: '/settings', element: <SettingsPage />, icon: 'settings', label: 'Settings' },
+]
+
 function LayoutContent() {
   const [location] = useLocation()
+  const isMobile = useMediaQuery('(max-width: 500px)')
+  const tabs = isMobile ? mobileTabs : desktopTabs
 
   const currentBlob = useMemo(() => {
     if (!location.startsWith('/docs/')) return 0
@@ -65,6 +75,9 @@ function LayoutContent() {
 }
 
 export function TabLayout() {
+  const isMobile = useMediaQuery('(max-width: 500px)')
+  const tabs = isMobile ? mobileTabs : desktopTabs
+
   return (
     <TabProvider tabs={tabs}>
       <LayoutContent />
