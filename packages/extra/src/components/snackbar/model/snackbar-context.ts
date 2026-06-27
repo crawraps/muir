@@ -21,13 +21,11 @@ let _provider: SnackbarActions | null = null
 
 /** Register a provider — called when SnackbarProvider mounts. */
 export function registerProvider(actions: SnackbarActions): void {
-  console.log('[snackbar] registerProvider: provider registered')
   _provider = actions
 }
 
 /** Unregister a provider — called when SnackbarProvider unmounts. */
 export function unregisterProvider(): void {
-  console.log('[snackbar] unregisterProvider: provider unregistered')
   _provider = null
 }
 
@@ -42,16 +40,13 @@ export const snackbar: SnackbarActions = {
       console.error('[snackbar] show: no provider registered')
       throw new Error('snackbar must be used within a <SnackbarProvider>')
     }
-    const id = _provider.show(options)
-    console.log('[snackbar] show: created snackbar id=', id, 'content=', options.content)
-    return id
+    return _provider.show(options)
   },
   hide(id?: number): void {
     if (!_provider) {
       console.error('[snackbar] hide: no provider registered')
       throw new Error('snackbar must be used within a <SnackbarProvider>')
     }
-    console.log('[snackbar] hide: id=', id)
     _provider.hide(id)
   },
   dismiss(id?: number): void {
@@ -59,7 +54,6 @@ export const snackbar: SnackbarActions = {
       console.error('[snackbar] dismiss: no provider registered')
       throw new Error('snackbar must be used within a <SnackbarProvider>')
     }
-    console.log('[snackbar] dismiss: id=', id)
     _provider.dismiss(id)
   },
   list(): SnackEntry[] {
@@ -67,8 +61,6 @@ export const snackbar: SnackbarActions = {
       console.error('[snackbar] list: no provider registered')
       throw new Error('snackbar must be used within a <SnackbarProvider>')
     }
-    const entries = _provider.list()
-    console.log('[snackbar] list:', entries.length, 'active snackbars')
-    return entries
+    return _provider.list()
   },
 }

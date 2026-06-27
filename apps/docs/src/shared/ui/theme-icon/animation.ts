@@ -20,7 +20,6 @@ export function initAnimation(scope: AnimeScopeType, motion: Theme['motion']) {
   })
 
   scope.add('instantlyCycleTo', (theme: keyof typeof mapping) => {
-    console.log(line, mapping[theme])
     set(line, { y: mapping[theme] })
   })
 }

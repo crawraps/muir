@@ -19,20 +19,15 @@ export function useSnackbarQueue(userTemplates?: Record<string, SnackTemplate>) 
   const timersRef = useRef<Map<number, ReturnType<typeof setTimeout>>>(new Map())
 
   const hide = useCallback((id?: number) => {
-    console.log('[snackbar] hide called: id=', id)
     setSnacks(prev => {
       if (id !== undefined) {
-        const found = prev.find(s => s.id === id)
-        console.log('[snackbar] hide: found=', !!found, 'setting isHiding=true for id=', id)
         return prev.map(s => (s.id === id ? { ...s, isHiding: true } : s))
       }
-      console.log('[snackbar] hide: marking all as hiding')
       return prev.map(s => ({ ...s, isHiding: true }))
     })
   }, [])
 
   const dismiss = useCallback((id?: number) => {
-    console.log('[snackbar] dismiss called: id=', id)
     setSnacks(prev => {
       if (id !== undefined) {
         const timer = timersRef.current.get(id)
@@ -40,10 +35,8 @@ export function useSnackbarQueue(userTemplates?: Record<string, SnackTemplate>) 
           clearTimeout(timer)
           timersRef.current.delete(id)
         }
-        console.log('[snackbar] dismiss: removing id=', id)
         return prev.filter(s => s.id !== id)
       }
-      console.log('[snackbar] dismiss: removing all')
       for (const timer of Array.from(timersRef.current.values())) {
         clearTimeout(timer)
       }
@@ -70,11 +63,7 @@ export function useSnackbarQueue(userTemplates?: Record<string, SnackTemplate>) 
         isHiding: false,
       }
 
-      console.log('[snackbar] show: creating entry=', { id, content: entry.content, duration: entry.duration, anchors: entry.anchors, isHiding: entry.isHiding })
-      setSnacks(prev => {
-        console.log('[snackbar] show: adding to state, new length=', prev.length + 1)
-        return [...prev, entry]
-      })
+      setSnacks(prev => [...prev, entry])
       return id
     },
     [templates],
@@ -86,12 +75,7 @@ export function useSnackbarQueue(userTemplates?: Record<string, SnackTemplate>) 
 
   /** Remove a snackbar from state after its exit animation completes. Called by anime.js onComplete. */
   const onComplete = useCallback((id: number) => {
-    console.log('[snackbar] onComplete: removing id=', id)
-    setSnacks(prev => {
-      const filtered = prev.filter(s => s.id !== id)
-      console.log('[snackbar] onComplete: state length before=', prev.length, 'after=', filtered.length)
-      return filtered
-    })
+    setSnacks(prev => prev.filter(s => s.id !== id))
     const timer = timersRef.current.get(id)
     if (timer) {
       clearTimeout(timer)
@@ -105,9 +89,7 @@ export function useSnackbarQueue(userTemplates?: Record<string, SnackTemplate>) 
       if (snack.isHiding || snack.duration <= 0) continue
       if (timersRef.current.has(snack.id)) continue
 
-      console.log('[snackbar] setting auto-hide timer for id=', snack.id, 'duration=', snack.duration, 'ms')
       const timer = setTimeout(() => {
-        console.log('[snackbar] auto-hide timer fired for id=', snack.id)
         hide(snack.id)
       }, snack.duration)
 

@@ -1,5 +1,3 @@
-// FSD exception: @muir/navigation is imported directly because muir-capacitor
-// does not re-export it. This is documented in .omo/plans/navigation-remake.md.
 import { type TabDefinition, TabProvider, TabView } from '@muir/navigation'
 import { getDocFrontmatter } from 'src/entities/docs'
 import { AboutPage } from 'src/pages/about'

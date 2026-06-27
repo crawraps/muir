@@ -30,12 +30,6 @@ function groupByPosition(entries: SnackEntry[]): Map<string, { position: Resolve
 function SnackbarProvider({ children, templates, style }: SnackbarProviderProps) {
   const { snacks, show, hide, dismiss, list, onComplete } = useSnackbarQueue(templates)
 
-  console.log(
-    '[snackbar] SnackbarProvider render: snacks=',
-    snacks.length,
-    snacks.map(s => ({ id: s.id, isHiding: s.isHiding, content: s.content })),
-  )
-
   const actions = useMemo<SnackbarActions>(() => ({ show, hide, dismiss, list }), [show, hide, dismiss, list])
 
   useEffect(() => {
@@ -46,10 +40,6 @@ function SnackbarProvider({ children, templates, style }: SnackbarProviderProps)
   }, [actions])
 
   const groups = useMemo(() => groupByPosition(snacks), [snacks])
-  console.log(
-    '[snackbar] SnackbarProvider: groups=',
-    Array.from(groups.entries()).map(([k, v]) => ({ key: k, position: v.position, count: v.entries.length })),
-  )
 
   return (
     <SnackbarContext.Provider value={actions}>
