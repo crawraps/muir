@@ -2,6 +2,8 @@
 <div align="center"><h1>𝚖𝚞𝚒𝚛</h1></div>
 <div align="center">Material UI Expressive style components with a bit of Reimagination ✨</div>
 
+<div>*currently in pre-alpha</div>
+
 ## Setup
 
 ```bash
