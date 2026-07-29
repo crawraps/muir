@@ -1,4 +1,4 @@
-import { Code, useCodeStyle } from '@muir/capacitor'
+import { Code, useCodeStyle } from '@muir/extra'
 import { ThemeIcon } from 'src/shared'
 import { extractFilename } from '../model/extract-filename'
 import { normalizeLanguage, SyntaxHighlighter } from '../model/languages'

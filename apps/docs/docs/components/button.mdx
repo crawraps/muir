@@ -3,7 +3,7 @@ source: lib/components/button
 group: basic
 ---
 
-import { Button, Icon } from '@muir/capacitor';
+import { Button, Icon, Split } from '@muir/base';
 
 # Button
 
@@ -85,7 +85,41 @@ When `href` is provided, the button renders as an `<a>` tag.
 
 <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', margin: '1rem 0' }}>
   <Button variant="filled" href="#">Link Button</Button>
-  <Button variant="outlined" href="#"><Icon name="open_in_new" /><span>Open Link</span></Button>
+  <Button variant="outlined" href="#"><Icon name="external-link" /><span>Open Link</span></Button>
+</div>
+
+### Sizes
+
+Five size scales: `xs`, `s`, `m` (default), `l`, `xl`.
+
+<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', margin: '1rem 0' }}>
+  <Button variant="filled" size="xs">extra small</Button>
+  <Button variant="filled" size="s">small</Button>
+  <Button variant="filled" size="m">medium</Button>
+  <Button variant="filled" size="l">large</Button>
+  <Button variant="filled" size="xl">extra large</Button>
+</div>
+
+### Icon (square padding)
+
+When `icon` is true, horizontal padding equals vertical padding for a compact square shape.
+
+<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', margin: '1rem 0' }}>
+  <Button variant="filled" icon><Icon name="heart" /></Button>
+  <Button variant="filled" icon size="l"><Icon name="heart" /></Button>
+  <Button variant="outlined" icon><Icon name="info" /></Button>
+  <Button variant="text" icon><Icon name="info" /></Button>
+  <Button variant="filled" icon disabled><Icon name="heart" /></Button>
+</div>
+
+### Expressive
+
+When `expressive` is true, hover increases border-radius proportionally, press expands padding on the chosen axis, and release plays a "pop" that overshoots padding and springs the shape back. `animationAxis` controls which axis the padding animation affects.
+
+<div style={{ display: 'flex', gap: '0.25rem', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', margin: '1rem 0' }}>
+  <Button variant="outlined" expressive>Expressive</Button>
+  <Button variant="filled" expressive>Splitted</Button>
+  <Button variant="outlined" expressive>Buttons</Button>
 </div>
 
 ## API
@@ -95,10 +129,14 @@ Extends native `<button>` props except `prefix`.
 | Prop | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | `variant` | `'elevated' \| 'filled' \| 'outlined' \| 'text' \| 'filled-tonal'` | `'filled'` | Visual style |
+| `size` | `'xs' \| 's' \| 'm' \| 'l' \| 'xl'` | `'m'` | Size scale |
 | `href` | `string` | `undefined` | Renders as an `<a>` tag |
 | `target` | `'_blank' \| '_self' \| '_parent' \| '_top' \| string` | `undefined` | Link target |
 | `readOnly` | `boolean` | `false` | Prevents interaction but may still be focusable |
-| `icon` | `boolean` | `false` | Forces a square icon-button shape (no padding, width equals height) |
+| `icon` | `boolean` | `false` | Uses equal horizontal and vertical padding |
+| `round` | `boolean` | `false` | Fully rounded corners |
+| `expressive` | `boolean` | `false` | Enables expressive hover/press/release animations |
+| `animationAxis` | `'horizontal' \| 'vertical'` | `'horizontal'` | Axis for expressive padding animation |
 | `disabled` | `boolean` | `false` | Disables the button |
 | `children` | `ReactNode` | `undefined` | Button content |
 
@@ -108,10 +146,10 @@ Override these variables on the Button root to customize appearance.
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
-| `--height` | `2.5rem` | Minimum height |
+| `--padding-y` | `0.5rem` | Vertical padding |
+| `--padding-x` | `1rem` | Horizontal padding |
 | `--shape` | `var(--md-sys-shape-corner-full)` | Border radius |
 | `--gap` | `0.5rem` | Gap between children |
-| `--padding-x` | `calc(var(--height) / 2)` | Horizontal padding |
 | `--background-color` | `transparent` | Background color |
 | `--color` | `inherit` | Foreground (text/icon) color |
 | `--border` | `none` | Border shorthand |
@@ -124,3 +162,6 @@ Override these variables on the Button root to customize appearance.
 | `--hover-state-opacity` | `0.08` | Hover state opacity |
 | `--focus-state-opacity` | `0.12` | Focus state opacity |
 | `--active-state-opacity` | `0.12` | Active state opacity |
+| `--expressive-hover-shape-scale` | `1.5` | Border-radius scale on hover (expressive) |
+| `--expressive-active-padding-scale` | `1.15` | Padding scale on press (expressive) |
+| `--expressive-pop-padding-scale` | `1.35` | Padding overshoot peak on release (expressive) |

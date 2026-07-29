@@ -34,10 +34,10 @@
       "none": 0,
       "extra-small": 0.175,
       "small": 0.25,
-      "large": 0.625,
-      "medium": 0.375,
-      "extra-large": 1,
-      "full": 0.5
+      "large": 1,
+      "medium": 0.425,
+      "extra-large": 1.5,
+      "full": 999
     },
     "typeface": {
       "brandFamily": "Roboto, sans-serif",
@@ -45,29 +45,29 @@
       "monospaceFamily": "Roboto Mono, monospace",
       "typeScale": {
         "body": {
-          "large": { "lineHeight": 1.5, "size": 1.25, "weight": 600 },
-          "medium": { "lineHeight": 1.5, "size": 1, "weight": 400 },
-          "small": { "lineHeight": 1.5, "size": 0.875, "weight": 300 }
+          "large": { "lineHeight": 1.5, "size": 1, "weight": 400 },
+          "medium": { "lineHeight": 1.43, "size": 0.875, "weight": 400 },
+          "small": { "lineHeight": 1.33, "size": 0.75, "weight": 400 }
         },
         "display": {
-          "large": { "lineHeight": 1.2, "size": 3, "weight": 700 },
-          "medium": { "lineHeight": 1.2, "size": 2.625, "weight": 600 },
-          "small": { "lineHeight": 1.2, "size": 2.25, "weight": 500 }
+          "large": { "lineHeight": 1.123, "size": 3.5625, "weight": 400 },
+          "medium": { "lineHeight": 1.16, "size": 2.8125, "weight": 400 },
+          "small": { "lineHeight": 1.22, "size": 2.25, "weight": 400 }
         },
         "headline": {
-          "large": { "lineHeight": 1.2, "size": 3.25, "weight": 700 },
-          "medium": { "lineHeight": 1.2, "size": 1.75, "weight": 600 },
-          "small": { "lineHeight": 1.2, "size": 1.5, "weight": 500 }
+          "large": { "lineHeight": 1.25, "size": 2, "weight": 400 },
+          "medium": { "lineHeight": 1.29, "size": 1.75, "weight": 400 },
+          "small": { "lineHeight": 1.33, "size": 1.5, "weight": 400 }
         },
         "label": {
-          "large": { "lineHeight": 1.3, "size": 1.25, "weight": 600 },
-          "medium": { "lineHeight": 1.3, "size": 1, "weight": 500 },
-          "small": { "lineHeight": 1.3, "size": 0.875, "weight": 400 }
+          "large": { "lineHeight": 1.11, "size": 0.875, "weight": 400 },
+          "medium": { "lineHeight": 1.33, "size": 0.75, "weight": 400 },
+          "small": { "lineHeight": 1.45, "size": 0.6875, "weight": 400 }
         },
         "title": {
-          "large": { "lineHeight": 1.4, "size": 1.75, "weight": 800 },
-          "medium": { "lineHeight": 1.4, "size": 1.5, "weight": 700 },
-          "small": { "lineHeight": 1.4, "size": 1.25, "weight": 600 }
+          "large": { "lineHeight": 1.27, "size": 1.375, "weight": 400 },
+          "medium": { "lineHeight": 1.5, "size": 1, "weight": 400 },
+          "small": { "lineHeight": 1.43, "size": 0.875, "weight": 400 }
         }
       }
     }

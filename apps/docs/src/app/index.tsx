@@ -1,17 +1,16 @@
-import { Router } from 'wouter'
-import { TabLayout } from './layouts/tab-layout/layout'
-import './global.css'
-import { CodeStyleProvider, SnackbarProvider, type Theme, ThemeProvider } from '@muir/capacitor'
-import theme from 'src/app/theme.json'
+import { ThemeProvider } from '@muir/base'
+import { CodeStyleProvider, SnackbarProvider } from '@muir/extra'
+import { Router } from './routes'
 
-export const App = () => {
+import { themes } from './styles'
+import './styles/global.css'
+
+export function App() {
   return (
-    <ThemeProvider themes={{ light: theme as Partial<Theme>, dark: theme as Partial<Theme> }}>
+    <ThemeProvider themes={themes}>
       <CodeStyleProvider>
         <SnackbarProvider>
-          <Router>
-            <TabLayout />
-          </Router>
+          <Router />
         </SnackbarProvider>
       </CodeStyleProvider>
     </ThemeProvider>

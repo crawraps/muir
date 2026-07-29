@@ -1,0 +1,176 @@
+---
+source: packages/navigation/src
+---
+
+# navigation
+
+Mobile-app-style tab navigation with state preservation, per-tab routing scope, and two-level back navigation, built on wouter.
+
+## Usage
+
+```tsx
+import { Route, Switch, TabProvider, Tabs, useTabController } from '@muir/navigation'
+
+function App() {
+  return (
+    <Switch>
+      <Route nest path="/tabs">
+        <TabProvider>
+          <NavBar />
+          <Tabs>
+            <Route default path="/home">
+              <HomePage />
+            </Route>
+            <Route nest path="/docs">
+              <DocsLayout />
+            </Route>
+            <Route path="/settings">
+              <SettingsPage />
+            </Route>
+          </Tabs>
+        </TabProvider>
+      </Route>
+    </Switch>
+  )
+}
+
+function NavBar() {
+  const { switchTo, activeTab } = useTabController()
+  return (
+    <nav>
+      <button onClick={() => switchTo('/home')}>Home</button>
+      <button onClick={() => switchTo('/docs')}>Docs</button>
+      <button onClick={() => switchTo('/settings')}>Settings</button>
+    </nav>
+  )
+}
+```
+
+Auto-creates an internal `<TabProvider>` when none is detected — use explicit `<TabProvider>` when the controller is needed outside `<Tabs>`:
+
+```tsx
+import { TabProvider, Tabs, useTabController } from '@muir/navigation'
+
+function Layout() {
+  return (
+    <TabProvider>
+      <NavBar />
+      <Tabs>
+        <Route default path="/home"><HomePage /></Route>
+        <Route path="/settings"><SettingsPage /></Route>
+      </Tabs>
+    </TabProvider>
+  )
+}
+```
+
+Nested routes inside a tab work with wouter's `<Switch>` and `<Route>`:
+
+```tsx
+import { Route, Switch, Tabs } from '@muir/navigation'
+
+<Tabs>
+  <Route nest path="/docs">
+    <Switch>
+      <Route path="/*"><DocPage /></Route>
+      <Route><DocListPage /></Route>
+    </Switch>
+  </Route>
+</Tabs>
+```
+
+## Behavior
+
+### Tab state preservation
+
+| Scenario | Result |
+|---|---|
+| Switch from tab A to tab B | Tab A subtree frozen via `react-freeze`; DOM, input values, scroll position, and nested route state preserved |
+| Switch back to tab A | Tab A unfreezes; URL restores to tab A's last visited sub-route |
+| Navigate within tab A | Tab A's location stack updates; other tabs unaffected |
+| Direct URL navigation to deep route | Matching tab activates; its stored location initializes to the deep route |
+
+### Back navigation
+
+| Stack state | `goBack()` result |
+|---|---|
+| Active tab has >1 entry in its stack | Pop active tab's stack; navigate to previous entry within same tab |
+| Active tab stack exhausted, switch stack non-empty | Switch to previous tab; navigate to its last location |
+| Both stacks exhausted | No-op |
+
+Stack depth is capped at 50 entries per stack (tab stacks and switch stack).
+
+### Validation
+
+| Condition | Error thrown |
+|---|---|
+| Non-`<Route>` child in `<Tabs>` | `<Tabs> only accepts <Route> elements as direct children` |
+| `<Route>` without `path` in `<Tabs>` | `<Route> inside <Tabs> must have a path` |
+| Duplicate `path` values in `<Tabs>` | `<Route> inside <Tabs> has duplicate path: "/path"` |
+| `useTabController()` outside `<TabProvider>` or `<Tabs>` | `useTabController must be used within a <TabProvider> or <Tabs> component` |
+
+## API
+
+### Route
+
+Extends wouter's `<Route>` with `NestContext` for nested prefix resolution.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `path` | `string` | `undefined` | Route path to match. Omit for default route inside `<Switch>` |
+| `nest` | `boolean` | `false` | Enables nested routing; child routes resolve relative to this path |
+| `default` | `boolean` | `false` | Marks the default tab inside `<Tabs>` |
+| `children` | `ReactNode` | `undefined` | Content rendered when path matches |
+| `component` | `ComponentType` | `undefined` | Component rendered instead of children |
+
+### Tabs
+
+Container that renders each `<Route>` child in its own scoped `<Router>` with `KeepAlive`.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `children` | `ReactNode` | `undefined` | `<Route>` elements only — throws otherwise |
+| `className` | `string` | `undefined` | Applied to the container `<div>` |
+
+### TabProvider
+
+Owns tab history, location store, and controller context.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `children` | `ReactNode` | `undefined` | Content rendered inside the provider |
+
+### TabController
+
+Returned by `useTabController()`.
+
+| Field | Type | Description |
+| ---- | ---- | ----------- |
+| `activeTab` | `string` | Path of the currently active tab |
+| `scopedLocation` | `string` | Current location scoped to the nearest wouter Router |
+| `scopedNavigate` | `(to: string) => void` | Navigate function scoped to the nearest wouter Router |
+| `switchTo` | `(tabPath: string) => void` | Switch to a tab by its path; restores last sub-route |
+| `goBack` | `() => void` | Pop tab stack or switch to previous tab |
+| `canGoBack` | `boolean` | Whether `goBack()` will perform any action |
+
+### Hooks
+
+| Hook | Returns | Description |
+| ---- | ------- | ----------- |
+| `useTabController()` | `TabController` | Access the tab controller. Throws if outside provider |
+| `useGoBack()` | `() => void` | Returns a function that calls `goBack()`. No-ops if outside provider |
+| `useNestPrefix()` | `string` | Returns the current nesting prefix from `NestContext` |
+
+### Re-exported from wouter
+
+`Link`, `Redirect`, `Route`, `Router`, `Switch`, `matchRoute`, `useLocation`, `useParams`, `useRoute`, `useRouter`, `useSearch`, `useSearchParams`
+
+## Rules
+
+1. Always wrap `<Tabs>` in a wouter `<Router>` or nested `<Route nest>` — `useLocation` requires it
+2. Never pass non-`<Route>` elements as direct children of `<Tabs>` — it throws
+3. Never use `useTabController()` outside `<TabProvider>` or `<Tabs>` — it throws
+4. Always use explicit `<TabProvider>` when the controller is needed outside `<Tabs>` (e.g., in a navbar)
+5. Never rely on effects running inside frozen tabs — `react-freeze` suspends effects while frozen
+6. Always use `switchTo()` for tab switching — direct `navigate()` bypasses history tracking
+7. Never expect `scopedLocation` to be the full URL — it is scoped to the nearest wouter Router context

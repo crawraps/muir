@@ -1,4 +1,4 @@
-import { AnimeScope, type AnimeScopeInit } from '@muir/capacitor'
+import { AnimeScope, type AnimeScopeInit } from '@muir/base'
 import { animate, type Scope, stagger, svg } from 'animejs'
 import type { JSX } from 'react'
 

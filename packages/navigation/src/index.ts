@@ -1,12 +1,21 @@
-export * from './model/resolve-active-tab'
-export * from './model/types'
-export * from './model/use-keep-alive-context'
-export * from './model/use-scroll-restore'
-export * from './model/use-tab-item-href'
-export * from './model/use-tab-memory'
-export * from './model/use-tab-navigation'
-export * from './model/use-tab-path'
-export * from './ui/tab-bar'
-export * from './ui/tab-item'
-export * from './ui/tab-provider'
-export * from './ui/tab-view'
+export type {
+  DefaultParams,
+  LinkProps,
+  Match,
+  MatchWithParams,
+  NavigationalProps,
+  NoMatch,
+  RedirectProps,
+  RegexRouteParams,
+  RouteComponentProps,
+  RouteProps as WouterRouteProps,
+  RouterProps,
+  StringRouteParams,
+  URLSearchParamsInit,
+} from 'wouter'
+export { Link, matchRoute, Redirect, Route, Router, Switch, useLocation, useParams, useRoute, useRouter, useSearch, useSearchParams } from 'wouter'
+export type { RouteProps, TabController, TabEntry, TabProviderProps, TabsProps } from './model/types'
+export { useNestPrefix } from './shared/nest-context'
+export { useGoBack, useTabController } from './shared/tab-context'
+export { TabProvider } from './ui/tab-provider'
+export { Tabs } from './ui/tabs'

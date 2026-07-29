@@ -1,0 +1,9 @@
+.navbar-layout {
+  display: flex;
+  gap: var(--spacing-medium);
+  padding: var(--spacing-medium);
+
+  >*:last-child {
+    flex: 1;
+  }
+}

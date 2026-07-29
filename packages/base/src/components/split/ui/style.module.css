@@ -6,42 +6,42 @@
     flex-direction: column;
   }
 
-  & > * {
+  &>* {
     overflow: hidden;
     border-radius: var(--shape-inner);
   }
 
   &:not([is-vertical]) {
-    & > :first-child {
+    &> :first-child {
       border-radius: var(--shape) var(--shape-inner) var(--shape-inner) var(--shape);
     }
 
-    & > :last-child {
+    &> :last-child {
       border-radius: var(--shape-inner) var(--shape) var(--shape) var(--shape-inner);
     }
   }
 
   &[is-vertical] {
-    & > :first-child {
+    &> :first-child {
       border-radius: var(--shape) var(--shape) var(--shape-inner) var(--shape-inner);
     }
 
-    & > :last-child {
+    &> :last-child {
       border-radius: var(--shape-inner) var(--shape-inner) var(--shape) var(--shape);
     }
   }
 
   &[is-equal] {
-    &:not([is-vertical]) > * {
+    &:not([is-vertical])>* {
       flex: 1 1 0;
     }
 
-    &[is-vertical] > * {
+    &[is-vertical]>* {
       flex: 1 1 0;
     }
   }
 
-  & > :only-child {
+  &> :only-child {
     border-radius: var(--shape);
   }
 }

@@ -27,9 +27,29 @@ export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonE
    */
   readOnly?: boolean
   /**
-   * If true, forces the button into a square icon-button shape (no padding, width equals height).
+   * If true, uses equal horizontal and vertical padding for a compact square shape.
    */
   icon?: boolean
+  /**
+   * The size scale of the button.
+   * @default 'm'
+   */
+  size?: 'xs' | 's' | 'm' | 'l' | 'xl'
+  /**
+   * If true, the button will have rounded corners.
+   * @default false
+   */
+  round?: boolean
+  /**
+   * If true, enables expressive hover/active/release animations (proportional border-radius and padding pop).
+   * @default false
+   */
+  expressive?: boolean
+  /**
+   * The axis along which expressive padding animations are applied.
+   * @default 'horizontal'
+   */
+  animationAxis?: 'horizontal' | 'vertical'
   /**
    * Custom surface element rendered behind the content for filled, filled-tonal, and elevated variants.
    * Defaults to `<Surface />`.

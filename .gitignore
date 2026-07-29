@@ -19,4 +19,7 @@ doc_build/
 
 .direnv
 
-.omo
+.omo/*
+.omp/*
+.opencode/*
+.tmp/*

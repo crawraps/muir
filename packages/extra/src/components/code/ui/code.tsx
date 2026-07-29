@@ -21,10 +21,10 @@ function Code({ filename, ...props }: CodeProps) {
         {filename && <span className={cx('filename')}>{filename}</span>}
         <span className={cx('spacer')} />
         <div className={cx('toolbar')}>
-          <Button icon onClick={handleCopyButtonClick} variant='text'>
+          <Button icon onClick={handleCopyButtonClick} size='xs' variant='text'>
             {props.copyIcon || <Icon name='copy' />}
           </Button>
-          <Button icon onClick={cycleTheme} variant='text'>
+          <Button icon onClick={cycleTheme} size='xs' variant='text'>
             {props.themeIcon || <Icon name='theme' />}
           </Button>
         </div>

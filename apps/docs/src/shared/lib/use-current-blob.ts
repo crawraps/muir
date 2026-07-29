@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
+import { useLocation } from 'react-router-dom'
 import { getDocFrontmatter } from 'src/entities/docs'
 import type { BlobConfig } from 'src/widgets/blob-scene'
-import { useLocation } from 'wouter'
 
 const blobs: BlobConfig[] = [
   {
@@ -26,15 +26,15 @@ const groupToBlobIndex: Record<string, number> = {
 }
 
 export function useCurrentBlob() {
-  const [location] = useLocation()
+  const location = useLocation()
 
   const currentBlob = useMemo(() => {
-    if (!location.startsWith('/docs/')) return 0
-    const docName = location.replace('/docs/', '')
+    if (!location.pathname.startsWith('/tabs/docs/')) return 0
+    const docName = location.pathname.replace('/tabs/docs/', '')
     const frontmatter = getDocFrontmatter(docName)
     const group = frontmatter?.group as string | undefined
     return group && group in groupToBlobIndex ? groupToBlobIndex[group] : 0
-  }, [location])
+  }, [location.pathname])
 
   return { blobs, blob: blobs[currentBlob] }
 }

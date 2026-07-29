@@ -3,6 +3,7 @@ import { defineConfig } from '@rsbuild/core'
 import { pluginBabel } from '@rsbuild/plugin-babel'
 import { pluginMdx } from '@rsbuild/plugin-mdx'
 import { pluginReact } from '@rsbuild/plugin-react'
+import { pluginWorkspaceDev } from 'rsbuild-plugin-workspace-dev'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
@@ -27,13 +28,14 @@ export default defineConfig({
     alias: {
       src: resolve(__dirname, './src'),
       docs: resolve(__dirname, './docs'),
-      '#shared': resolve(__dirname, '../../packages/base/src/shared'),
+      '#shared': resolve(__dirname, './node_modules/@muir/base/src/shared'),
     },
   },
   html: {
     template: './src/index.html',
   },
   plugins: [
+    pluginWorkspaceDev(),
     pluginReact(),
     pluginMdx({
       mdxLoaderOptions: {

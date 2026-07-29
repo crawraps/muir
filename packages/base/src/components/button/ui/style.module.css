@@ -2,7 +2,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
   border: var(--border);
   outline: none;
   vertical-align: middle;
@@ -10,30 +9,42 @@
   color: var(--color);
   text-decoration: none;
   font-family: var(--font-family);
-  font-size: var(--font-size);
   font-weight: var(--font-weight);
   line-height: var(--line-height);
-  border-radius: var(--shape);
-  min-height: var(--height);
-  padding: 0 var(--padding-x);
+  border-radius: var(--expressive-shape, var(--shape));
+  padding: var(--padding-y) var(--padding-x);
   box-shadow: var(--box-shadow);
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+  transition: border-radius var(--md-sys-motion-expressive-fast-spatial-duration) var(--md-sys-motion-expressive-fast-spatial-curve);
 
   .state-layer {
     position: absolute;
     inset: 0;
-    background-color: currentColor;
-    opacity: 0;
+    background-color: transparent;
     z-index: 0;
+
+    .hover {
+      background-color: currentColor;
+      opacity: 0;
+      position: absolute;
+      inset: 0;
+      transition: opacity var(--transition-duration) var(--transition-easing);
+    }
 
     .ripple {
       position: absolute;
       border-radius: 50%;
       background-color: currentColor;
       pointer-events: none;
+      opacity: 0;
+      min-width: max(100%, 10rem);
+      min-height: max(100%, 10rem);
+      aspect-ratio: 1;
+      translate: -50% -50%;
     }
   }
 
@@ -44,7 +55,7 @@
     border-radius: var(--shape);
     overflow: hidden;
 
-    > div {
+    >div {
       width: 100%;
       height: 100%;
 
@@ -57,8 +68,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: var(--gap);
     z-index: 2;
+    gap: var(--gap);
+    font-size: var(--font-size);
   }
 
   &:disabled {
@@ -67,57 +79,21 @@
   }
 
   @media (hover: hover) {
-    &:hover:not(:disabled):not([is-readonly]) .state-layer {
+    &:hover:not(:disabled):not([is-readonly]) .state-layer .hover {
       opacity: var(--hover-state-opacity);
     }
+  }
 
-    &:active:not(:disabled):not([is-readonly]) .state-layer {
-      opacity: var(--active-state-opacity);
+  &[is-expressive] {
+    @media (hover: hover) {
+      &:hover:not(:disabled):not([is-readonly]) {
+        --expressive-shape: calc(var(--shape) * var(--expressive-radius-scale));
+      }
     }
   }
 
-  &:focus-visible:not(:disabled):not([is-readonly]) .state-layer {
+  &:focus-visible:not(:disabled):not([is-readonly]) .state-layer .hover {
     opacity: var(--focus-state-opacity);
-  }
-
-  &:has(> .content > svg:only-child) {
-    width: var(--width, var(--height));
-    padding: 0;
-  }
-
-  &[variant='filled'] {
-    --background-color: var(--md-sys-color-primary);
-    --color: var(--md-sys-color-on-primary);
-  }
-
-  &[variant='elevated'] {
-    --background-color: var(--md-sys-color-surface-container-low);
-    --color: var(--md-sys-color-primary);
-    --box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
-  }
-
-  &[variant='outlined'] {
-    --border: 1px solid var(--md-sys-color-outline);
-    --color: var(--md-sys-color-primary);
-    --padding-x: calc(var(--height) / 2 - 1px);
-
-    &:focus-visible {
-      border-color: var(--md-sys-color-primary);
-    }
-  }
-
-  &[variant='text'] {
-    --color: var(--md-sys-color-primary);
-  }
-
-  &[variant='filled-tonal'] {
-    --background-color: var(--md-sys-color-secondary-container);
-    --color: var(--md-sys-color-on-secondary-container);
-  }
-
-  &[is-icon] {
-    width: var(--height);
-    padding: 0;
   }
 
   &[is-readonly] {

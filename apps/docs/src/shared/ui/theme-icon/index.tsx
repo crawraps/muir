@@ -1,4 +1,4 @@
-import { AnimeScope, Icon, useComponentDidUpdate } from '@muir/capacitor'
+import { AnimeScope, Icon, useComponentDidUpdate } from '@muir/base'
 import type { Scope } from 'animejs'
 import { initAnimation } from './animation'
 import type { ThemeIconProps } from './props'

@@ -1,4 +1,4 @@
-import { Text } from '@muir/capacitor'
+import { Text } from '@muir/base'
 import type React from 'react'
 import { CodeBlock } from 'src/entities/code-block'
 import { Table } from 'src/entities/table'

@@ -7,23 +7,55 @@
   padding: var(--spacing-medium);
   box-sizing: border-box;
   gap: var(--spacing-medium);
+  position: relative;
 
-  .navbar {
+  .tabs {
     position: relative;
     z-index: 1;
-    flex-shrink: 0;
+    flex: 1;
+    display: flex;
+    min-width: 0;
   }
 
-  .main-content {
-    flex-grow: 1;
-    border-top-left-radius: var(--md-sys-shape-corner-large);
-    border-bottom-left-radius: var(--md-sys-shape-corner-large);
-    border-top-right-radius: var(--md-sys-shape-corner-large);
-    border-bottom-right-radius: var(--md-sys-shape-corner-large);
-    position: relative;
-    z-index: 1;
+  .outlet {
+    flex: 1;
+    border-radius: var(--md-sys-shape-corner-large);
     overflow: hidden;
+  }
+
+  .tab-bar {
+    flex-shrink: 0;
     display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+    padding: var(--spacing-small);
+    background: var(--md-sys-color-surface-container);
+    border-radius: var(--md-sys-shape-corner-large);
+    --background: transparent;
+    --color: var(--md-sys-color-on-surface-variant);
+    --color-selected: var(--md-sys-color-primary);
+  }
+
+  .tab-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-small);
+    border-radius: var(--md-sys-shape-corner-full);
+    color: var(--md-sys-color-on-surface-variant);
+    text-decoration: none;
+
+    &:hover,
+    &:active {
+      background: var(--md-sys-color-surface-container-highest);
+    }
+  }
+
+  .tab-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: none;
+    stroke: currentColor;
   }
 
   .blob-scene {
@@ -39,39 +71,27 @@
     padding: var(--spacing-small);
     gap: var(--spacing-small);
 
-    .navbar {
-      flex-direction: row;
-      width: 100%;
+    .tabs {
+      flex-direction: column-reverse;
     }
 
-    .main-content {
+    .tab-bar {
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-evenly;
+    }
+
+    .outlet {
       border-radius: var(--md-sys-shape-corner-large);
     }
   }
 
   @media screen and (max-width: 500px) {
-    flex-direction: column-reverse;
     padding: 0 0 var(--spacing-small);
     gap: var(--spacing-small);
 
-    .navbar {
-      nav {
-        width: 100%;
-        justify-content: space-evenly;
-        gap: 0;
-
-        button {
-          --width: 5rem;
-        }
-      }
-
-      &> :not(nav) {
-        display: none;
-      }
-    }
-
-    .main-content {
-      border-radius: var(--md-sys-shape-corner-large);
+    .tab-bar {
+      padding: 0 var(--spacing-small);
     }
 
     .blob-scene {

@@ -1,4 +1,4 @@
-import type { AnimeScopeType, Theme } from '@muir/capacitor'
+import type { AnimeScopeType, Theme } from '@muir/base'
 import { animate, set, spring } from 'animejs'
 
 const mapping = {

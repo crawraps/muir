@@ -1,5 +1,5 @@
 import { createElement } from 'react'
-import { Surface } from 'src/basic'
+import { Surface } from 'src/components'
 import { atr } from 'src/shared'
 import type { TextInputProps } from '../model/properties'
 import { AnimatedErrors } from './animation'

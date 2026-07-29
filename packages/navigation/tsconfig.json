@@ -1,12 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "types": ["react", "react-dom"],
-    "baseUrl": ".",
-    "paths": {
-      "src/*": ["./src/*"],
-      "@test/*": ["./tests/*"]
-    }
+    "types": ["react", "react-dom"]
   },
-  "include": ["src", "env.d.ts", "auto-imports.d.ts"]
+  "include": ["src"]
 }

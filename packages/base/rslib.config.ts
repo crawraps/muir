@@ -45,12 +45,7 @@ export default defineConfig({
     rspack: {
       plugins: [
         AutoImport({
-          imports: [
-            'react',
-            {
-              react: ['Children', 'cloneElement', 'createElement'],
-            },
-          ],
+          imports: ['react'],
           dts: './auto-imports.d.ts',
         }),
       ],

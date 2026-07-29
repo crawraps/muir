@@ -1,4 +1,4 @@
-import { Surface } from '@muir/capacitor'
+import { Surface } from '@muir/base'
 import type { TableCellProps, TableRootProps, TableRowProps, TableSectionProps } from '../model/types'
 import styling from './style.module.css'
 

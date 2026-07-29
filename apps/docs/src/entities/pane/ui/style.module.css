@@ -1,4 +1,5 @@
 div.pane {
+  width: 100%;
   border-radius: var(--md-sys-shape-corner-extra-large);
   --surface-blur: 36px;
   --surface-opacity: 0.85;

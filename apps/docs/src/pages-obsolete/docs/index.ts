@@ -1,0 +1,1 @@
+export { DocPage } from './ui/page'

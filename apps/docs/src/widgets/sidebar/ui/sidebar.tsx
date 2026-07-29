@@ -1,21 +1,12 @@
-import { Button } from '@muir/capacitor'
-import { useTabPath } from '@muir/navigation'
-import { getAvailableDocs } from 'src/entities/docs'
+import { atr } from '@muir/base'
 import { Pane } from 'src/entities/pane'
-import { Link } from 'wouter'
+import { DocsList } from 'src/features/docs-list'
 import type { Props } from '../model/types'
 
-export function Sidebar(props: Props) {
-  const docs = getAvailableDocs()
-  const location = useTabPath()
-
+export function Sidebar({ className, hidden, ...props }: Props) {
   return (
-    <Pane className={cx('sidebar', props.className)}>
-      {docs.map(doc => (
-        <Link className={cx('nav-link', { active: location === `/docs/${doc}` })} href={`/docs/${doc}`} key={doc}>
-          <Button variant='text'>{doc}</Button>
-        </Link>
-      ))}
+    <Pane className={cx('sidebar', className)} is-hidden={atr(hidden)} {...props}>
+      <DocsList />
     </Pane>
   )
 }

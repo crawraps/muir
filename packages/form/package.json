@@ -7,37 +7,34 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
   "files": [
     "dist"
   ],
-  "peerDependencies": {
-    "react": ">=16.9.0",
+  "dependencies": {
     "@hookform/resolvers": "^5.2.2",
-    "react-hook-form": "^7.71.2",
+    "@muir/base": "workspace:*",
+    "@muir/extra": "workspace:*",
     "clsx": "^2.1.1",
+    "react-hook-form": "^7.71.2",
     "yup": "^1.7.1"
   },
-  "dependencies": {
-    "@muir/base": "workspace:*",
-    "@muir/extra": "workspace:*"
+  "peerDependencies": {
+    "react": ">=16.9.0"
   },
   "devDependencies": {
-    "@hookform/resolvers": "^5.2.2",
     "@rsbuild/plugin-babel": "^1.2.1",
     "@rsbuild/plugin-react": "^1.4.6",
     "@rslib/core": "^0.19.6",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "clsx": "^2.1.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-hook-form": "^7.71.2",
     "typescript": "^5.9.3",
-    "unplugin-auto-import": "^21.0.0",
-    "yup": "^1.7.1"
+    "unplugin-auto-import": "^21.0.0"
   },
   "scripts": {
     "build": "rslib build",

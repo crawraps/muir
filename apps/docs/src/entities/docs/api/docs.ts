@@ -65,3 +65,22 @@ export const getDocFrontmatter = (name: string): Record<string, unknown> | null 
   }
   return null
 }
+
+type Doc = {
+  name: string
+  component: React.ComponentType
+  frontmatter: Record<string, unknown>
+}
+
+export function resolveDoc(name: string): Doc | null {
+  if (!docsContext) return null
+
+  const key = `./${name}.mdx`
+  if (!docsContext.keys().includes(key)) return null
+
+  return {
+    name,
+    component: docsContext(key).default,
+    frontmatter: docsContext(key).frontmatter,
+  }
+}

@@ -1,0 +1,21 @@
+.docs-list {
+  display: flex;
+  gap: 2px;
+  flex-direction: column;
+  align-items: stretch;
+
+  .nav-link {
+    display: block;
+    text-decoration: none;
+
+    button {
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    &.active button {
+      --background-color: var(--md-sys-color-secondary-container);
+      --color: var(--md-sys-color-on-secondary-container);
+    }
+  }
+}

@@ -1,3 +1,5 @@
-export interface Props {
-  className?: string
+import type { HTMLAttributes } from 'react'
+
+export interface Props extends HTMLAttributes<HTMLDivElement> {
+  hidden?: boolean
 }

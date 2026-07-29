@@ -1,7 +1,0 @@
-import { pluginReact } from '@rsbuild/plugin-react'
-import { defineConfig } from '@rstest/core'
-
-export default defineConfig({
-  testEnvironment: 'happy-dom',
-  plugins: [pluginReact()],
-})

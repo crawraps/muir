@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "storybook": {
-      "command": "npx",
-      "args": ["storybook-mcp@latest", "--port", "6006"]
-    }
-  }
-}
