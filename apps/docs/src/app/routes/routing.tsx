@@ -23,7 +23,7 @@ export function Router() {
         <TabProvider>
           <NavbarLayout>
             <Tabs>
-              <Route default path='/landing'>
+              <Route path='/landing'>
                 <Pages.Landing />
               </Route>
               <Route nest path='/docs'>
@@ -52,4 +52,3 @@ export function Router() {
     </Switch>
   )
 }
-

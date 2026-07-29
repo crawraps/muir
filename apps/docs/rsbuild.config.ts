@@ -3,10 +3,10 @@ import { defineConfig } from '@rsbuild/core'
 import { pluginBabel } from '@rsbuild/plugin-babel'
 import { pluginMdx } from '@rsbuild/plugin-mdx'
 import { pluginReact } from '@rsbuild/plugin-react'
-import { pluginWorkspaceDev } from 'rsbuild-plugin-workspace-dev'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import { pluginWorkspaceDev } from 'rsbuild-plugin-workspace-dev'
 import AutoImport from 'unplugin-auto-import/rspack'
 import autoAnimatedPlugin from '../../scripts/babel-plugin-auto-animated.js'
 import autoClsxPlugin from '../../scripts/babel-plugin-auto-clsx.js'
@@ -14,6 +14,10 @@ import autoClsxPlugin from '../../scripts/babel-plugin-auto-clsx.js'
 const ReactCompilerConfig = {}
 
 export default defineConfig({
+  server: {
+    port: process.env.PORT ? Number(process.env.PORT) : 3000,
+    strictPort: false,
+  },
   output: {
     distPath: {
       root: 'dist',

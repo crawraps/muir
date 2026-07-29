@@ -3,7 +3,7 @@
   gap: var(--spacing-medium);
   padding: var(--spacing-medium);
 
-  >*:last-child {
+  > *:last-child {
     flex: 1;
   }
 }
