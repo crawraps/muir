@@ -22,6 +22,11 @@
     "lint": "turbo run lint",
     "format": "biome format --write",
     "changeset": "changeset",
-    "version-packages": "changeset version"
+    "version-packages": "changeset version",
+    "agent:create": "bun scripts/agent.ts create",
+    "agent:remove": "bun scripts/agent.ts remove",
+    "agent:list": "bun scripts/agent.ts list",
+    "agent:run": "bun scripts/agent.ts run",
+    "agent:sync": "bun scripts/agent.ts sync"
   }
 }
