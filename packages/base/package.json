@@ -37,6 +37,7 @@
   },
   "scripts": {
     "build": "rslib build",
+    "clean": "rm -rf dist .turbo .rslib .cache node_modules/.cache",
     "dev": "rslib build --watch",
     "lint": "biome check --write && tsc"
   }

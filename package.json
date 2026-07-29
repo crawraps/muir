@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "turbo run build",
+    "clean": "turbo run clean && rm -rf .turbo .cache node_modules/.cache",
     "dev": "turbo run dev --filter=muir-docs",
     "test": "turbo run test",
     "lint": "turbo run lint",
